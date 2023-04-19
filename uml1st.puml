@@ -1,0 +1,118 @@
+@startuml
+class rest.order.Model.Table {
+~ int tableNO
+~ int seats
+~ String locationString
+~ int tableQue
++ <<Create>> Table(int,int,String,int)
+}
+class rest.order.Service.MenuService {
+- Menu menu
++ <<Create>> MenuService(Menu)
++ String menuName()
+}
+class rest.order.Service.BookingService {
+- BookRepo bookRepo
++ <<Create>> BookingService(BookRepo)
+}
+class rest.order.Controller.WebMainController {
+~ MenuService mService
++ String rootPage(HttpServletRequest)
++ String helloPage(HttpServletRequest)
+}
+class rest.order.Service.TableService {
+}
+class rest.order.Model.Customer {
+~ String phoneNumberString
+~ String emailString
+~ String customerNameString
+~ UserClass userType
++ <<Create>> Customer(int,String,String,String,String,String,String,UserClass)
+}
+enum rest.order.DefineEnum.MenuType {
++  Beverage
++  liquor
++  Desert
++  Appetizers
++  MainCuisine
+}
+class rest.order.Model.Menu {
+~ MenuType type
+~ int price
+~ String menuNameString
+~ int discount
+~ int kCal
+~ int weight
+~ String desCriptionString
++ <<Create>> Menu(MenuType,int,String,int,int,int,String)
+}
+class rest.order.Service.UserService {
+}
+class rest.order.Service.RecordService {
+- RecordsRepo recordsRepo
++ <<Create>> RecordService(RecordsRepo)
+}
+interface rest.order.Repository.UserRepo {
+}
+class rest.order.Model.Worker {
+~ UserClass uClass
++ <<Create>> Worker(int,String,String,String,UserClass)
+}
+class rest.order.Model.Records {
+- Integer recordID
+~ Table table
+~ Customer customer
+~ Book book
++ <<Create>> Records(Integer,Table,Customer,Book)
+}
+enum rest.order.DefineEnum.UserClass {
++  admin
++  guset
++  master
++  firstGrade
++  secondGrade
++  visitor
+}
+class rest.order.Model.Book {
+- Integer bookingID
+~ SimpleDateFormat bookDateFormat
+~ SimpleDateFormat bookTimeFormat
+~ Calendar bookingDate
+~ Calendar bookingTime
+~ Customer mainCustomer
+~ int customerCount
++ <<Create>> Book(Integer,SimpleDateFormat,SimpleDateFormat,Calendar,Calendar,Customer,int)
+}
+interface rest.order.Repository.RecordsRepo {
+}
+class rest.order.Controller.MailController {
+}
+interface rest.order.Repository.BookRepo {
+}
+class rest.order.Model.Reciept {
+~ Menu menu
+~ int count
+~ int total
++ <<Create>> Reciept(Menu,int,int)
+}
+class rest.order.reservation.ReservationApplication {
++ {static} void main(String[])
+}
+class rest.order.Model.AppUser {
+~ int userID
+~ String nickName
+~ String loginID
+- String passWD
++ <<Create>> AppUser(int,String,String,String)
+}
+interface rest.order.Repository.TableRepo {
+}
+
+
+rest.order.Model.AppUser <|-- rest.order.Model.Customer
+org.springframework.data.jpa.repository.JpaRepository <|-- rest.order.Repository.UserRepo
+rest.order.Model.AppUser <|-- rest.order.Model.Worker
+org.springframework.data.jpa.repository.JpaRepository <|-- rest.order.Repository.RecordsRepo
+org.springframework.data.jpa.repository.JpaRepository <|-- rest.order.Repository.BookRepo
+org.springframework.data.jpa.repository.JpaRepository <|-- rest.order.Repository.TableRepo
+@enduml
