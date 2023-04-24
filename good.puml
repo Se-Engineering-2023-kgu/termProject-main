@@ -1,0 +1,258 @@
+@startuml
+class booksys.application.domain.Customer {
+- String name
+- String phoneNumber
++ String getName()
++ String getPhoneNumber()
+}
+class booksys.presentation.ReservationDialog {
+# TextField name
+# TextField phone
+# Label nameLabel
+# Label phoneLabel
+~ String getCustomerName()
+~ String getPhoneNumber()
+}
+class booksys.application.persistency.BookingMapper {
+- {static} BookingMapper uniqueInstance
++ {static} BookingMapper getInstance()
++ Vector getBookings(Date)
++ PersistentReservation createReservation(int,Date,Time,Table,Customer,Time)
++ PersistentWalkIn createWalkIn(int,Date,Time,Table)
++ void updateBooking(Booking)
++ void deleteBooking(Booking)
+- void performUpdate(String)
+}
+class booksys.application.persistency.PersistentCustomer {
+- int oid
+~ int getId()
+}
+class booksys.application.persistency.CustomerMapper {
+- Hashtable cache
+- {static} CustomerMapper uniqueInstance
+- PersistentCustomer getFromCache(int)
+- PersistentCustomer getFromCacheByDetails(String,String)
+- void addToCache(PersistentCustomer)
++ {static} CustomerMapper getInstance()
++ PersistentCustomer getCustomer(String,String)
+~ PersistentCustomer getCustomerForOid(int)
+~ PersistentCustomer createCustomer(String,String)
+- PersistentCustomer getCustomer(String)
+}
+class booksys.presentation.DateDialog {
+~ TextField tf
+~ boolean confirmed
+~ boolean isConfirmed()
+~ Date getDate()
+}
+interface booksys.application.persistency.PersistentBooking {
+~ int getId()
+}
+abstract class booksys.presentation.BookingDialog {
+# Choice tableNumber
+# TextField covers
+# TextField time
+# Label tableNumberLabel
+# Label coversLabel
+# Label timeLabel
+# boolean confirmed
+# Button ok
+# Button cancel
+~ int getTableNumber()
+~ int getCovers()
+~ Time getTime()
+~ boolean isConfirmed()
+}
+class booksys.application.persistency.PersistentWalkIn {
+- int oid
++ int getId()
+}
+class booksys.storage.Database {
+- {static} Connection con
+- {static} Database uniqueInstance
++ {static} Database getInstance()
++ {static} Connection getConnection()
++ int getId()
+}
+class booksys.storage.Connectivity {
+~ {static} Connection getConnection(String)
+}
+class booksys.presentation.BookingSystemApp {
+- StaffUI ui
++ {static} void main(String[])
+}
+class booksys.presentation.StaffUI {
+~ {static} int LEFT_MARGIN
+~ {static} int TOP_MARGIN
+~ {static} int BOTTOM_MARGIN
+~ {static} int ROW_HEIGHT
+~ {static} int COL_WIDTH
+~ {static} int PPM
+~ {static} int PPH
+~ {static} int TZERO
+~ {static} int SLOTS
+- Frame parentFrame
+- BookingSystem bs
+- Image offscreen
+- Vector tableNumbers
+- int firstX
+- boolean mouseDown
+- int timeToX(Time)
+- Time xToTime(int)
+- int tableToY(int)
+- int yToTable(int)
++ void update()
++ void paint(Graphics)
++ void update(Graphics)
++ boolean message(String,boolean)
+~ void displayDate()
+~ void addReservation()
+~ void addWalkIn()
+~ void cancel()
+~ void recordArrival()
+}
+class booksys.application.domain.Reservation {
+- Customer customer
+- Time arrivalTime
++ java.sql.Time getArrivalTime()
++ Customer getCustomer()
++ String getDetails()
++ void setArrivalTime(Time)
++ void setCustomer(Customer)
+}
+class booksys.application.domain.Restaurant {
+~ BookingMapper bm
+~ CustomerMapper cm
+~ TableMapper tm
+~ Vector getBookings(Date)
+~ Customer getCustomer(String,String)
+~ Table getTable(int)
+~ {static} Vector getTableNumbers()
++ Booking makeReservation(int,Date,Time,int,String,String)
++ Booking makeWalkIn(int,Date,Time,int)
++ void updateBooking(Booking)
++ void removeBooking(Booking)
+}
+abstract class booksys.application.domain.BookingImp {
+# int covers
+# Date date
+# Time time
+# Table table
++ Time getArrivalTime()
++ int getCovers()
++ Date getDate()
++ Time getEndTime()
++ Time getTime()
++ Table getTable()
++ int getTableNumber()
++ void setArrivalTime(Time)
++ void setCovers(int)
++ void setDate(Date)
++ void setTime(Time)
++ void setTable(Table)
+}
+interface booksys.application.domain.Booking {
+~ Time getArrivalTime()
+~ int getCovers()
+~ Date getDate()
+~ Time getEndTime()
+~ Time getTime()
+~ Table getTable()
+~ int getTableNumber()
+~ String getDetails()
+~ void setArrivalTime(Time)
+~ void setCovers(int)
+~ void setDate(Date)
+~ void setTime(Time)
+~ void setTable(Table)
+}
+class booksys.presentation.ConfirmDialog {
+# Label messageLabel
+# Label blankLabel
+# boolean confirmed
+# Button confirm
+# Button cancel
+~ boolean isConfirmed()
+}
+class booksys.application.domain.WalkIn {
++ String getDetails()
+}
+class booksys.presentation.WalkInDialog {
+}
+class booksys.application.persistency.PersistentTable {
+- int oid
+~ int getId()
+}
+class booksys.application.persistency.PersistentReservation {
+- int oid
++ int getId()
+}
+class booksys.application.persistency.TableMapper {
+- Hashtable cache
+- {static} TableMapper uniqueInstance
+- PersistentTable getFromCache(int)
+- PersistentTable getFromCacheByNumber(int)
+- void addToCache(PersistentTable)
++ {static} TableMapper getInstance()
++ PersistentTable getTable(int)
+~ PersistentTable getTableForOid(int)
+- PersistentTable getTable(String)
++ Vector getTableNumbers()
+}
+class booksys.application.domain.BookingSystem {
+~ Date currentDate
+~ Date today
+~ Restaurant restaurant
+~ Vector currentBookings
+~ Booking selectedBooking
+- {static} BookingSystem uniqueInstance
+~ Vector observers
++ {static} BookingSystem getInstance()
++ void addObserver(BookingObserver)
++ void notifyObservers()
++ boolean observerMessage(String,boolean)
++ void display(Date)
++ void makeReservation(int,Date,Time,int,String,String)
++ void makeWalkIn(int,Date,Time,int)
++ void selectBooking(int,Time)
++ void cancel()
++ void recordArrival(Time)
++ void transfer(Time,int)
+- boolean doubleBooked(Time,int,Booking)
+- boolean overflow(int,int)
++ Date getCurrentDate()
++ Enumeration getBookings()
++ Booking getSelectedBooking()
++ {static} Vector getTableNumbers()
+}
+interface booksys.application.domain.BookingObserver {
+~ void update()
+~ boolean message(String,boolean)
+}
+class booksys.application.domain.Table {
+- int number
+- int places
++ int getNumber()
++ int getPlaces()
+}
+
+
+booksys.presentation.BookingDialog <|-- booksys.presentation.ReservationDialog
+booksys.application.domain.Customer <|-- booksys.application.persistency.PersistentCustomer
+booksys.presentation.Dialog <|-- booksys.presentation.DateDialog
+booksys.application.persistency.Booking <|-- booksys.application.persistency.PersistentBooking
+booksys.presentation.Dialog <|-- booksys.presentation.BookingDialog
+booksys.application.persistency.PersistentBooking <|.. booksys.application.persistency.PersistentWalkIn
+booksys.application.persistency.WalkIn <|-- booksys.application.persistency.PersistentWalkIn
+booksys.presentation.Frame <|-- booksys.presentation.BookingSystemApp
+booksys.presentation.BookingObserver <|.. booksys.presentation.StaffUI
+booksys.presentation.Canvas <|-- booksys.presentation.StaffUI
+booksys.application.domain.BookingImp <|-- booksys.application.domain.Reservation
+booksys.application.domain.Booking <|.. booksys.application.domain.BookingImp
+booksys.presentation.Dialog <|-- booksys.presentation.ConfirmDialog
+booksys.application.domain.BookingImp <|-- booksys.application.domain.WalkIn
+booksys.presentation.BookingDialog <|-- booksys.presentation.WalkInDialog
+booksys.application.domain.Table <|-- booksys.application.persistency.PersistentTable
+booksys.application.persistency.PersistentBooking <|.. booksys.application.persistency.PersistentReservation
+booksys.application.persistency.Reservation <|-- booksys.application.persistency.PersistentReservation
+@enduml
