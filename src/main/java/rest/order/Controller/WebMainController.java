@@ -17,7 +17,7 @@ public class WebMainController {
 
     @GetMapping("/")
 	public String rootPage(HttpServletRequest request) {
-		return "start";
+		return "greeting";
 	}
 
     @GetMapping("/hello")
