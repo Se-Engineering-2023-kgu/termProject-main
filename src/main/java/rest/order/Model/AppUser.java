@@ -1,6 +1,7 @@
 package rest.order.Model;
 
 
+
 public class AppUser {
     int userID;
     String nickName;
