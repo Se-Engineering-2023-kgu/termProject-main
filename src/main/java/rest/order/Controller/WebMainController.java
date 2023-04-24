@@ -15,7 +15,7 @@ public class WebMainController {
     // private 
     MenuService mService;
 
-    @GetMapping("/")
+    @GetMapping("/greeting")
 	public String rootPage(HttpServletRequest request) {
 		return "greeting";
 	}

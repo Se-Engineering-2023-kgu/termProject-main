@@ -2,6 +2,7 @@ package rest.order.Model;
 
 import rest.order.DefineEnum.UserClass;
 
+
 public class Customer extends AppUser {
 
     String phoneNumberString;
