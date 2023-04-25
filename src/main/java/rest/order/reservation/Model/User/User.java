@@ -1,14 +1,13 @@
-package rest.order.Model;
+package rest.order.reservation.Model.User;
 
 
-public class AppUser {
+public class User {
     int userID;
     String nickName;
-
     String loginID;
     private String passWD;
 
-    public AppUser(int userID, String nickName, String loginID, String passWD) {
+    public User(int userID, String nickName, String loginID, String passWD) {
         this.userID = userID;
         this.nickName = nickName;
         this.loginID = loginID;

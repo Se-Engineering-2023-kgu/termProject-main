@@ -1,20 +1,20 @@
-package rest.order.Model;
+package rest.order.reservation.Model;
 
-import rest.order.DefineEnum.MenuType;
+import rest.order.reservation.DefineEnum.MenuType;
 
 public class Menu {
     //  메뉴라면 가져야 할 것들은? 
 
     MenuType type;
-    int price; 
+    int price;
     String menuNameString;
     int discount;
     int kCal;
     int weight;
     String desCriptionString;
-    
+
     public Menu(MenuType type, int price, String menuNameString, int discount, int kCal, int weight,
-            String desCriptionString) {
+                String desCriptionString) {
         this.type = type;
         this.price = price;
         this.menuNameString = menuNameString;

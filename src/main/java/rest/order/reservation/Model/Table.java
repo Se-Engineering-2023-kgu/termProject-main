@@ -1,8 +1,7 @@
-package rest.order.Model;
+package rest.order.reservation.Model;
 
 public class Table {
-    
-    
+
     int tableNO;
     int seats;
 
@@ -19,5 +18,5 @@ public class Table {
         this.locationString = locationString;
         this.tableQue = tableQue;
     }
-    
+
 }
