@@ -1,4 +1,4 @@
-package rest.order.Model;
+package rest.order.reservation.Model;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

@@ -1,6 +1,6 @@
-package rest.order.Service;
+package rest.order.reservation.Service;
 
-import rest.order.Repository.RecordsRepo;
+import rest.order.reservation.Repository.RecordsRepo;
 
 public class RecordService {
     private RecordsRepo recordsRepo;

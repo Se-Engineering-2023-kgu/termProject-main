@@ -1,4 +1,4 @@
-package rest.order.Model;
+package rest.order.reservation.Model;
 
 public class Reciept {
     // 아무래도 추가 기능들을 위해선 이 기능은 결제와 약간의 관련이 있어 보입니다. 

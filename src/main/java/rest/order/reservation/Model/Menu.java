@@ -1,6 +1,6 @@
-package rest.order.Model;
+package rest.order.reservation.Model;
 
-import rest.order.DefineEnum.MenuType;
+import rest.order.reservation.DefineEnum.MenuType;
 
 public class Menu {
     //  메뉴라면 가져야 할 것들은? 

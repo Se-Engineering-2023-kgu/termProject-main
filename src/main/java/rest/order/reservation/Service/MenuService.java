@@ -1,8 +1,8 @@
-package rest.order.Service;
+package rest.order.reservation.Service;
 
 import org.springframework.stereotype.Service;
 
-import rest.order.Model.Menu;
+import rest.order.reservation.Model.Menu;
 
 @Service
 public class MenuService {

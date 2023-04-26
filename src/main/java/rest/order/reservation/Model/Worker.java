@@ -1,6 +1,6 @@
-package rest.order.Model;
+package rest.order.reservation.Model;
 
-import rest.order.DefineEnum.UserClass;
+import rest.order.reservation.DefineEnum.UserClass;
 
 public class Worker extends AppUser {
 

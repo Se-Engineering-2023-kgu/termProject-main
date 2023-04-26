@@ -1,4 +1,4 @@
-package rest.order.Controller;
+package rest.order.reservation.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,10 +14,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.ui.Model;
 
-import rest.order.Model.Menu;
-import rest.order.Service.MenuService;
+import rest.order.reservation.Model.AppUser;
+import rest.order.reservation.Model.Menu;
+import rest.order.reservation.Service.MenuService;
 
 @Controller
+@RequestMapping(path="/")
 public class MainController {
     // @Autowired
     // private
@@ -37,8 +39,7 @@ public class MainController {
     }
 
     @GetMapping("/good")
-    public String goodreturn() {
-        return "index";
+    public String uploadString(@ModelAttribute AppUser uri, HttpServletRequest request) {
+        return "greeting";
     }
-
 }

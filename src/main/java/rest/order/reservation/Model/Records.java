@@ -1,4 +1,4 @@
-package rest.order.Model;
+package rest.order.reservation.Model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
