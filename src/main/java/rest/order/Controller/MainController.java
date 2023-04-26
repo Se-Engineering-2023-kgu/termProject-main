@@ -18,7 +18,7 @@ import rest.order.Model.Menu;
 import rest.order.Service.MenuService;
 
 @Controller
-public class WebMainController {
+public class MainController {
     // @Autowired
     // private
     MenuService mService;
