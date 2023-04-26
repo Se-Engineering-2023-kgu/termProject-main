@@ -1,28 +1,25 @@
 package rest.order.reservation.Model;
 
+import jakarta.persistence.*;
 import rest.order.reservation.DefineEnum.MenuType;
 
+@Entity
+@Table(name = "menu")
 public class Menu {
-    //  메뉴라면 가져야 할 것들은? 
 
-    MenuType type;
-    int price;
-    String menuNameString;
-    int discount;
-    int kCal;
-    int weight;
-    String desCriptionString;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer mid;
+    @Column(name = "menu_name")
+    private String name;
+    @Column(name = "menu_intro")
+    private String intro;
+    @Column(name = "price")
+    private int price;
 
-    public Menu(MenuType type, int price, String menuNameString, int discount, int kCal, int weight,
-                String desCriptionString) {
-        this.type = type;
-        this.price = price;
-        this.menuNameString = menuNameString;
-        this.discount = discount;
-        this.kCal = kCal;
-        this.weight = weight;
-        this.desCriptionString = desCriptionString;
+    private MenuType type;
+
+
+    public Menu() {
     }
-
-
 }

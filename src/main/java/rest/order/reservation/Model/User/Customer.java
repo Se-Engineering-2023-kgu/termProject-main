@@ -1,22 +1,27 @@
 package rest.order.reservation.Model.User;
 
+import jakarta.persistence.*;
 import rest.order.reservation.DefineEnum.UserClass;
 
-public class Customer extends User {
+@Entity
+@Table(name = "customer")
+public class Customer {
 
-    String phoneNumber;
-    String email;
-    String customerName;
-    UserClass userType;
 
-    public Customer(int userID, String nickName, String loginID, String passWD, String phoneNumber,
-                    String email, String customerName, UserClass userType) {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "CUSTOMER_ID")
+    private Integer id;
+    @Column(name = "PHONE_NUMBER")
+    private String number;
+    @Column(name = "EMAIL")
+    private String email;
+    @OneToOne
+    @JoinColumn(name = "USER_ID")
+    private User user;
+    private UserClass userType;
 
-        super(userID, nickName, loginID, passWD);
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-        this.customerName = customerName;
-        this.userType = userType;
+    public Customer() {
     }
 
 }
