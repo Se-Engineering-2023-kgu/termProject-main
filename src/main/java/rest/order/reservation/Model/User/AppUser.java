@@ -14,8 +14,12 @@ public abstract class AppUser {  // 상속을 이용할 것이면 최소한으�
     private String loginId;
     private String loginPwd;
     private String name;
-
-    public AppUser() {
+    
+    public AppUser(Integer uid, String loginId, String loginPwd, String name) {
+        this.uid = uid;
+        this.loginId = loginId;
+        this.loginPwd = loginPwd;
+        this.name = name;
     }
 
 

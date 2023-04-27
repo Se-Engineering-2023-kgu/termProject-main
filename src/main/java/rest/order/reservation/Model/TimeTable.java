@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
-public interface Booking {
+public interface TimeTable {
     LocalTime getArrivalTime();
 
     void setArrivalTime(LocalTime time);

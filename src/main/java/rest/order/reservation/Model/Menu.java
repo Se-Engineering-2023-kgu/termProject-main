@@ -17,9 +17,15 @@ public class Menu {
     @Column(name = "price")
     private int price;
 
+    @Column(name = "type")
     private MenuType type;
 
-
-    public Menu() {
+    public Menu(Integer mid, String name, String intro, int price, MenuType type) {
+        this.mid = mid;
+        this.name = name;
+        this.intro = intro;
+        this.price = price;
+        this.type = type;
     }
+
 }
