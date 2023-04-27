@@ -4,7 +4,7 @@ import jakarta.persistence.Entity;
 import rest.order.reservation.DefineEnum.UserClass;
 
 @Entity
-public class Customer extends User {
+public class Customer extends AppUser {
 
     private String number;
     private String email;

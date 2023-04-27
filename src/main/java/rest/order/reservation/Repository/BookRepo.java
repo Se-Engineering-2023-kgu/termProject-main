@@ -1,20 +1,20 @@
-//package rest.order.Repository;
-//
-//
-//import org.springframework.data.jpa.repository.JpaRepository;
-//
+package rest.order.reservation.Repository;
 
-//
-//
-//
-///*
-// * JpaRepository == SQL을 적당하게 만들어주는 편한 라이브러리라고 생각하시면 좋습니다.
-// * 편한 라이브러리라고 막 쓰면 저세상 가기 딱 좋습니다만
-// * 일단 무엇인가를 하기 위해서 쓰는 것인 만큼 이게 유용할 겁니다.
-// */
-//
-//
-//public interface BookRepo extends JpaRepository<Book, Long> {
-//
-//
-//}
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+
+
+
+
+/*
+* JpaRepository == SQL을 적당하게 만들어주는 편한 라이브러리라고 생각하시면 좋습니다.
+* 편한 라이브러리라고 막 쓰면 저세상 가기 딱 좋습니다만
+* 일단 무엇인가를 하기 위해서 쓰는 것인 만큼 이게 유용할 겁니다.
+*/
+
+
+public interface BookRepo extends JpaRepository<Book, Long> {
+
+
+}

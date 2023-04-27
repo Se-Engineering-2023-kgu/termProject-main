@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn
-public abstract class User {  // 상속을 이용할 것이면 최소한으로 줄여야 할듯
+public abstract class AppUser {  // 상속을 이용할 것이면 최소한으로 줄여야 할듯
     @Id
     @GeneratedValue
     @Column(name = "USER_ID")
@@ -15,7 +15,7 @@ public abstract class User {  // 상속을 이용할 것이면 최소한으로 �
     private String loginPwd;
     private String name;
 
-    public User() {
+    public AppUser() {
     }
 
 
