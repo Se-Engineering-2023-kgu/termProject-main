@@ -8,11 +8,11 @@ public class TableList {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int tid;
+    private long tid;
     @Column(name = "table_no", columnDefinition = "int")
-    private int number;
+    private long number;
     @Column(name = "seats", columnDefinition = "int")
-    private int seats;
+    private long seats;
     @Column(name = "occupied", columnDefinition = "boolean")
     private Boolean exist;
     // private String location;
