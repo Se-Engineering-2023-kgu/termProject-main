@@ -9,7 +9,8 @@ public class Menu {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer mid;
+    @Column(name = "menu_id")
+    private int mid;
     @Column(name = "menu_name")
     private String name;
     @Column(name = "menu_intro")
@@ -19,6 +20,10 @@ public class Menu {
 
     @Column(name = "type")
     private MenuType type;
+
+    public Menu() {
+        
+    }
 
     public Menu(Integer mid, String name, String intro, int price, MenuType type) {
         this.mid = mid;

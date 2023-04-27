@@ -2,6 +2,7 @@ package rest.order.reservation.Repository;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import rest.order.reservation.Model.Book;
 
@@ -11,7 +12,6 @@ import rest.order.reservation.Model.Book;
 * 일단 무엇인가를 하기 위해서 쓰는 것인 만큼 이게 유용할 겁니다.
 */
 
+@Repository
 public interface BookRepo extends JpaRepository<Book, Long> {
-
-
 }

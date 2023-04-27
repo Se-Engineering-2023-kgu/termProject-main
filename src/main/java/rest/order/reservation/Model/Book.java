@@ -15,16 +15,18 @@ public class Book implements TimeTable   {
    // 해당 클래스를 위해선 정확한 데이터베이스 구조 선정이 중요합니다.
    // 구조에 대해서 좀 더 정확한 무언가가 필요해요.
 
-   int customerCount;
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
-   private Integer bookingID;
+   @Column(name = "booking")
+   int bookingID;
 
    OrderMenu orderInfo;
    TableList TableInfo;
    Customer customerInfo;
 
-
+    public Book() {
+    
+    }
 
     public Book(Integer bookingID, OrderMenu orderInfo, TableList tableInfo, Customer customerInfo) {
         this.bookingID = bookingID;
