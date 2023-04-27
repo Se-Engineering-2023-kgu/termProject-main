@@ -1,14 +1,14 @@
 package rest.order.reservation.Service;
 
 import org.springframework.stereotype.Service;
-import rest.order.reservation.Model.Booking;
+import rest.order.reservation.Repository.BookRepo;
 
 @Service
 public class TimeService {
 
-   private Booking bookRepo;
+   private BookRepo bookRepo;
 
-   public TimeService(Booking bookRepo) {
+   public TimeService(BookRepo bookRepo) {
        this.bookRepo = bookRepo;
    }
 

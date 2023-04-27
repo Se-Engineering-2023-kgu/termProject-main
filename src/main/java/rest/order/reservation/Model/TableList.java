@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "tables")
-public class Tables {
+public class TableList {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,7 +19,7 @@ public class Tables {
     // 현재로선 로케이션 정보는 프론트엔드에서 시각적으로 표현해야 할 것 같습니다. 
 
 
-    public Tables(Integer tid, int number, int seats, Boolean exist) {
+    public TableList(Integer tid, int number, int seats, Boolean exist) {
         this.tid = tid;
         this.number = number;
         this.seats = seats;

@@ -1,10 +1,12 @@
 package rest.order.reservation.Model;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
+import java.time.LocalTime;;
 
 public interface TimeTable {
+
+    
+
     LocalTime getArrivalTime();
 
     void setArrivalTime(LocalTime time);
@@ -19,9 +21,7 @@ public interface TimeTable {
 
     void setTime(LocalTime time);
 
-    List<Tables> getTables();
 
-    void setTables(List<Tables> tablesList);
     //    Integer getCovers();
     //
     //    void setCovers(Integer );
