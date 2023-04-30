@@ -5,8 +5,8 @@
 ====
 
 현재 상태 
- choi4624-entity 
- jookbooin_change
+ ∙ choi4624-entity 
+ ∙ jookbooin_change
 두개 레포에서 진행되는 상태 
 
 
