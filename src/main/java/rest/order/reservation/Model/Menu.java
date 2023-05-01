@@ -4,13 +4,13 @@ import jakarta.persistence.*;
 import rest.order.reservation.DefineEnum.MenuType;
 
 @Entity
-@Table(name = "menu")
+@Table(name = "menu") // DB 에 menu 테이블이 만들어져요 
 public class Menu {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "menu_id")
-    private int mid;
+    private int mid; // PK 로 mid 등록됨 
     @Column(name = "menu_name")
     private String name;
     @Column(name = "menu_intro")
