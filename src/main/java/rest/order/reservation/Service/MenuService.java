@@ -8,8 +8,8 @@ import rest.order.reservation.Repository.MenuRepo;
 @Service
 public class MenuService {
 
-   private Menu menu;
-   private MenuRepo mService;
+   private Menu menuClass;
+   private MenuRepo menuRepository;
 
    public MenuService(Menu menu) {
        this.menu = menu;

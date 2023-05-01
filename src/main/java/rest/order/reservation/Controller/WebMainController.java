@@ -15,7 +15,7 @@ import rest.order.reservation.Service.MenuService;
 public class WebMainController {
 
     @Autowired
-    MenuService mService;
+    MenuService menuService;
 
     @GetMapping("/")
     public String rootPage() {
