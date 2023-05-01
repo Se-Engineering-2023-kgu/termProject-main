@@ -5,7 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import rest.order.reservation.Model.Book;
+
+import rest.order.reservation.Model.Reservation;
 
 /*
 * JpaRepository == SQL을 적당하게 만들어주는 편한 라이브러리라고 생각하시면 좋습니다.
@@ -14,5 +15,5 @@ import rest.order.reservation.Model.Book;
 */
 
 @Repository
-public interface BookRepo extends CrudRepository<Book, Long> {
+public interface ReservationRepo extends CrudRepository<Reservation, Long> {
 }

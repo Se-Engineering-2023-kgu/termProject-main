@@ -10,16 +10,23 @@ import rest.order.reservation.Repository.MenuRepo;
 @Service
 public class MenuService {
 
-    private Menu menu;
-    private MenuRepo mService;
+    private final Menu menu;
+    private final MenuRepo menuRepo;
+    private int price;
 
-    public MenuService(Menu menu, MenuRepo mService) {
+    @Autowired
+    public MenuService(Menu menu, MenuRepo menuRepo) {
         this.menu = menu;
-        this.mService = mService;
+        this.menuRepo = menuRepo;
     }
 
-    public MenuService() {
+    public Menu() {
+        
+    }
 
+    public int MenuService(Menu menu) {
+        this.price = menu.price;
+        return price;
     }
 
     public String menuName() {
@@ -29,4 +36,6 @@ public class MenuService {
     public void addMenu() {
         // mService.save() save가 insert 가 될 수도 있고요 update 가 될 수 있어요 
     }
+
+    
 }
