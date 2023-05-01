@@ -10,9 +10,8 @@ import rest.order.reservation.Repository.MenuRepo;
 @Service
 public class MenuService {
 
-    private final Menu menu;
-    private final MenuRepo menuRepo;
-    private int price;
+   private Menu menuClass;
+   private MenuRepo menuRepository;
 
     @Autowired
     public MenuService(Menu menu, MenuRepo menuRepo) {

@@ -19,9 +19,9 @@ public interface TimeTable {
     void setDate(LocalDate date);
 
 
-    LocalTime getTime();
+    TimeSlot getTime();
 
-    void setTime(LocalTime time);
+    void setTime(TimeSlot time);
 
 
     //    Integer getCovers();
