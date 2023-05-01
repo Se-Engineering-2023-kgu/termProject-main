@@ -34,7 +34,7 @@ public class WebMainController {
     @PostMapping("/menu/menuaddd")
     public String menuadd() {
 
-        mService.addMenu();// 메뉴 아이디, 이름, 단가, 등등등
+        menuService.addMenu();// 메뉴 아이디, 이름, 단가, 등등등
         // 수행하면 menu DB 에 메뉴 등록
 
         return "menulist";
@@ -44,7 +44,7 @@ public class WebMainController {
     @GetMapping("/user")
     public String helloPage(Model model) {
         model.addAttribute("userinfo", "thymeleaf");
-        System.out.println(mService.menuName());
+        System.out.println(menuService.menuName());
         return "usertemp";
     }
 
