@@ -10,7 +10,7 @@ public class Menu {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "menu_id")
-    private int mid; // PK 로 mid 등록됨 
+    private Long mid; // PK 로 mid 등록됨
     @Column(name = "menu_name")
     private String name;
     @Column(name = "menu_intro")
@@ -23,10 +23,10 @@ public class Menu {
     private MenuType type;
 
     public Menu() {
-        
     }
 
-    public Menu(Integer mid, String name, String intro, int price, MenuType type) {
+
+    public Menu(Long mid, String name, String intro, int price, MenuType type) {
         this.mid = mid;
         this.name = name;
         this.intro = intro;
@@ -34,4 +34,43 @@ public class Menu {
         this.type = type;
     }
 
+    public Long getMid() {
+        return mid;
+    }
+
+    public void setMid(Long mid) {
+        this.mid = mid;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getIntro() {
+        return intro;
+    }
+
+    public void setIntro(String intro) {
+        this.intro = intro;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public MenuType getType() {
+        return type;
+    }
+
+    public void setType(MenuType type) {
+        this.type = type;
+    }
 }

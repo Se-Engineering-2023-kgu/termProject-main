@@ -1,28 +1,27 @@
 package rest.order.reservation.Model.User;
 
-import jakarta.persistence.DiscriminatorColumn;
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Inheritance;
 import rest.order.reservation.DefineEnum.UserClass;
-import jakarta.persistence.InheritanceType;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn(name="uClass")
+@DiscriminatorValue("admin")
 public class AppAdmin extends AppUser {
 
+    private UserClass userType;
 
-    public AppAdmin(Integer uid, String loginId, String loginPwd, String name) {
+    public AppAdmin(Long uid, String loginId, String loginPwd, String name) {
         super(uid, loginId, loginPwd, name);
         //TODO Auto-generated constructor stub
     }
 
-    UserClass uClass;
 
-    
-    public AppAdmin(Integer uid, String loginId, String loginPwd, String name, UserClass uClass) {
+    public AppAdmin() {
+    }
+
+    public AppAdmin(Long uid, String loginId, String loginPwd, String name, UserClass userType) {
         super(uid, loginId, loginPwd, name);
-        this.uClass = uClass;
+        this.userType = userType;
     }
 
 

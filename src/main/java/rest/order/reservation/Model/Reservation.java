@@ -11,17 +11,16 @@ import java.util.List;
 
 /* 이거 그냥 엔티티 하면 오류남 */
 @Entity
-// @Table(name = "bookinglist")
+@Table(name = "reservation")
 public class Reservation implements TimeTable {
-    // need to Declare Database structure
-    // how to Book dataBase using Userinfo or any other things;
-    // 해당 클래스를 위해선 정확한 데이터베이스 구조 선정이 중요합니다.
-    // 구조에 대해서 좀 더 정확한 무언가가 필요해요.
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "reservation_id")
-    int reservationID;
+    private Long reservationID;
+    @Column(name = "timeslot")
+    @Enumerated(EnumType.STRING)
+    private TimeSlot timeSlot;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
@@ -31,33 +30,24 @@ public class Reservation implements TimeTable {
     // FK 가 예약에 있기 때문에 mappedBy
     // OrderMenu는 무조건 예약에만 연관되어 있기 때문에 cascade 설정
     // cascade : 예약 입력시 해당 orderMenu를 자동으로 넣어줄 수 있다고함 --> 잘 모르겠음
-    @OneToMany(mappedBy = "reservation", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "reservationID", cascade = CascadeType.ALL)
     private List<OrderMenu> orderList = new ArrayList<>();
-
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tables_id")
     private TableList tables;
-
     @Column(name = "members")
     private int members; // 인원수
 
+    public Reservation() {
+    }
 
-    @Column(name = "timeslot")
-    @Enumerated(EnumType.STRING)
-    TimeSlot timeSlot;
-
-    public Reservation(int reservationID, Customer user, List<OrderMenu> orderList, TableList tables, int members,
-            TimeSlot timeSlot) {
+    public Reservation(Long reservationID, TimeSlot timeSlot, Customer user, List<OrderMenu> orderList, TableList tables, int members) {
         this.reservationID = reservationID;
+        this.timeSlot = timeSlot;
         this.user = user;
         this.orderList = orderList;
         this.tables = tables;
         this.members = members;
-        this.timeSlot = timeSlot;
-    }
-
-    public Reservation() {
-        
     }
 
     @Override
@@ -66,6 +56,11 @@ public class Reservation implements TimeTable {
         throw new UnsupportedOperationException("Unimplemented method 'getArrivalTime'");
     }
 
+    @Override
+    public void setArrivalTime(TimeSlot timeSlot) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setArrivalTime'");
+    }
 
     @Override
     public LocalDate getDate() {
@@ -79,11 +74,10 @@ public class Reservation implements TimeTable {
         throw new UnsupportedOperationException("Unimplemented method 'setDate'");
     }
 
-
     @Override
-    public void setArrivalTime(TimeSlot timeSlot) {
+    public TimeSlot getTime() {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setArrivalTime'");
+        throw new UnsupportedOperationException("Unimplemented method 'getTime'");
     }
 
     @Override
@@ -91,13 +85,6 @@ public class Reservation implements TimeTable {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'setTime'");
     }
-
-    @Override
-    public TimeSlot getTime() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getTime'");
-    }
-
 
 
     // public Book(Integer bookingID, OrderMenu orderInfo, TableList tableInfo,

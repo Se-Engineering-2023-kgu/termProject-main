@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+    <form method="post" th:action="@{/menu/enroll}" th:object="${menu}">
+        <div class="">
+            <label>상품명</label>
+            <input class="" placeholder="상품명을 입력하세요" th:field="${menu.name}"
+                   type="text">
+        </div>
+        <div class="">
+            <label>가격</label>
+            <input class="" placeholder="가격을 입력하세요" th:field="${menu.price}"
+                   type="number">
+        </div>
+        <div class="">
+            <label>수량</label>
+            <input class="" placeholder="설명을 입력하세요" th:field="${menu.intro}" type="text">
+        </div>
+        <div class="">
+            <label th:for="author"></label>
+            <input class="form-control" placeholder="저자를 입력하세요" th:field="*{author}"
+                   type="text">
+        </div>
+
+        <button class="" type="submit">Submit</button>
+    </form>
+    <br/>
+</div> <!-- /container -->
+</body>
+</html>

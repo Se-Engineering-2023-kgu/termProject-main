@@ -1,13 +1,13 @@
 package rest.order.reservation.Model;
 
+import rest.order.reservation.DefineEnum.TimeSlot;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import rest.order.reservation.DefineEnum.TimeSlot;;
+;
 
 public interface TimeTable {
-
-    
 
     LocalTime getArrivalTime();
 

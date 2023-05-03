@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 //import rest.order.Repository.BookRepo;
 
 @Controller
-@RequestMapping("/book")
-public class BookController {
+@RequestMapping("/reservation")
+public class ReservationController {
 //    private BookRepo bookRepo;
 
-    @GetMapping("book")
+    @GetMapping("/reservation")
     public String book() {
         return "greeting";
     }
