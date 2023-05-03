@@ -13,24 +13,25 @@ import rest.order.reservation.Model.DTO.CustomerDTO;
 import rest.order.reservation.Model.DTO.CustomerDTOMapper;
 import rest.order.reservation.Model.User.AppUser;
 import rest.order.reservation.Model.User.Customer;
-import rest.order.reservation.Repository.UserRepo;
+import rest.order.reservation.Repository.CustomerRepo;
+
 
 @Service
 public class UserService {
 
     @Autowired
-    private final UserRepo userRepository;
+    private final CustomerRepo customerRepository;
     private final CustomerDTOMapper customerDTOMapper;
 
-    public UserService(UserRepo userRepository, CustomerDTOMapper customerDTOMapper) {
-        this.userRepository = userRepository;
+    public UserService(CustomerRepo customerRepository, CustomerDTOMapper customerDTOMapper) {
+        this.customerRepository = customerRepository;
         this.customerDTOMapper = customerDTOMapper;
     }
 
 
 
     public List<CustomerDTO> getAllCustomers() {
-        Iterable<Customer> customers = userRepository.findAll();
+        Iterable<Customer> customers = customerRepository.findAll();
         Stream<Customer> customerStream = StreamSupport.stream(customers.spliterator(), false);
         List<CustomerDTO> customerList = customerStream
                                         .map(customer -> customerDTOMapper.apply(customer))

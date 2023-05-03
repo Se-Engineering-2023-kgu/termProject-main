@@ -8,8 +8,7 @@ import rest.order.reservation.Model.User.AppUser;
 import rest.order.reservation.Model.User.Customer;
 
 @Repository
-public interface UserRepo extends CrudRepository<Customer, Long> {
+public interface CustomerRepo extends CrudRepository<Customer, Long> {
 
-    Object selectAllCustomers();
 
 }
