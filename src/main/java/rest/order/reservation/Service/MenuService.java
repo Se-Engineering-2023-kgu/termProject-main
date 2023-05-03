@@ -5,39 +5,32 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import rest.order.reservation.Model.Menu;
+import rest.order.reservation.Model.DTO.MenuDTO;
+import rest.order.reservation.Model.DTO.MenuDTOMapper;
 import rest.order.reservation.Repository.MenuRepo;
 
 @Service
 public class MenuService {
 
-   private Menu menuClass;
-   private MenuRepo menuRepository;
+
+    private final MenuDTOMapper menuDTOMapper;
+    private final MenuRepo menuRepository;
 
     @Autowired
-    public MenuService(Menu menu, MenuRepo menuRepo) {
-        this.menuClass = menu;
+    public MenuService(MenuDTOMapper menuDTOMapper, MenuRepo menuRepo) {
+        this.menuDTOMapper = menuDTOMapper;
         this.menuRepository = menuRepo;
     }
 
-    public MenuService() {
-        
-    }
-
-    // public int MenuService(final Menu menu) {
-        
-    //     //this.price = menu.price;
-    //     //return price;
-
-    //     return menu;
-    // }
-
-    public String menuName() {
-        return "WelcomeMenu";
-    }
-
-    public void addMenu(Menu menuClass) {
-
-        menuRepository.save(menuClass); // save가 insert 가 될 수도 있고요 update 가 될 수 있어요 
+    public MenuDTO saveMenu(MenuDTO menuDTO) {
+        Menu menu = new Menu(
+                menuDTO.name(),
+                menuDTO.intro(),
+                menuDTO.price(),
+                menuDTO.type()
+        );
+        menuRepository.save(menu);
+        return menuDTOMapper.apply(menu);
     }
 
     

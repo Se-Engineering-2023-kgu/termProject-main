@@ -31,7 +31,7 @@ public class Reservation implements TimeTable {
     // FK 가 예약에 있기 때문에 mappedBy
     // OrderMenu는 무조건 예약에만 연관되어 있기 때문에 cascade 설정
     // cascade : 예약 입력시 해당 orderMenu를 자동으로 넣어줄 수 있다고함 --> 잘 모르겠음
-    @OneToMany(mappedBy = "reservation", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "reservationID", cascade = CascadeType.ALL)
     private List<OrderMenu> orderList = new ArrayList<>();
 
     @OneToOne(fetch = FetchType.LAZY)

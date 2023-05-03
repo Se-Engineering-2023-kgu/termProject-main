@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import jakarta.servlet.http.HttpServletRequest;
+import rest.order.reservation.Model.DTO.MenuDTO;
 import rest.order.reservation.Model.User.AppUser;
 import rest.order.reservation.Service.MenuService;
 import rest.order.reservation.Service.TableService;
@@ -32,18 +33,16 @@ public class WebMainController {
     }
 
     @PostMapping("/menu/menuaddd")
-    public String menuadd(Model model) {
-        // menuService.addMenu(model);// 메뉴 아이디, 이름, 단가, 등등등
+    public String menuadd(@ModelAttribute MenuDTO menuDTO) {
+        menuService.saveMenu(menuDTO);// 메뉴 아이디, 이름, 단가, 등등등
         // 수행하면 menu DB 에 메뉴 등록
-
         return "menulist";
-
     }
 
     @GetMapping("/user")
     public String helloPage(Model model) {
         model.addAttribute("userinfo", "thymeleaf");
-        System.out.println(menuService.menuName());
+        System.out.println(menuService.saveMenu(null));
         return "usertemp";
     }
 
