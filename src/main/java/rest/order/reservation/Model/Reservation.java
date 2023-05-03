@@ -79,22 +79,23 @@ public class Reservation implements TimeTable {
         throw new UnsupportedOperationException("Unimplemented method 'setDate'");
     }
 
-    @Override
-    public LocalTime getTime() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getTime'");
-    }
-
-    @Override
-    public void setTime(LocalTime time) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setTime'");
-    }
 
     @Override
     public void setArrivalTime(TimeSlot timeSlot) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'setArrivalTime'");
+    }
+
+    @Override
+    public void setTime(TimeSlot time) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setTime'");
+    }
+
+    @Override
+    public TimeSlot getTime() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getTime'");
     }
 
 

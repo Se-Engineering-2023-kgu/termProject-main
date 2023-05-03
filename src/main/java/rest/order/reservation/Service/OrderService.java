@@ -19,7 +19,7 @@ public class OrderService {
         
         orderMenu.setMenu(menu);
         orderMenu.setCount(count);
-        int orderPrice = menuService.MenuService(menu);
+        int orderPrice = 5000; // menuService.MenuService(menu);
         orderMenu.setOrderPrice(orderPrice);
         
 

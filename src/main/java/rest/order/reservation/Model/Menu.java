@@ -19,6 +19,7 @@ public class Menu {
     private int price;
 
     @Column(name = "type")
+    @Enumerated(EnumType.STRING)
     private MenuType type;
 
     public Menu() {

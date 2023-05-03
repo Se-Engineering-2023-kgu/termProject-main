@@ -15,25 +15,29 @@ public class MenuService {
 
     @Autowired
     public MenuService(Menu menu, MenuRepo menuRepo) {
-        this.menu = menu;
-        this.menuRepo = menuRepo;
+        this.menuClass = menu;
+        this.menuRepository = menuRepo;
     }
 
-    public Menu() {
+    public MenuService() {
         
     }
 
-    public int MenuService(Menu menu) {
-        this.price = menu.price;
-        return price;
-    }
+    // public int MenuService(final Menu menu) {
+        
+    //     //this.price = menu.price;
+    //     //return price;
+
+    //     return menu;
+    // }
 
     public String menuName() {
         return "WelcomeMenu";
     }
 
-    public void addMenu() {
-        // mService.save() save가 insert 가 될 수도 있고요 update 가 될 수 있어요 
+    public void addMenu(Menu menuClass) {
+
+        menuRepository.save(menuClass); // save가 insert 가 될 수도 있고요 update 가 될 수 있어요 
     }
 
     
