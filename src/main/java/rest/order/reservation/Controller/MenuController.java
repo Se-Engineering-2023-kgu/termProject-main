@@ -28,7 +28,6 @@ public class MenuController {
     public Map<MenuType, String> deliveryCodes() {
         Map<MenuType, String> menuType = new HashMap<>();
         menuType.put(MenuType.Appetizers, "Appetizers");
-        menuType.put(MenuType.liquor, "liquor");
         menuType.put(MenuType.Desert, "Desert");
         menuType.put(MenuType.Beverage, "Beverage");
         menuType.put(MenuType.MainCuisine, "MainCuisine");
