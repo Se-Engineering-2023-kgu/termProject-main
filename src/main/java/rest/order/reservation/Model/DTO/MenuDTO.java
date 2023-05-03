@@ -7,13 +7,17 @@ public class MenuDTO {
     private String intro;
     private int price;
     private MenuType type;
-    
+
+    public MenuDTO() {
+    }
+
     public MenuDTO(String name, String intro, int price, MenuType type) {
         this.name = name;
         this.intro = intro;
         this.price = price;
         this.type = type;
     }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -24,6 +28,7 @@ public class MenuDTO {
         result = prime * result + ((type == null) ? 0 : type.hashCode());
         return result;
     }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -49,16 +54,19 @@ public class MenuDTO {
             return false;
         return true;
     }
-    
+
     public String getName() {
         return name;
     }
+
     public String getIntro() {
         return intro;
     }
+
     public int getPrice() {
         return price;
     }
+
     public MenuType getType() {
         return type;
     }
