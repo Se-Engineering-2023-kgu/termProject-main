@@ -9,7 +9,7 @@ import rest.order.reservation.Model.Reservation;
 import rest.order.reservation.Model.User.Customer;
 import rest.order.reservation.Repository.ReservationRepo;
 
-@Service
+// @Service
 public class ReservationService {
   
 
