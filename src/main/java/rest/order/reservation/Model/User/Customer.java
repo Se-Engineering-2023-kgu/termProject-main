@@ -25,4 +25,24 @@ public class Customer extends AppUser {
         this.userType = userType;
         }
 
+    public Long getUID() {
+        return null;
+    }
+
+    public String getName() {
+        return null;
+    }
+
+    public String getPhoneNumber() {
+        return null;
+    }
+
+    public String getEmail() {
+        return null;
+    }
+
+    public UserClass getuserType() {
+        return null;
+    }
+
 }

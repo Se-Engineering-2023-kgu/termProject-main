@@ -7,7 +7,5 @@ import rest.order.reservation.Model.Menu;
 public class MenuController {
     Menu menu;
 
-    @PostMapping("/")
-    public String 
 
 }
