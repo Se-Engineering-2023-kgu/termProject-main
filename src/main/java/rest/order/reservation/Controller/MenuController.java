@@ -4,15 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import rest.order.reservation.DefineEnum.MenuType;
 import rest.order.reservation.Model.DTO.MenuDTO;
 import rest.order.reservation.Service.MenuService;
-
-import java.util.HashMap;
-import java.util.Map;
 
 @Controller
 @RequestMapping("/menu")
@@ -24,15 +19,15 @@ public class MenuController {
         this.menuService = menuService;
     }
 
-    @ModelAttribute("menuType")
-    public Map<MenuType, String> deliveryCodes() {
-        Map<MenuType, String> menuType = new HashMap<>();
-        menuType.put(MenuType.Appetizers, "Appetizers");
-        menuType.put(MenuType.Desert, "Desert");
-        menuType.put(MenuType.Beverage, "Beverage");
-        menuType.put(MenuType.MainCuisine, "MainCuisine");
-        return menuType;
-    }
+//    @ModelAttribute("menuType")
+//    public Map<MenuType, String> menuType() {
+//        Map<MenuType, String> menuTypeMap = new HashMap<>();
+//        menuTypeMap.put(MenuType.Appetizers, "Appetizers");
+//        menuTypeMap.put(MenuType.Desert, "Desert");
+//        menuTypeMap.put(MenuType.Beverage, "Beverage");
+//        menuTypeMap.put(MenuType.MainCuisine, "MainCuisine");
+//        return menuTypeMap;
+//    }
 
     @GetMapping("/enroll")
     public String enrollMenuForm(Model model) {
