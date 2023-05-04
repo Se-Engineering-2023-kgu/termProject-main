@@ -28,15 +28,14 @@ public class UserController {
     public String enrollMenuForm(Model model) {
         model.addAttribute("user", new UserForm());
 
-        return "user/enrollUserForm";
+        return "user/enrollUser";
     }
 
     @PostMapping("/enroll")
     public String enrollMenu(@ModelAttribute("user") @Validated UserForm userForm, BindingResult result) {
 //        if (result.hasErrors())
 //            return "user/enrollUserForm";
-
-
+        
         return "user/userInfo";
     }
 

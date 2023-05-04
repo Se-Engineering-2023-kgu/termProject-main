@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>날짜 체크</h1>
+<div>
+    <form method="post" role="form" th:action="@{/reservation/table}" th:object="${reservation}">
+        <!--th:object -> 이 안에서 이객체를 계속사용하겠다-->
+        <div class="">
+            <label>인원수</label>
+            <input class="" hidden
+                   placeholder="인원수을 입력하세요"
+                   th:field="${reservation.first}" type="text">
+        </div>
+        <div class="">
+            <label>날짜</label>
+            <input class="" hidden placeholder="날짜를 입력하세요"
+                   th:field="${reservation.second}" type="text">
+        </div>
+
+        <div class="">
+            <label>이름</label>
+            <input class=""
+                   hidden
+                   placeholder="시간" th:field="${reservation.third}" type="text">
+        </div>
+
+        <div class="">
+            <label>테이블 번호</label>
+            <input class="" placeholder="테이블 번호"
+                   th:field="${reservation.fourth}" type="text">
+        </div>
+
+        <button class="" type="submit">확인</button>
+    </form>
+</div>
+</body>
+</html>

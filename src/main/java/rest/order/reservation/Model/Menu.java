@@ -25,7 +25,6 @@ public class Menu {
     public Menu() {
     }
 
-
     public Menu(Long mid, String name, String intro, int price, MenuType type) {
         this.mid = mid;
         this.name = name;

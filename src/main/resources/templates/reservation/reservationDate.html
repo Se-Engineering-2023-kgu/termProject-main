@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>날짜 체크</h1>
+<div>
+    <form method="post" role="form" th:action="@{/reservation/date}" th:object="${reservation}">
+        <div class="">
+            <label>인원수</label>
+            <input class="" placeholder="인원수을 입력하세요"
+                   th:field="${reservation.members}"
+                   type="number">
+        </div>
+
+        <div class="">
+            <label>날짜</label>
+            <input class="" placeholder="날짜를 입력하세요" th:field="${reservation.date}"
+                   type="date">
+        </div>
+
+        <!--        <div class="">-->
+        <!--            <label>시간</label>-->
+        <!--            <input class=""-->
+        <!--                   placeholder="시간" th:field="${reservation.time}" type="text">-->
+        <!--        </div>-->
+
+        <button class="" type="submit">확인</button>
+    </form>
+</div>
+
+</body>
+</html>

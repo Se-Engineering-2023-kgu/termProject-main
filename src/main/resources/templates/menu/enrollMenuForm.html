@@ -17,18 +17,25 @@
             <input class="" placeholder="가격을 입력하세요" th:field="${menu.price}"
                    type="number">
         </div>
+
         <div class="">
-            <label>수량</label>
+            <label>설명</label>
             <input class="" placeholder="설명을 입력하세요" th:field="${menu.intro}" type="text">
         </div>
-        <div class="">
-            셀렉트 박스
-        </div>
 
+        <div class="">
+            <div>음식 타입</div>
+            <div class="" th:each="menuType : ${menuTypes}">
+                <input class="" th:field="*{type}" th:value="${menuType.name()}"
+                       type="radio">
+                <label class="" th:for="${#ids.prev('type')}"
+                       th:text="${menuType.description}">
+                </label>
+            </div>
+        </div>
         <button class="" type="submit">Submit</button>
     </form>
-    <br/>
-
-</div> <!-- /container -->
+</div>
+<!-- /container -->
 </body>
 </html>

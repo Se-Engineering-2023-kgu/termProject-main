@@ -6,6 +6,8 @@ import rest.order.reservation.Model.DTO.MenuDTO;
 import rest.order.reservation.Model.Menu;
 import rest.order.reservation.Repository.MenuRepo;
 
+import java.util.List;
+
 @Service
 public class MenuService {
 
@@ -16,7 +18,7 @@ public class MenuService {
         this.menuRepository = menuRepository;
     }
 
-    public void addMenu(MenuDTO menuDto) {  // entity로 변환해서 넣어야 할까요?
+    public Menu addMenu(MenuDTO menuDto) {  // entity로 변환해서 넣어야 할까요?
 
         Menu menuClass = new Menu();
         menuClass.setName(menuDto.getName());
@@ -24,17 +26,18 @@ public class MenuService {
         menuClass.setPrice(menuDto.getPrice());
         menuClass.setType(menuDto.getType());
 
-        menuRepository.save(menuClass);
+        return menuRepository.save(menuClass);
     }
+
 
     public Menu findMenu(Long id) {
         return menuRepository.findById(id).get();
     }
 
-    //    public List<Menu> findAllMenu() {
-//        return menuRepository.findAll(); // jpaRepository 쓰면 되는건가요??
-//        return menuRepository.findAll();
-//    }
+    public List<Menu> findAllMenu() {
+        return menuRepository.findAll(); // jpaRepository 쓰면 되는건가요??
+    }
+
     public void deleteMenu(Long id) {
         Menu menuClass = menuRepository.findById(id).get();
         menuRepository.delete(menuClass);
