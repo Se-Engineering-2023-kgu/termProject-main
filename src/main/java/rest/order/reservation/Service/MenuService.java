@@ -29,7 +29,6 @@ public class MenuService {
         return menuRepository.save(menuClass);
     }
 
-
     public Menu findMenu(Long id) {
         return menuRepository.findById(id).get();
     }

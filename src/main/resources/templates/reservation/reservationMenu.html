@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
     <title>Title</title>
 </head>
 <body>
+<h1>2. 메뉴 페이지</h1>
+<div>
+    <form method="post" role="form" th:action="@{/reservation/date}" th:object="${reservation}">
 
+        <button class="" type="submit">확인</button>
+    </form>
+</div>
 </body>
 </html>
 

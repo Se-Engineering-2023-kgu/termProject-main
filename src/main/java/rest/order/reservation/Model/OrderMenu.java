@@ -24,10 +24,9 @@ public class OrderMenu {
     private int count; // 한종류 주문시점 수량
 
     //생성로직 은 service 이동시킴
-    public OrderMenu createOrderMenu(Menu menu, int price, int count) {
+    public static OrderMenu createOrderMenu(Menu menu, int count) {
         OrderMenu orderMenu = new OrderMenu();
         orderMenu.setMenu(menu);
-        orderMenu.setOrderPrice(price);
         orderMenu.setCount(count);
         // orderRepo.save(orderMenu); //  crudrepository 의 save 수행. insert 할 때 주의
         // 이걸로 리턴한 orderMenu를 바탕으로 reservation_id와
