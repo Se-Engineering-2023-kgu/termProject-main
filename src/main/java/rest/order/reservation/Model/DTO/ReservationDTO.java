@@ -2,18 +2,14 @@ package rest.order.reservation.Model.DTO;
 
 import rest.order.reservation.Model.OrderMenu;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ReservationDTO {
 
     private int members;
-    private LocalDate date;
-    private LocalTime time;
-
-    //    private TimeSlot timeSlot;
+    private String date;
+    private String time;
     private List<OrderMenu> orderList = new ArrayList<>();
     private int tableNumber;
 
@@ -25,14 +21,21 @@ public class ReservationDTO {
         this.members = members;
     }
 
-    public LocalDate getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
 
     public List<OrderMenu> getOrderList() {
         return orderList;

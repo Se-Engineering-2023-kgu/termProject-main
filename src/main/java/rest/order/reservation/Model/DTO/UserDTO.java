@@ -1,6 +1,6 @@
-package rest.order.reservation.Model.Form;
+package rest.order.reservation.Model.DTO;
 
-public class UserForm {
+public class UserDTO {
     private String loginId;
     private String loginPwd;
     private String name;

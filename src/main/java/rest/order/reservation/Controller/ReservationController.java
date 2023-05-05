@@ -36,16 +36,27 @@ public class ReservationController {
         return "reservation/reservationInfo";
     }
 
+    // 테이블 화면
+    @GetMapping("/table")
+    public String reservationTableGET(@ModelAttribute("reservation") ReservationDTO reservation) {
+        return "reservation/reservationTable";
+    }
+
     // 테이블 선택 값 받고 -> 메뉴 선택
     @PostMapping("/table")
-    public String reservationTable(@ModelAttribute("reservation") ReservationDTO reservation) {
+    public String reservationTablePOST(@ModelAttribute("reservation") ReservationDTO reservation) {
         return "reservation/reservationMenu";
     }
 
 
     // 메뉴 선택후 -> 예약 명세서
+    @GetMapping("/menu")
+    public String reservationMenuGET(@ModelAttribute("reservation") ReservationDTO reservation) {
+        return "reservation/reservationInfo";
+    }
+
     @PostMapping("/menu")
-    public String reservationMenu(@ModelAttribute("reservation") ReservationDTO reservation) {
+    public String reservationMenuPOST(@ModelAttribute("reservation") ReservationDTO reservation) {
         return "reservation/reservationInfo";
     }
 
