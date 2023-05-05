@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 
 import rest.order.reservation.DefineEnum.UserClass;
 
-@Service
+
 public record CustomerRegisteration(
     String phoneNumber,
     String email,

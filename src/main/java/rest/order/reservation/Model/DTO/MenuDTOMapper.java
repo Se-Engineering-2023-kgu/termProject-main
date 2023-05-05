@@ -13,6 +13,7 @@ public class MenuDTOMapper implements Function<Menu, MenuDTO>{
     public MenuDTO apply(Menu menu) {
         // TODO Auto-generated method stub
         return new MenuDTO(
+            menu.getMid(),
             menu.getName(),
             menu.getIntro(), 
             menu.getPrice(), 

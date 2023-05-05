@@ -1,6 +1,7 @@
 package rest.order.reservation.Model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import rest.order.reservation.DefineEnum.MenuType;
 
 @Entity
@@ -11,6 +12,8 @@ public class Menu {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "menu_id")
     private Long mid; // PK 로 mid 등록됨 
+    
+    
     @Column(name = "menu_name")
     private String name;
     @Column(name = "menu_intro")
