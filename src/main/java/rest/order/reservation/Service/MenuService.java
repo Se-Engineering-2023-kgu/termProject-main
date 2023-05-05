@@ -36,10 +36,14 @@ public class MenuService {
     }
 
     public void deleteMenu(Long id) {
-        Menu menuClass = menuRepository.findById(id).get();
-        menuRepository.delete(menuClass);
+        
+        Optional<Menu> menuClass = menuRepository.findById(id);
+        if (menuClass.isPresent()) {
+            menuRepository.delete(menuClass.get());    
+        } else {
+            throw new RuntimeException("request Menu id is not found " + id);
+        }   
     }
-
 
     public MenuDTO viewMenu(long id) {
         Optional<Menu> menu = menuRepository.findById(id);
@@ -50,8 +54,6 @@ public class MenuService {
         } else {
             throw new RuntimeException("request Menu id is not found " + id);
         }
-        
-
     }
 
 
@@ -62,6 +64,8 @@ public class MenuService {
                         menuRequest.price(), 
                         menuRequest.type()
                         );
+        menuRepository.save(menu);
+
         return menuRequest;
         
 	}

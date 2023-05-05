@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Menu</title>
+</head>
+<body>
+    <h1>Add Menu</h1>
+    <h2> type is : Beverage, liquor, Desert, Appetizers, MainCuisine</h2>
+    <form th:action="@{/menu/add}" method="post" th:object="${menuRequest}">
+        <div>
+            <label>Name:</label>
+            <input type="text" th:field="*{name}" required />
+        </div>
+        <div>
+            <label>Intro:</label>
+            <textarea th:field="*{intro}" required></textarea>
+        </div>
+        <div>
+            <label>Price:</label>
+            <input type="number" th:field="*{price}" required />
+        </div>
+        <div>
+            
+            <label>Type: </label>
+            <select th:field="*{type}">
+                <option th:value="${T(rest.order.reservation.DefineEnum.MenuType).Beverage}">Appetizer</option>
+                <option th:value="${T(rest.order.reservation.DefineEnum.MenuType).liquor}">Entree</option>
+                <option th:value="${T(rest.order.reservation.DefineEnum.MenuType).Desert}">Dessert</option>
+                <option th:value="${T(rest.order.reservation.DefineEnum.MenuType).Appetizers}">Dessert</option>
+                <option th:value="${T(rest.order.reservation.DefineEnum.MenuType).MainCuisine}">Dessert</option>
+            </select>
+        </div>
+        <div>
+            <input type="submit" value="Submit" />
+        </div>
+    </form>
+</body>
+</html>

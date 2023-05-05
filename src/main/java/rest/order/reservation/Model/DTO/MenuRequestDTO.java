@@ -9,4 +9,5 @@ public record MenuRequestDTO(
     MenuType type
 ) {
 
+
 }
