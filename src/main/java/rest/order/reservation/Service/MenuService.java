@@ -49,7 +49,7 @@ public class MenuService {
         Optional<Menu> menu = menuRepository.findById(id);
 
         if (menu.isPresent()) {
-            MenuDTO menuDTO = menuDTOMapper.apply(menu.get());
+            MenuDTO menuDTO = MenuDTO.from(menu.get());
             return menuDTO;
         } else {
             throw new RuntimeException("request Menu id is not found " + id);
