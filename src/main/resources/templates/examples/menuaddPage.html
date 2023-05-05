@@ -24,11 +24,11 @@
             
             <label>Type: </label>
             <select th:field="*{type}">
-                <option th:value="${T(rest.order.reservation.DefineEnum.MenuType).Beverage}">Appetizer</option>
-                <option th:value="${T(rest.order.reservation.DefineEnum.MenuType).liquor}">Entree</option>
+                <option th:value="${T(rest.order.reservation.DefineEnum.MenuType).Beverage}">Beverage</option>
+                <option th:value="${T(rest.order.reservation.DefineEnum.MenuType).liquor}">liquor</option>
                 <option th:value="${T(rest.order.reservation.DefineEnum.MenuType).Desert}">Dessert</option>
-                <option th:value="${T(rest.order.reservation.DefineEnum.MenuType).Appetizers}">Dessert</option>
-                <option th:value="${T(rest.order.reservation.DefineEnum.MenuType).MainCuisine}">Dessert</option>
+                <option th:value="${T(rest.order.reservation.DefineEnum.MenuType).Appetizers}">Appetizers</option>
+                <option th:value="${T(rest.order.reservation.DefineEnum.MenuType).MainCuisine}">MainCuisine</option>
             </select>
         </div>
         <div>
