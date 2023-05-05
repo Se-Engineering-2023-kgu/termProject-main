@@ -5,9 +5,11 @@ import rest.order.reservation.Model.OrderMenu;
 import rest.order.reservation.Repository.OrderRepo;
 
 public class OrderService {
-    OrderRepo orderRepo;
+    
+    OrderRepo orderRepository;
     OrderMenu orderMenu;
     MenuService menuService;
+    
 
         //1 . 주문 메뉴 생성
     // 주문한 메뉴 : orderMenu 를 내부에서 생성하는 로직
@@ -23,7 +25,7 @@ public class OrderService {
         orderMenu.setOrderPrice(orderPrice);
         
 
-        // orderRepo.save(orderMenu); //  crudrepository 의 save 수행. insert 할 때 주의
+        orderRepository.save(orderMenu); //  crudrepository 의 save 수행. insert 할 때 주의
         // 이걸로 리턴한 orderMenu를 바탕으로 reservation_id와 
 
         return orderMenu;
