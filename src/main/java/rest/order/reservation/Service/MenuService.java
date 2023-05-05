@@ -65,7 +65,24 @@ public class MenuService {
                         menuRequest.type()
                         );
         menuRepository.save(menu);
+        return menuRequest;
+        
+	}
 
+    public MenuDTO editMenu(MenuDTO menuRequest) {
+        // Menu menu = menuRepository.findByid(menuRequest.id()); // Repo에 기능 넣어야 함, 그냥 리퀘 받을 때 id 도 받을걸 그랬나 
+        Menu menu = null;
+        if(menu != null){
+        menu.setName(menuRequest.name());
+        menu.setIntro(menuRequest.intro());
+        menu.setPrice(menuRequest.price());
+        menu.setType(menuRequest.type());
+        menuRepository.save(menu);
+
+        }
+        else {
+            throw new RuntimeException("Menu not found!");
+        }
         return menuRequest;
         
 	}

@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -46,6 +47,12 @@ public class MenuController {
     public String menuAddPage(Model model) {
         model.addAttribute("menuRequest", new MenuRequestDTO("","", 0L, MenuType.NONE));
         return "examples/menuaddPage";
+    }
+
+    @PostMapping("menu/edit/{id}")
+    public ResponseEntity<?> editMenu(@ModelAttribute("menuRequest") MenuDTO menuRequest, @PathVariable Long id) {
+        MenuDTO responseRequestDTO = menuService.editMenu(menuRequest);
+        return ResponseEntity.ok(responseRequestDTO.toString() + "Edit complete! ");
     }
 
     @GetMapping("menu/delete")

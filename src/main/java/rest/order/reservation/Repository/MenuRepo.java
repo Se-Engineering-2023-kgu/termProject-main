@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import rest.order.reservation.Model.Menu;
 
 @Repository
-public interface MenuRepo extends CrudRepository<Menu,Long> {
+public interface MenuRepo extends JpaRepository<Menu,Long> {
     
 }
