@@ -18,7 +18,7 @@ public class MenuService {
         this.menuRepository = menuRepository;
     }
 
-    public Menu addMenu(MenuRegistForm menuDto) {  // entity로 변환해서 넣어야 할까요?
+    public Menu addMenu(MenuRegistForm menuDto) {
 
         Menu menuClass = new Menu(menuDto.getName(), menuDto.getIntro(), menuDto.getPrice(), menuDto.getType());
 

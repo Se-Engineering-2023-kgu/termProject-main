@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "OrderMenu")
 public class OrderMenu {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_menu_id")
@@ -22,8 +21,7 @@ public class OrderMenu {
     private int orderPrice; // 한종류 주문시점 가격
     @Column(name = "count")
     private int count; // 한종류 주문시점 수량
-
-
+    
     // orderMenu 생성 메소드
     public static OrderMenu createOrderMenu(Menu menu, int count) {
         OrderMenu orderMenu = new OrderMenu();

@@ -25,6 +25,8 @@ public class CustomerService {
         this.customerRepository = customerRepository;
     }
 
+
+    //    .... 50번이 나가는 건가..?? workBanch에서 엄청 많이 증가
     public Long addCustomer(CustomerRequestDTO request) {
         Customer customer = new Customer(
                 request.loginId(),
@@ -48,6 +50,7 @@ public class CustomerService {
         return customerList;
     }
 
+    @Transactional
     public void deleteCustomer(Long id) {
         Customer customer = customerRepository.findById(id).get();
         customerRepository.delete(customer);
