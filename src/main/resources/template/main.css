@@ -5,25 +5,24 @@ a{
     text-decoration: none;
     color: white;
 }
-#header img{
-    display: block; margin: 0px auto;
+ .main_site{
+    width: 100vw;
+    height: 80vh;
+    background-image: url("img/restaurant4.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .navbar{
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    background-color: #555555;
+    justify-content: space-between;
     padding: 8px 12px;
 }
 
-.navbar_logo{
-    color: white;
-}
 .navbar_menu{
     display: flex;
     list-style: none;
-    margin: 0 auto;
     font-size: 20px;
     font-family: Merriweather Sans;
 }
@@ -33,7 +32,8 @@ a{
 }
 
 .navbar_menu li:hover {
-    background-color: gray;
+    background-color:#e0cda2;
+    transition: 0.9s;
     border-radius: 4px;
 }
 
@@ -48,19 +48,9 @@ a{
     padding: 8px 12px;
 }
 
-.main_img{
-    position: relative;
-}
-
-.main_img img{
-    max-width: 100%;
-    height: auto;
-    display: block;
-}
-
-.main_img_text {
+.main_img_text{
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
     color: white;

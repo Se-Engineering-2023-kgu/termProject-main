@@ -7,25 +7,39 @@
         <title> Restaurant main </title>
     </head>
     <body>
-        <nav class="navbar">
-            <div class="navbar_logo">
-                <a href="main.html"><img src="img/LOGO(2).png" alt="LOGO_img" width="100"></a>
+        <div class="main_site">
+            <div class="navbar">
+                <div class="navbar_logo">
+                    <a href="main.html"><img src="img/LOGO(2).png" alt="LOGO_img" width="100"></a>
+                    <!-- SWEB인 이유는... 딱히 없습니다 Software-Engineering B팀이라 SEB 할까하다가 SWEB 했어요 
+                    변경 가능!!!!!!! -->
+                </div>
+                <ul class="navbar_menu">
+                    <li><a href="#main_About">About</a></li>
+                    <li><a href="">Menu</a></li>
+                    <li><a href="">Reservation</a></li>
+                </ul>
+                <ul class="navbar_member">
+                    <li><a href="">LOG-IN</a></li>
+                    <li><a href="">SING-UP</a></li>
+                </ul>
             </div>
-            <ul class="navbar_menu">
-                <li><a href="">About</a></li>
-                <li><a href="">Menu</a></li>
-                <li><a href="">Reservation</a></li>
-            </ul>
-            <ul class="navbar_member">
-                <li><a href="">LOG-IN</a></li>
-                <li><a href="">SING-UP</a></li>
-            </ul>
-        </nav>
-        <section>
-            <div class="main_img">
-                <img src="img/restaurant2.jpg" alt="main_img" width="100%">
-                <h1 class="main_img_text">Welcome to our restaurant!</h1>
+            <div class="main_img_text">
+                <h1>Welcome to our Restaurant!</h1>
+                <h2></h2>
             </div>
-        </section>
+        </div>
+        <div id="main_About">
+            <h1>About</h1>
+            <p class="introduce">
+                "SWEB"
+                <p>SoftWare-Engineering B팀의 의미입니다.</p> 
+            </p>
+            <!-- <section>
+                <div class="map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3173.774022085336!2d127.03325807592671!3d37.30048923933902!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b5c9c1e337b5b%3A0x437f7735e290ec4d!2z6rK96riw64yA7ZWZ6rWQ!5e0!3m2!1sko!2skr!4v1683383370406!5m2!1sko!2skr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </section> -->
+        </div>
     </body>
 </html>
