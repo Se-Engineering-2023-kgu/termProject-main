@@ -13,7 +13,7 @@ a{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #2d2d2d;
+    background-color: #555555;
     padding: 8px 12px;
 }
 
@@ -25,7 +25,7 @@ a{
     list-style: none;
     margin: 0 auto;
     font-size: 20px;
-    font-family: Libre Baskerville;
+    font-family: Merriweather Sans;
 }
 
 .navbar_menu li{
@@ -41,7 +41,7 @@ a{
     display: flex;
     list-style: none;
     font-size: 10px;
-    font-family: Libre Baskerville;
+    font-family: Merriweather Sans;
 }
 
 .navbar_member li{
