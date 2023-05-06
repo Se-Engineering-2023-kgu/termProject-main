@@ -1,17 +1,17 @@
-package rest.order.reservation.Model.DTO;
+package rest.order.reservation.Model.DTO.Menu;
 
 import rest.order.reservation.DefineEnum.MenuType;
 
-public class MenuDTO {
+public class MenuRegistForm {
     private String name;
     private String intro;
     private int price;
     private MenuType type;
 
-    public MenuDTO() {
+    public MenuRegistForm() {
     }
 
-    public MenuDTO(String name, String intro, int price, MenuType type) {
+    public MenuRegistForm(String name, String intro, int price, MenuType type) {
         this.name = name;
         this.intro = intro;
         this.price = price;

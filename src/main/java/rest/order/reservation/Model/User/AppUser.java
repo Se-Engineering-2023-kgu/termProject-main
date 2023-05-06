@@ -27,4 +27,46 @@ public abstract class AppUser {  // 상속을 이용할 것이면 최소한으�
         this.loginPwd = loginPwd;
         this.name = name;
     }
+
+    public AppUser(String loginId, String loginPwd, String name) {
+        this.loginId = loginId;
+        this.loginPwd = loginPwd;
+        this.name = name;
+    }
+
+    public void changePassword(String loginPwd) {
+        this.loginPwd = loginPwd;
+    }
+
+    public Long getUid() {
+        return uid;
+    }
+
+    public void setUid(Long uid) {
+        this.uid = uid;
+    }
+
+    public String getLoginId() {
+        return loginId;
+    }
+
+    public void setLoginId(String loginId) {
+        this.loginId = loginId;
+    }
+
+    public String getLoginPwd() {
+        return loginPwd;
+    }
+
+    public void setLoginPwd(String loginPwd) {
+        this.loginPwd = loginPwd;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

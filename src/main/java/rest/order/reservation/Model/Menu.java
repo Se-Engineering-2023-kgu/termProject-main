@@ -33,6 +33,21 @@ public class Menu {
         this.type = type;
     }
 
+    public Menu(String name, String intro, int price, MenuType type) {
+        this.name = name;
+        this.intro = intro;
+        this.price = price;
+        this.type = type;
+    }
+
+    // 메뉴 수정
+    public void changeMenuInfo(String name, String intro, int price, MenuType type) {
+        this.name = name;
+        this.intro = intro;
+        this.price = price;
+        this.type = type;
+    }
+
     public Long getMid() {
         return mid;
     }

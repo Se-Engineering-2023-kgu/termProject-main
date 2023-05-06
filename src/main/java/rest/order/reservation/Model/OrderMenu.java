@@ -23,24 +23,24 @@ public class OrderMenu {
     @Column(name = "count")
     private int count; // 한종류 주문시점 수량
 
-    //생성로직 은 service 이동시킴
+
+    // orderMenu 생성 메소드
     public static OrderMenu createOrderMenu(Menu menu, int count) {
         OrderMenu orderMenu = new OrderMenu();
         orderMenu.setMenu(menu);
         orderMenu.setCount(count);
-        // orderRepo.save(orderMenu); //  crudrepository 의 save 수행. insert 할 때 주의
-        // 이걸로 리턴한 orderMenu를 바탕으로 reservation_id와
         return orderMenu;
     }
 
     // 조회 로직
-    public int getTotalPrice() {
-        return getCount() * getOrderPrice();
-    }
     // 1. 가격 조회
     // Reservation 이 가지고 있는 주문상품에 대한 총 가격을 표현하기 위해서
     // for(OrderMenu orderMenu : orderList)
     //        totalPrice += orderMenu.getTotalPrice()  로 계산하면 될듯
+
+    public int getTotalPrice() {
+        return getCount() * getOrderPrice();
+    }
 
 
     public Long getOrderMenuID() {

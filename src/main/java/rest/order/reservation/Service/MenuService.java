@@ -2,7 +2,7 @@ package rest.order.reservation.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import rest.order.reservation.Model.DTO.MenuDTO;
+import rest.order.reservation.Model.DTO.Menu.MenuRegistForm;
 import rest.order.reservation.Model.Menu;
 import rest.order.reservation.Repository.MenuRepo;
 
@@ -18,13 +18,10 @@ public class MenuService {
         this.menuRepository = menuRepository;
     }
 
-    public Menu addMenu(MenuDTO menuDto) {  // entity로 변환해서 넣어야 할까요?
+    public Menu addMenu(MenuRegistForm menuDto) {  // entity로 변환해서 넣어야 할까요?
 
-        Menu menuClass = new Menu();
-        menuClass.setName(menuDto.getName());
-        menuClass.setIntro(menuDto.getIntro());
-        menuClass.setPrice(menuDto.getPrice());
-        menuClass.setType(menuDto.getType());
+        Menu menuClass = new Menu(menuDto.getName(), menuDto.getIntro(), menuDto.getPrice(), menuDto.getType());
+
 
         return menuRepository.save(menuClass);
     }
@@ -41,5 +38,6 @@ public class MenuService {
         Menu menuClass = menuRepository.findById(id).get();
         menuRepository.delete(menuClass);
     }
+
 
 }

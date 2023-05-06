@@ -1,11 +1,21 @@
-package rest.order.reservation.Model.DTO;
+package rest.order.reservation.Model.DTO.customer;
 
-public class UserDTO {
+public class CustomerRegistForm {
+
+
     private String loginId;
+
     private String loginPwd;
+
     private String name;
+
     private String phoneNumber;
+
     private String email;
+//    private UserClass userType;
+
+    public CustomerRegistForm() {
+    }
 
     public String getLoginId() {
         return loginId;
@@ -45,5 +55,16 @@ public class UserDTO {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "CustomerRegistForm{" +
+                "loginId='" + loginId + '\'' +
+                ", loginPwd='" + loginPwd + '\'' +
+                ", name='" + name + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }

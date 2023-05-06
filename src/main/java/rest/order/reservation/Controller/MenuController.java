@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import rest.order.reservation.DefineEnum.MenuType;
-import rest.order.reservation.Model.DTO.MenuDTO;
+import rest.order.reservation.Model.DTO.Menu.MenuRegistForm;
 import rest.order.reservation.Service.MenuService;
 
 @Controller
@@ -29,13 +29,13 @@ public class MenuController {
 
     @GetMapping("/enroll")
     public String enrollMenuForm(Model model) {
-        model.addAttribute("menu", new MenuDTO());
+        model.addAttribute("menu", new MenuRegistForm());
 
         return "menu/enrollMenuForm";
     }
 
     @PostMapping("/enroll")
-    public String enrollMenu(MenuDTO menu) {
+    public String enrollMenu(MenuRegistForm menu) {
         menuService.addMenu(menu);
         return "redirect:/";
 //        return "menu/enrollMenuForm";
