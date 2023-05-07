@@ -1,4 +1,4 @@
-package rest.order.reservation.Model.DTO.customer;
+package rest.order.reservation.Model.DTO.Customer;
 
 import rest.order.reservation.Model.User.Customer;
 

@@ -7,6 +7,8 @@ import org.springframework.transaction.annotation.Transactional;
 import rest.order.reservation.Model.DTO.Menu.MenuRegistForm;
 import rest.order.reservation.Model.Menu;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 @SpringBootTest
 @Transactional
 class MenuServiceTest {
@@ -20,10 +22,9 @@ class MenuServiceTest {
         MenuRegistForm param = new MenuRegistForm();
         param.setName("HELLO");
         //when
-        Menu menu1 = menuService.addMenu(param);
-        System.out.println("menu1 : " + menu1.getName());
-        //then
-
+        Long id = menuService.addMenu(param);
+        Menu menu = menuService.findMenu(id);
+        assertEquals(id, menu.getMid());
     }
 
 }

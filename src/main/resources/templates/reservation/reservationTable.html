@@ -5,27 +5,30 @@
     <title>Title</title>
 </head>
 <body>
-<h1>날짜 체크</h1>
+<h1>2. 테이블 선택 </h1>
+
 <div>
-    <form method="post" role="form" th:action="@{/reservation/table}" th:object="${reservation}">
+    <form method="post" role="form" th:action="@{/reservation/menu}" th:object="${reservation}">
         <!--th:object -> 이 안에서 이객체를 계속사용하겠다-->
         <div class="">
-            <label>인원수</label>
-
+            <label>인원수 - hidden</label>
+            <input th:field="*{members}" type="hidden"/>
         </div>
         <div class="">
-            <label>날짜</label>
-
-        </div>
-
-        <div class="">
-            <label>이름</label>
-
+            <label>날짜 -hidden</label>
+            <input th:field="*{date}" type="hidden"/>
         </div>
 
         <div class="">
-            <label>테이블 번호</label>
+            <label>시간 -hidden</label>
+            <input th:field="*{time}" type="hidden"/>
+        </div>
 
+        <div th:each="table : ${tableList}">
+            <label>
+                <input th:name="tableNumber" th:value="${table.number}" type="radio"/>
+                <span th:text="${table.number}"></span>
+            </label>
         </div>
 
         <button class="" type="submit">확인</button>

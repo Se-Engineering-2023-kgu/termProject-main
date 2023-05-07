@@ -1,17 +1,18 @@
-package rest.order.reservation.Model.DTO;
+package rest.order.reservation.Model.DTO.Reservation;
 
 import rest.order.reservation.Model.OrderMenu;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReservationDTO {
+public class ReservationForm {
 
     private int members;
     private String date;
     private String time;
-    private List<OrderMenu> orderList = new ArrayList<>();
     private int tableNumber;
+    private List<OrderMenu> orderList = new ArrayList<>();
+
 
     public int getMembers() {
         return members;

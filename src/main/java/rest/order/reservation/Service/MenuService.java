@@ -18,12 +18,11 @@ public class MenuService {
         this.menuRepository = menuRepository;
     }
 
-    public Menu addMenu(MenuRegistForm menuDto) {
+    public Long addMenu(MenuRegistForm menuDto) {
 
         Menu menuClass = new Menu(menuDto.getName(), menuDto.getIntro(), menuDto.getPrice(), menuDto.getType());
-
-
-        return menuRepository.save(menuClass);
+        menuRepository.save(menuClass);
+        return menuClass.getMid();
     }
 
     public Menu findMenu(Long id) {

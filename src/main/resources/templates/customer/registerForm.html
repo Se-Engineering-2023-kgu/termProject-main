@@ -7,7 +7,7 @@
 <body>
 <h1>customer 회원가입</h1>
 <div>
-    <form method="post" th:action="@{/customer/register}" th:object="${customer}">
+    <form method="post" th:action="@{/customer/enroll}" th:object="${customer}">
         <div>
             <label for="loginId">Login ID:</label>
             <input id="loginId" th:field="*{loginId}" type="text"/>

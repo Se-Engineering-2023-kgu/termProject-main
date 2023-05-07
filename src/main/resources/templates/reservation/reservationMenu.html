@@ -5,10 +5,31 @@
     <title>Title</title>
 </head>
 <body>
-<h1>2. 메뉴 페이지</h1>
-<div>
-    <form method="post" role="form" th:action="@{/reservation/date}" th:object="${reservation}">
+<h1>3. 메뉴 선택 페이지</h1>
 
+<div>
+    <form method="post" role="form" th:action="@{/reservation/menu}" th:object="${reservation}">
+        <div class="">
+            <label>인원수 - hidden</label>
+            <input th:field="*{members}" type="hidden"/>
+        </div>
+        <div class="">
+            <label>날짜 -hidden</label>
+            <input th:field="*{date}" type="hidden"/>
+        </div>
+
+        <div class="">
+            <label>시간 -hidden</label>
+            <input th:field="*{time}" type="hidden"/>
+        </div>
+
+        <div class="">
+            <label>선택 table 번호 -hidden</label>
+            <input th:field="*{tableNumber}" type="hidden"/>
+        </div>
+        <div>
+            <label>메뉴 선택</label>
+        </div>
         <button class="" type="submit">확인</button>
     </form>
 </div>

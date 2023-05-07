@@ -5,7 +5,8 @@
     <title>Title</title>
 </head>
 <body>
-<h1>1. 날짜 , 인원수 페이지</h1>
+<h1>예약 페이지 1. 인원수 날짜 , 시간 페이지</h1>
+
 <div>
     <form method="post" role="form" th:action="@{/reservation/table}" th:object="${reservation}">
         <div class="">
@@ -39,6 +40,7 @@
                 <option value="19:00:00">19 : 00</option>
                 <option value="20:00:00">20 : 00</option>
             </select>
+
 
             <button class="" type="submit">확인</button>
         </div>

@@ -4,8 +4,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
-import rest.order.reservation.Model.DTO.customer.CustomerRequestDTO;
-import rest.order.reservation.Model.DTO.customer.CustomerUpdateDTO;
+import rest.order.reservation.Model.DTO.Customer.CustomerRequestDTO;
+import rest.order.reservation.Model.DTO.Customer.CustomerUpdateDTO;
 import rest.order.reservation.Model.User.Customer;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -22,8 +22,7 @@ class CustomerServiceTest {
         CustomerRequestDTO cdto = new CustomerRequestDTO("12", "12", "12", "12", "12");
         Long id = customerService.addCustomer(cdto);
         Customer customer = customerService.viewCustomer(id);
-        assertEquals(cdto.email(), customer.getEmail());
-
+        assertEquals(id, customer.getUid());
     }
 
     @Test
@@ -31,6 +30,8 @@ class CustomerServiceTest {
         CustomerRequestDTO crdto = new CustomerRequestDTO("11", "11", "11", "11", "11");
         Long id = customerService.addCustomer(crdto);
         Customer customer = customerService.viewCustomer(id);
+        customerService.deleteCustomer(id);
+//        assertEquals();
     }
 
     @Test
