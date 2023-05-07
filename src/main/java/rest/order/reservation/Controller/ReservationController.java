@@ -49,51 +49,12 @@ public class ReservationController {
     @PostMapping("/menu")
     public String reservationMenu(@ModelAttribute("reservation") ReservationForm reservation, Model model) {
         List<Menu> menuList = menuService.findAllMenu();
-        
+
         return "reservation/reservationMenu";
     }
 
     @PostMapping("/Info")
     public String reservationInfo(@ModelAttribute("reservation") ReservationForm reservation, Model model) {
-
-        return "reservation/reservationMenu";
+        return "reservation/reservationInfo";
     }
-
-//    // table 디자인 용
-//    @GetMapping("/table")
-//    public String reservationTable(Model model) {
-//        model.addAttribute("reservation", new ReservationForm());
-//        return "reservation/reservationTable";
-//    }
-//
-//    // 테이블 디자인용
-//    @GetMapping("/menu")
-//    public String reservationMenu(Model model) {
-//        model.addAttribute("reservation", new ReservationForm());
-//        return "reservation/reservationMenu";
-//    }
-//
-    // 2. 테이블 화면
-
-//
-//    // 3 .메뉴 선택후 -> 예약 명세서
-//    @GetMapping("/menu")
-//    public String reservationMenuGET(@ModelAttribute("reservation") ReservationForm reservation) {
-//        return "reservation/reservationMenu";
-//    }
-
-
-    // 날짜 페이지 값 받고 -> 테이블 선택
-//    @PostMapping("/date")
-//    public String reservationDate(@ModelAttribute("reservation") ReservationDTO reservation) {
-////        return "reservation/reservationTable";
-//        return "reservation/reservationInfo";
-//    }
-
-
-//    @PostMapping("/menu")
-//    public String reservationMenuPOST(@ModelAttribute("reservation") ReservationDTO reservation) {
-//        return "reservation/reservationInfo";
-//    }
-
 }
