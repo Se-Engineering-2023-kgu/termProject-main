@@ -1,6 +1,7 @@
 package rest.order.reservation.Model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import rest.order.reservation.DefineEnum.MenuType;
 
 @Entity
@@ -16,7 +17,7 @@ public class Menu {
     @Column(name = "menu_intro")
     private String intro;
     @Column(name = "price")
-    private int price;
+    private Long price;
 
     @Column(name = "type")
     @Enumerated(EnumType.STRING)
