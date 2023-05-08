@@ -55,3 +55,15 @@ a{
     transform: translate(-50%, -50%);
     color: white;
 }
+
+.About_text_center {
+    text-align: center;
+    background-color: black;
+    color: white;
+    height: 200px
+    ;
+}
+
+.About_text_center h2{
+    margin: 0;
+}
