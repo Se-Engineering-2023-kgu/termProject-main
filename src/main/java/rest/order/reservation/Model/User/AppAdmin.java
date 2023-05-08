@@ -7,7 +7,6 @@ import rest.order.reservation.DefineEnum.UserClass;
 
 @Entity
 @DiscriminatorValue("admin")
-@DiscriminatorValue("admin")
 public class AppAdmin extends AppUser {
 
     private UserClass userType;
