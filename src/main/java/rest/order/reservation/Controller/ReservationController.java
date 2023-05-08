@@ -20,7 +20,6 @@ import java.util.List;
 
 @Slf4j
 @Controller
-
 @RequestMapping("/reservation")
 public class ReservationController {
     private final TableService tableService;

@@ -35,6 +35,7 @@ public class Customer extends AppUser {
         super(uid, loginId, loginPwd, name);
         this.phoneNumber = phoneNumber;
         this.email = email;
+        this.userType = userType;
     }
 
     public Customer(String loginId, String loginPwd, String name, String phoneNumber, String email
@@ -62,6 +63,14 @@ public class Customer extends AppUser {
 
     public String getEmail() {
         return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setUserType(UserClass userType) {
+        this.userType = userType;
     }
 
 }
