@@ -60,10 +60,40 @@ a{
     text-align: center;
     background-color: black;
     color: white;
-    height: 200px
+    height: 400px
     ;
 }
 
 .About_text_center h2{
+    margin: 0;
+}
+
+.Menu_text_center {
+    text-align: center;
+    background-color: white;
+    height: 400px;
+}
+
+.Menu_text_center h2{
+    margin: 0;
+}
+
+.Reservation_text_center {
+    text-align: center;
+    background-color: black;
+    color: white;
+    height: 400px;
+}
+.Reservation_text_center h2{
+
+}
+
+.Location_text_center {
+    text-align: center;
+    background-color: white;
+    height: 400px;
+}
+
+.Location_text_center h2{
     margin: 0;
 }
