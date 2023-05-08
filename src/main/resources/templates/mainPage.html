@@ -7,13 +7,17 @@
 <body>
 <h1>MainPage</h1>
 <div>
-    <a class="" th:href="@{customer/register}">회원 가입</a>
-</div>
-<div>
-    <a class="" th:href="@{login/login}">로그인</a>
-</div>
-<div>
-    <a class="" th:href="@{reservation/date}">예약</a>
+    <div th:replace="~{fragments/bodyHeader :: bodyHeader}"/>
+
+    <div>
+        <a class="" th:href="@{customer/register}">회원 가입</a>
+    </div>
+    <div>
+        <a class="" th:href="@{login/login}">로그인</a>
+    </div>
+    <div>
+        <a class="" th:href="@{reservation/date}">예약</a>
+    </div>
 </div>
 </body>
 </html>

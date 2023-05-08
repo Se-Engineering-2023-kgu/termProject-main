@@ -4,6 +4,8 @@ package rest.order.reservation.Controller;
 import groovy.util.logging.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -42,7 +44,10 @@ public class ReservationController {
 
     // 2. 테이블 선택 페이지
     @PostMapping("/table")
-    public String reservationTable(@ModelAttribute("reservation") ReservationForm reservation, Model model) {
+    public String reservationTable(@Validated @ModelAttribute("reservation") ReservationForm reservation, BindingResult result, Model model) {
+        if (result.hasErrors())
+            return "reservation/reservationDate";
+
         List<TableList> tableList = tableService.findAllTable();
         model.addAttribute("tableList", tableList);
         return "reservation/reservationTable";
@@ -50,16 +55,20 @@ public class ReservationController {
 
     //   테이블 선택 값 받고 -> 메뉴 선택
     @PostMapping("/menu")
-    public String reservationMenu(@ModelAttribute("reservation") ReservationForm reservation, Model model) {
+    public String reservationMenu(@Validated @ModelAttribute("reservation") ReservationForm reservation, BindingResult result, Model model) {
+        if (result.hasErrors())
+            return "reservation/reservationTable";
+
         List<Menu> menuList = menuService.findAllMenu();
         model.addAttribute("menuList", menuList); // 메뉴리스트 전달
         return "reservation/reservationMenu";
     }
 
-    // 주문 목록
+    //4. 예약 명세서
     @PostMapping("/Info")
-    public String reservationInfo(@ModelAttribute("reservation") ReservationForm reservation, Model model) {
-        
+    public String reservationInfo(@ModelAttribute("reservation") ReservationForm reservation, BindingResult result, Model model) {
+        if (result.hasErrors())
+            return "reservation/reservationMenu";
         return "reservation/reservationInfo";
 
         // members , date , time , customerID , tableID , orderList

@@ -6,6 +6,7 @@
 </head>
 <body>
 <h1>customer 회원가입</h1>
+<div th:replace="~{fragments/bodyHeader :: bodyHeader}"/>
 <div>
     <form method="post" th:action="@{/customer/register}" th:object="${customer}">
         <div>

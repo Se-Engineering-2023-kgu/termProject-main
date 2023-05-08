@@ -35,7 +35,6 @@ public class CustomerService {
                 request.phoneNumber(),
                 request.email()
         );
-
         customerRepository.save(customer);
         return customer.getUid();
     }

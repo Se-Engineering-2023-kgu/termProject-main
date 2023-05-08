@@ -5,7 +5,10 @@
     <title>Title</title>
 </head>
 <body>
+
 <div class="container">
+    <div th:replace="~{fragments/bodyHeader :: bodyHeader}"/>
+    
     <form method="post" th:action="@{/admin/addMenu}" th:object="${menu}">
         <div class="">
             <label>상품명</label>

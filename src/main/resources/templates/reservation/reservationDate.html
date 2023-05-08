@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>예약 페이지 1. 인원수 날짜 , 시간 페이지</h1>
-
+<div th:replace="~{fragments/bodyHeader :: bodyHeader}"/>
 <div>
     <form method="post" role="form" th:action="@{/reservation/table}" th:object="${reservation}">
         <div class="">

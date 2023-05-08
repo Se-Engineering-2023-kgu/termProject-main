@@ -6,6 +6,7 @@
 </head>
 <body>
 <h1>3. 메뉴 선택 페이지</h1>
+<div th:replace="~{fragments/bodyHeader :: bodyHeader}"/>
 
 <div>
     <form method="post" role="form" th:action="@{/reservation/Info}" th:object="${reservation}">
@@ -31,7 +32,7 @@
             <!--            <label>메뉴 선택</label>-->
             <div th:each="menu : ${menuList}">
                 <label>
-                    <input th:field="*{orderMenuList}" th:text="${menu.name}" th:value="${menu.mid}"
+                    <input th:field="${reservation.orderMenuList}" th:text="${menu.name}" th:value="${menu.mid}"
                            type="checkbox"/>
                     <span th:text="${menu.price}"></span>
                 </label>
