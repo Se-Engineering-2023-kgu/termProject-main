@@ -2,8 +2,11 @@ package rest.order.reservation.Service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import rest.order.reservation.DefineEnum.UserClass;
 import rest.order.reservation.Model.DTO.Customer.CustomerRequestDTO;
 import rest.order.reservation.Model.DTO.Customer.CustomerUpdateDTO;
+import rest.order.reservation.Model.User.AppUser;
 import rest.order.reservation.Model.User.Customer;
 import rest.order.reservation.Repository.CustomerRepo;
 
@@ -21,6 +24,8 @@ public class CustomerService {
 //    private final CustomerDTOMapper customerDTOMapper;
 //
 
+    UserClass userClass;
+
     public CustomerService(CustomerRepo customerRepository) {
         this.customerRepository = customerRepository;
     }
@@ -29,11 +34,14 @@ public class CustomerService {
     //    .... 50번이 나가는 건가..?? workBanch에서 엄청 많이 증가
     public Long addCustomer(CustomerRequestDTO request) {
         Customer customer = new Customer(
+                null,
                 request.loginId(),
                 request.loginPwd(),
                 request.name(),
                 request.phoneNumber(),
-                request.email()
+                request.email(),
+                UserClass.guest
+                
         );
 
         customerRepository.save(customer);

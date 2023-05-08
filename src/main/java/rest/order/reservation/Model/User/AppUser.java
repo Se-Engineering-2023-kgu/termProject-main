@@ -7,8 +7,9 @@ import jakarta.persistence.*;
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "uClass")
 public abstract class AppUser {  // 상속을 이용할 것이면 최소한으로 줄여야 할듯
+    
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private Long uid;
     @Column(name = "login_id")
