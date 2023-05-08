@@ -13,13 +13,16 @@ public abstract class AppUser {  // 상속을 이용할 것이면 최소한으�
     private Long uid;
     @Column(name = "login_id")
     private String loginId;
+
     @Column(name = "login_pwd")
     private String loginPwd;
+
     @Column(name = "name")
     private String name;
 
     public AppUser() {
     }
+
 
     public AppUser(Long uid, String loginId, String loginPwd, String name) {
         this.uid = uid;

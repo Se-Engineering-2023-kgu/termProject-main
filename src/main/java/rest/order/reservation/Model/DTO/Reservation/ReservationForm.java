@@ -1,17 +1,15 @@
 package rest.order.reservation.Model.DTO.Reservation;
 
-import rest.order.reservation.Model.OrderMenu;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class ReservationForm {
 
     private int members;
-    private String date;
-    private String time;
-    private int tableNumber;
-    private List<OrderMenu> orderList = new ArrayList<>();
+    private String date; // 문자열 형태로
+    private String time; // 문자열 형탵로 -> enum으로 바꿀 수 있음
+    private Long tid; // tableID
+    private List<Long> orderMenuList = new ArrayList<>();
 
 
     public int getMembers() {
@@ -38,19 +36,20 @@ public class ReservationForm {
         this.time = time;
     }
 
-    public List<OrderMenu> getOrderList() {
-        return orderList;
+
+    public List<Long> getOrderMenuList() {
+        return orderMenuList;
     }
 
-    public void setOrderList(List<OrderMenu> orderList) {
-        this.orderList = orderList;
+    public void setOrderMenuList(List<Long> orderMenuList) {
+        this.orderMenuList = orderMenuList;
     }
 
-    public int getTableNumber() {
-        return tableNumber;
+    public Long getTid() {
+        return tid;
     }
 
-    public void setTableNumber(int tableNumber) {
-        this.tableNumber = tableNumber;
+    public void setTid(Long tid) {
+        this.tid = tid;
     }
 }

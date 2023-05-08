@@ -6,7 +6,7 @@
 </head>
 <body>
 <div class="container">
-    <form method="post" th:action="@{/menu/enroll}" th:object="${menu}">
+    <form method="post" th:action="@{/admin/addMenu}" th:object="${menu}">
         <div class="">
             <label>상품명</label>
             <input class="" placeholder="상품명을 입력하세요" th:field="${menu.name}"

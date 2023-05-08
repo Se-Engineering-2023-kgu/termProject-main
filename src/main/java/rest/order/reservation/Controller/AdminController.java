@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import rest.order.reservation.DefineEnum.MenuType;
 import rest.order.reservation.Model.DTO.Menu.MenuRegistForm;
 import rest.order.reservation.Model.DTO.TableDTO;
-import rest.order.reservation.Model.TableList;
 import rest.order.reservation.Service.MenuService;
 import rest.order.reservation.Service.TableService;
 
@@ -47,7 +46,7 @@ public class AdminController {
 
     @PostMapping("/addTable")
     public String addMenu(@ModelAttribute("tableRequest") TableDTO tableRequest) {
-        TableList responseRequestDTO = tableService.addTable(tableRequest);
+        tableService.addTable(tableRequest);
 //        return ResponseEntity.ok(responseRequestDTO.toString());
         return "redirect:/admin/adminMain";
     }
