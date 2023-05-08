@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
+    <title>Title</title>
+</head>
+<body>
+<h1>2. 테이블 선택 </h1>
+
+<div>
+    <form method="post" role="form" th:action="@{/reservation/menu}" th:object="${reservation}">
+        <!--th:object -> 이 안에서 이객체를 계속사용하겠다-->
+        <div class="">
+            <!--            <label>인원수 - hidden</label>-->
+            <input th:field="*{members}" type="hidden"/>
+        </div>
+        <div class="">
+            <!--            <label>날짜 -hidden</label>-->
+            <input th:field="*{date}" type="hidden"/>
+        </div>
+
+        <div class="">
+            <!--            <label>시간 -hidden</label>-->
+            <input th:field="*{time}" type="hidden"/>
+        </div>
+
+        <div th:each="table : ${tableList}">
+            <label>
+                <input th:name="tid" th:value="${table.tid}" type="radio"/>
+                <span th:text="${table.number}"></span>
+            </label>
+        </div>
+
+        <button class="" type="submit">확인</button>
+    </form>
+</div>
+</body>
+</html>
