@@ -55,14 +55,14 @@ public class MenuService {
     }
 
 
-	public MenuRequestDTO addMenu(MenuRequestDTO menuRequest) {
+	public Long addMenu(MenuRegistForm menu2) {
 
         Menu menu = new Menu(
                         null,
-                        menuRequest.name(), 
-                        menuRequest.intro(), 
-                        menuRequest.price(), 
-                        menuRequest.type()
+                        menu2.name(), 
+                        menu2.intro(), 
+                        menu2.price(), 
+                        menu2.type()
                         );
         menuRepository.save(menu);
         // menu = new Menu(
@@ -72,9 +72,9 @@ public class MenuService {
         //     menuRequest.price(), 
         //     menuRequest.type()
         // );
+        return menu.getMid();
 
         // menuRepository.save(menu);
-        return menuRequest;
         
 	}
 

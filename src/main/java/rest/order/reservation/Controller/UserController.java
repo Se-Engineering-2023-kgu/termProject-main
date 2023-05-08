@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import rest.order.reservation.Model.DTO.AppUser.AppUserDTO;
 import rest.order.reservation.Service.UserService;
 
 
@@ -27,13 +28,13 @@ public class UserController {
 
     @GetMapping("/enroll")
     public String enrollMenuForm(Model model) {
-        model.addAttribute("user", new UserDTO());
+        model.addAttribute("user", new AppUserDTO());
 
         return "signUpUser";
     }
 
     @PostMapping("/enroll")
-    public String enrollMenu(@ModelAttribute("user") @Validated UserDTO userForm, BindingResult result) {
+    public String enrollMenu(@ModelAttribute("user") @Validated AppUserDTO userForm, BindingResult result) {
 //        if (result.hasErrors())
 //            return "user/enrollUserForm";
 

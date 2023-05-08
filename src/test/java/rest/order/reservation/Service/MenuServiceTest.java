@@ -19,8 +19,8 @@ class MenuServiceTest {
     @Test
     public void find() {
         //given
-        MenuRegistForm param = new MenuRegistForm();
-        param.setName("HELLO");
+        MenuRegistForm param = new MenuRegistForm("HELLO", null, null, null);
+        //param.name = "HELLO";
         //when
         Long id = menuService.addMenu(param);
         Menu menu = menuService.findMenu(id);

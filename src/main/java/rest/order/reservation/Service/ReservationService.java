@@ -5,7 +5,7 @@ import rest.order.reservation.Repository.CustomerRepo;
 import rest.order.reservation.Repository.MenuRepo;
 import rest.order.reservation.Repository.TableRepo;
 
-// @Service
+@Service
 public class ReservationService {
 
     private final CustomerRepo customerRepository;

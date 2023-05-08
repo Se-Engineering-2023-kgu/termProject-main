@@ -21,7 +21,7 @@ public class CustomerController {
     //회원 등록
     @GetMapping("/register")
     public String customerRegister(Model model) {
-        model.addAttribute("customer", new CustomerRegistForm());
+        model.addAttribute("customer", new CustomerRegistForm(null, null, null, null, null));
         return "/customer/registerForm";
     }
 

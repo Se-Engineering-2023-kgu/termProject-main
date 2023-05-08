@@ -1,11 +1,11 @@
-package rest.order.reservation.Model.DTO.Customer;
+package rest.order.reservation.Model.DTO.AppUser;
 
 import org.springframework.stereotype.Service;
 
 import rest.order.reservation.DefineEnum.UserClass;
 
 
-public record CustomerRegisteration(
+public record AppUserRegistDTO(
     String phoneNumber,
     String email,
     UserClass userType,

@@ -9,6 +9,8 @@ public record MenuRegistForm (
     Long price,
     MenuType type
 ){
+
+
     public static Menu form(MenuRegistForm menuRegistForm) {
         Menu menu = new Menu(
             menuRegistForm.name ,

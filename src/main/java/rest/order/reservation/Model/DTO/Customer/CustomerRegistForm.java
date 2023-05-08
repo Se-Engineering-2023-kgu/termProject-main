@@ -1,69 +1,36 @@
 package rest.order.reservation.Model.DTO.Customer;
 
-public class CustomerRegistForm {
+import rest.order.reservation.DefineEnum.UserClass;
+import rest.order.reservation.Model.User.Customer;
 
-    private String loginId;
+public record CustomerRegistForm (
 
-    private String loginPwd;
+    String loginId,
 
-    private String name;
+    String loginPwd,
 
-    private String phoneNumber;
+    String name,
 
-    private String email;
-//    private UserClass userType;
+    String phoneNumber,
 
-    public CustomerRegistForm() {
-    }
+    String email
 
-    public String getLoginId() {
-        return loginId;
-    }
+    // UserClass userType
 
-    public void setLoginId(String loginId) {
-        this.loginId = loginId;
-    }
+    ){
 
-    public String getLoginPwd() {
-        return loginPwd;
-    }
 
-    public void setLoginPwd(String loginPwd) {
-        this.loginPwd = loginPwd;
-    }
+        //    
+        public static Customer registForm(CustomerRegistForm customerRegistForm) {
+            Customer customer = new Customer( 
+                customerRegistForm.loginId,
+                customerRegistForm.loginPwd, 
+                customerRegistForm.name, 
+                customerRegistForm.phoneNumber, 
+                customerRegistForm.email
+                );
+            return customer;
+            
+        }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    @Override
-    public String toString() {
-        return "CustomerRegistForm{" +
-                "loginId='" + loginId + '\'' +
-                ", loginPwd='" + loginPwd + '\'' +
-                ", name='" + name + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", email='" + email + '\'' +
-                '}';
-    }
 }

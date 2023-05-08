@@ -52,10 +52,12 @@ public class AdminController {
     }
 
 
-    // 메뉴 등록
+    // 메뉴 등록 부분은, 메뉴 컨트롤러가 진행하고, 메뉴 컨트롤러에서 인증 절차를 통해 접근을 진행해야 합니다. 
+    // 이와 관련해선 spring Security를 참고 
+
     @GetMapping("/addMenu")
     public String addMenuForm(Model model) {
-        model.addAttribute("menu", new MenuRegistForm());
+        model.addAttribute("menu", new MenuRegistForm(null, null, null, null));
 
         return "admin/addMenuForm";
     }

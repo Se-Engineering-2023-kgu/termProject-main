@@ -17,6 +17,12 @@ public class Customer extends AppUser {
     @Enumerated(EnumType.STRING)
     private UserClass userType;
 
+    public Customer(Long uid, String loginId, String loginPwd, String name, String phoneNumber, String email) {
+        super(uid, loginId, loginPwd, name);
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+    }
+
     public Customer() {
     }
 
@@ -37,6 +43,7 @@ public class Customer extends AppUser {
         this.phoneNumber = phoneNumber;
         this.email = email;
     }
+
 
     //loginPwd , phoneNumber , email 만 바꾸는 메소드
     public void chageCustomerInfo(String loginPwd, String phoneNumber, String email) {
