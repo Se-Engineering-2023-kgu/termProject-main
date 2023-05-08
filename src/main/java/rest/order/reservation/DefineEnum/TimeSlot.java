@@ -9,12 +9,14 @@ public enum TimeSlot {
 
 //    , TWENTYONE(21), TWENTYTWO(22), TWENTYTHREE(23), TWENTYFOUR(24);
 
-    private final int value;
+    private int value;
 
+    //
     TimeSlot(int value) {
         this.value = value;
     }
 
+    //
     public int getValue() {
         return value;
     }

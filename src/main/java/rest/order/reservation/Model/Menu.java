@@ -41,6 +41,7 @@ public class Menu {
     }
 
     // 메뉴 수정
+    // set 사용 x
     public void changeMenuInfo(String name, String intro, int price, MenuType type) {
         this.name = name;
         this.intro = intro;

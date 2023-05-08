@@ -3,7 +3,6 @@ package rest.order.reservation.Controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import rest.order.reservation.Model.DTO.Customer.CustomerRegistForm;
 import rest.order.reservation.Model.DTO.Customer.CustomerRequestDTO;
@@ -27,11 +26,9 @@ public class CustomerController {
     }
 
     @PostMapping("/register")
-    public String registerCustomer(@Validated @ModelAttribute("customer") CustomerRequestDTO request, BindingResult result) {
-
+    public String registerCustomer(@ModelAttribute("customer") CustomerRequestDTO request, BindingResult result) {
         System.out.println("request : " + request);
         customerService.addCustomer(request);
-
         return "redirect:/";
     }
 

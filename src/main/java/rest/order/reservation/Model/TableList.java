@@ -30,6 +30,24 @@ public class TableList {
     public TableList() {
     }
 
+    public TableList(int number, int seats, Boolean exist) {
+        this.number = number;
+        this.seats = seats;
+        this.exist = exist;
+    }
+
+    //table 생성 메소드
+    public static TableList addTable(int number, int seats, Boolean exist) {
+        return new TableList(number, seats, exist);
+    }
+
+    // 정보 변경 메소드
+    public void chageTableInfo(int number, int seats, Boolean exit) {
+        this.number = number;
+        this.seats = seats;
+        this.exist = exist;
+    }
+
     public Long getTid() {
         return tid;
     }

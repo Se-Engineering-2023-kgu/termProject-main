@@ -2,7 +2,6 @@ package rest.order.reservation.Model.DTO.Customer;
 
 public class CustomerRegistForm {
 
-
     private String loginId;
 
     private String loginPwd;

@@ -2,6 +2,7 @@ package rest.order.reservation.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import rest.order.reservation.Model.DTO.Menu.MenuRegistForm;
 import rest.order.reservation.Model.Menu;
 import rest.order.reservation.Repository.MenuRepo;
@@ -33,6 +34,7 @@ public class MenuService {
         return menuRepository.findAll(); // jpaRepository 쓰면 되는건가요??
     }
 
+    @Transactional
     public void deleteMenu(Long id) {
         Menu menuClass = menuRepository.findById(id).get();
         menuRepository.delete(menuClass);

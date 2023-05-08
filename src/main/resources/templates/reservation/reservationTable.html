@@ -11,22 +11,22 @@
     <form method="post" role="form" th:action="@{/reservation/menu}" th:object="${reservation}">
         <!--th:object -> 이 안에서 이객체를 계속사용하겠다-->
         <div class="">
-            <label>인원수 - hidden</label>
+            <!--            <label>인원수 - hidden</label>-->
             <input th:field="*{members}" type="hidden"/>
         </div>
         <div class="">
-            <label>날짜 -hidden</label>
+            <!--            <label>날짜 -hidden</label>-->
             <input th:field="*{date}" type="hidden"/>
         </div>
 
         <div class="">
-            <label>시간 -hidden</label>
+            <!--            <label>시간 -hidden</label>-->
             <input th:field="*{time}" type="hidden"/>
         </div>
 
         <div th:each="table : ${tableList}">
             <label>
-                <input th:name="tableNumber" th:value="${table.number}" type="radio"/>
+                <input th:name="tid" th:value="${table.tid}" type="radio"/>
                 <span th:text="${table.number}"></span>
             </label>
         </div>

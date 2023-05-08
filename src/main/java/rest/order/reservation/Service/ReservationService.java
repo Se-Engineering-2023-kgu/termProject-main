@@ -18,20 +18,5 @@ public class ReservationService {
         this.menuRepository = menuRepository;
     }
 
-//    public Long Reservation(Long customerID, Long tableID) {
-//        Customer customer = customerRepository.findById(customerID).get();
-//        TableList table = tableRepository.findById(tableID).get();
-//
-//    }
-//    public Reservation submitReservation(Menu menu, Customer customer, int count) {
-//      Reservation reservation = new Reservation();
-//      OrderService orderService = new OrderService();
-//      orderService.createOrderMenu(menu,count);
-//
-//
-//      return reservation;
-//
-//    }
-
 
 }

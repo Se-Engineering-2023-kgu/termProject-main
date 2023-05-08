@@ -50,7 +50,6 @@ public class Reservation implements TimeTable {
         this.members = members;
     }
 
-
     @Override
     public LocalTime getArrivalTime() {
         // TODO Auto-generated method stub

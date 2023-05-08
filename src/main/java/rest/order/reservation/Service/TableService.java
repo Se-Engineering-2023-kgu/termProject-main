@@ -1,6 +1,7 @@
 package rest.order.reservation.Service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import rest.order.reservation.Model.DTO.TableDTO;
 import rest.order.reservation.Model.TableList;
 import rest.order.reservation.Repository.TableRepo;
@@ -17,12 +18,10 @@ public class TableService {
         this.tableRepository = tableRepository;
     }
 
-    public TableList addTable(TableDTO tableDto) {
-        TableList tableClass = new TableList();
-        tableClass.setNumber(tableDto.getNumber());
-        tableClass.setSeats(tableDto.getSeats());
-        tableClass.setExist(tableDto.getExist());
-        return tableRepository.save(tableClass);
+    public Long addTable(TableDTO tableDto) {
+        TableList tableListClass = new TableList(tableDto.getNumber(), tableDto.getSeats(), tableDto.getExist());
+        tableRepository.save(tableListClass);
+        return tableListClass.getTid();
     }
 
     public List<TableList> findAllTable() {
@@ -30,7 +29,6 @@ public class TableService {
     }
 
     public void deleteTable(Long id) {
-
         Optional<TableList> tableClass = tableRepository.findById(id);
         if (tableClass.isPresent()) {
             tableRepository.delete(tableClass.get());
@@ -42,6 +40,12 @@ public class TableService {
     public TableList findTable(Long id) {
         return tableRepository.findById(id).get();
     }
-    
+
+    @Transactional
+    public void updateTable(Long id, TableDTO tableDTO) {
+        TableList tableListClass = tableRepository.findById(id).get();
+        tableListClass.chageTableInfo(tableDTO.getNumber(), tableDTO.getSeats(), tableDTO.getExist());
+    }
+
 
 }

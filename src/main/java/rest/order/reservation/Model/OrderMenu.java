@@ -21,13 +21,19 @@ public class OrderMenu {
     private int orderPrice; // 한종류 주문시점 가격
     @Column(name = "count")
     private int count; // 한종류 주문시점 수량
-    
+
+    public OrderMenu() {
+    }
+
+    public OrderMenu(Menu menu, int count) {
+        this.menu = menu;
+        this.count = count;
+    }
+
     // orderMenu 생성 메소드
+    // 이게 정적 팩토리 메소드 인가?
     public static OrderMenu createOrderMenu(Menu menu, int count) {
-        OrderMenu orderMenu = new OrderMenu();
-        orderMenu.setMenu(menu);
-        orderMenu.setCount(count);
-        return orderMenu;
+        return new OrderMenu(menu, count);
     }
 
     // 조회 로직
