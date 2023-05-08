@@ -1,13 +1,12 @@
 package rest.order.reservation.Model.User;
 
 import jakarta.persistence.DiscriminatorValue;
-import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
-import rest.order.reservation.Model.DTO.CustomerDTO;
-import rest.order.reservation.Model.DTO.CustomerDTOMapper;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import rest.order.reservation.DefineEnum.UserClass;
 
 @Entity
-@DiscriminatorValue("customer")
 @DiscriminatorValue("customer")
 public class Customer extends AppUser {
 
@@ -15,12 +14,9 @@ public class Customer extends AppUser {
 
     private String email;
 
-//    private UserClass userType;
+    @Enumerated(EnumType.STRING)
+    private UserClass userType;
 
-    public Customer() {
-    }
-
-    public Customer(Long uid, String loginId, String loginPwd, String name) {
     public Customer() {
     }
 

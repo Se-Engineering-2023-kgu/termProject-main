@@ -1,4 +1,4 @@
-package rest.order.reservation.Model.DTO;
+package rest.order.reservation.Model.DTO.Customer;
 
 import org.springframework.stereotype.Service;
 

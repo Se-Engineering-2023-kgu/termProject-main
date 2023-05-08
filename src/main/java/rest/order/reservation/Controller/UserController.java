@@ -9,8 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import rest.order.reservation.Model.DTO.UserDTO;
+
 import rest.order.reservation.Service.UserService;
+
 
 @Controller
 @RequestMapping("user")
