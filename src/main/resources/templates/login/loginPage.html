@@ -7,5 +7,17 @@
 <body>
 <h1>login Page</h1>
 
+<div>
+    <form method="post" th:action="@{/login/login}">
+        <label for="loginId">Id:</label>
+        <input id="loginId" name="loginId" type="text"/>
+        <br/>
+        <label for="loginPwd">Password:</label>
+        <input id="loginPwd" name="loginPwd" type="password"/>
+        <br/>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
 </body>
 </html>
