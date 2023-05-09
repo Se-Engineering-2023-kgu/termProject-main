@@ -21,7 +21,6 @@ public class AppUser {  // 상속을 이용할 것이면 최소한으로 줄여�
     private String name;
 
     @Enumerated(EnumType.STRING)
-    
     private UserClass userType;
     private String phoneNumber;
 
@@ -38,6 +37,12 @@ public class AppUser {  // 상속을 이용할 것이면 최소한으로 줄여�
         this.userType = userType;
         this.phoneNumber = phoneNumber;
         this.email = email;
+    }
+
+    public void chageUserInfo(String loginPwd, String phoneNumber, String email) {
+        setLoginPwd(loginPwd);
+        setPhoneNumber(phoneNumber);
+        setEmail(email);
     }
 
     public Long getUid() {

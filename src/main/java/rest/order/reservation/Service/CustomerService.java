@@ -14,27 +14,6 @@ public class CustomerService {
         this.appUserRepository = appUserRepository;
     }
 
-//    public CustomerService(CustomerRepo customerRepository) {
-//        this.customerRepository = customerRepository;
-//    }
-//
-//
-//    //    .... 50번이 나가는 건가..?? workBanch에서 엄청 많이 증가
-//    public Long addCustomer(CustomerRequestDTO request) {
-//        Customer customer = new Customer(
-//                null,
-//                request.loginId(),
-//                request.loginPwd(),
-//                request.name(),
-//                request.phoneNumber(),
-//                request.email(),
-//                UserClass.guest
-//        );
-//
-//        customerRepository.save(customer);
-//        return customer.getUid();
-//    }
-//
 //    public Customer viewCustomer(Long id) {
 //        return customerRepository.findById(id).get();
 //    }

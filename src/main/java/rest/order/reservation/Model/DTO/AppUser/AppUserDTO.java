@@ -9,7 +9,9 @@ public record AppUserDTO(
         String loginId,
         String loginPwd,
         String name,
-        UserClass userType
+        UserClass userType,
+        String phonNumber,
+        String email
 ) {
     public static AppUserDTO form(AppUser appUser) {
         AppUserDTO user = new AppUserDTO(
@@ -17,9 +19,11 @@ public record AppUserDTO(
                 appUser.getLoginId(),
                 appUser.getLoginPwd(),
                 appUser.getName(),
-                appUser.getUserType()
+                appUser.getUserType(),
+                appUser.getPhoneNumber(),
+                appUser.getEmail()
         );
-        
+
         return user;
     }
 

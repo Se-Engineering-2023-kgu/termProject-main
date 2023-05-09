@@ -1,6 +1,7 @@
 package rest.order.reservation.Service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import rest.order.reservation.Model.DTO.AppUser.AppUserDTO;
 import rest.order.reservation.Model.DTO.AppUser.UserRegistForm;
 import rest.order.reservation.Model.User.AppUser;
@@ -32,7 +33,22 @@ public class UserService {
         return user.getUid();
     }
 
-    //
+
+    public AppUser findUser(Long id) {
+        return AppUserRepository.findById(id).get();
+    }
+
+    @Transactional
+    public void deleteUser(Long id) {
+        AppUser customer = AppUserRepository.findById(id).get();
+        AppUserRepository.delete(customer);
+    }
+
+    @Transactional
+    public void modify(Long id, AppUserDTO update) { // 이거 바꿔야 할 수도
+        AppUser user = AppUserRepository.findById(id).get();
+        user.chageUserInfo(update.loginPwd(), update.phonNumber(), update.email());
+    }
 
     // login Check
     public AppUserDTO loginCheck(String loginId, String loginPwd) {

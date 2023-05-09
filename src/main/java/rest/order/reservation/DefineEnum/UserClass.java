@@ -1,8 +1,7 @@
 package rest.order.reservation.DefineEnum;
 
 public enum UserClass {
-    admin("관리자"), guest("게스트"), customer("회원");
-
+    guest("     "), admin("관리자"), customer("회원");
 
     private final String description;
 
@@ -13,4 +12,5 @@ public enum UserClass {
     public String getDescription() {
         return description;
     }
+
 }

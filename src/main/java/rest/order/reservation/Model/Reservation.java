@@ -18,6 +18,9 @@ public class Reservation implements TimeTable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "reservation_id")
     private Long reservationID;
+
+    @Column(name = "date")
+    private LocalDate date;
     @Column(name = "timeslot")
     @Enumerated(EnumType.STRING)
     private TimeSlot timeSlot;
