@@ -1,7 +1,9 @@
 package rest.order.reservation.Service;
 
 import org.springframework.stereotype.Service;
+import rest.order.reservation.DefineEnum.UserClass;
 import rest.order.reservation.Model.DTO.AppUser.AppUserDTO;
+import rest.order.reservation.Model.DTO.Customer.CustomerRequestDTO;
 import rest.order.reservation.Model.User.AppUser;
 import rest.order.reservation.Repository.AppUserRepo;
 
@@ -16,7 +18,25 @@ public class UserService {
         AppUserRepository = appUserRepository;
     }
 
-    // 회원이 존재하는지 확인
+    // 회원가입
+    public Long addCustomer(CustomerRequestDTO request) {
+        AppUser customer = new AppUser(
+                null,
+                request.loginId(),
+                request.loginPwd(),
+                request.name(),
+                request.phoneNumber(),
+                request.email(),
+
+        );
+
+        AppUserRepository.save(customer);
+        return customer.getUid();
+    }
+
+    //
+
+    // login Check
     public AppUserDTO loginCheck(String loginId, String loginPwd) {
         Optional<AppUser> appUser = AppUserRepository.findByLoginId(loginId);
 
@@ -27,4 +47,6 @@ public class UserService {
             }
         return null;
     }
+
+
 }

@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import rest.order.reservation.DefineEnum.UserClass;
 
 @Entity
-public abstract class AppUser {  // 상속을 이용할 것이면 최소한으로 줄여야 할듯
+public class AppUser {  // 상속을 이용할 것이면 최소한으로 줄여야 할듯
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,10 +21,14 @@ public abstract class AppUser {  // 상속을 이용할 것이면 최소한으�
     private String name;
 
     @Enumerated(EnumType.STRING)
+    
     private UserClass userType;
     private String phoneNumber;
 
     private String email;
+
+    public AppUser() {
+    }
 
     public AppUser(Long uid, String loginId, String loginPwd, String name, UserClass userType, String phoneNumber, String email) {
         this.uid = uid;

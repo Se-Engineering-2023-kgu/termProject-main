@@ -3,10 +3,12 @@ package rest.order.reservation.Controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import rest.order.reservation.Model.DTO.Customer.CustomerRegistForm;
 import rest.order.reservation.Model.DTO.Customer.CustomerRequestDTO;
-import rest.order.reservation.Model.User.Customer;
 import rest.order.reservation.Service.CustomerService;
 
 @Controller
@@ -33,13 +35,13 @@ public class CustomerController {
     }
 
     //회원 조회 -> id 있으면 admin에서 쓰는 것 아닐까?
-    @GetMapping("customer/{id}")
-    public String viewCustomer(@PathVariable Long id, Model model) {
-
-        Customer customer = customerService.viewCustomer(id);
-        model.addAttribute("customer", customer);
-        return "customer/customerInfo";
-    }
+//    @GetMapping("customer/{id}")
+//    public String viewCustomer(@PathVariable Long id, Model model) {
+//
+//        Customer customer = customerService.viewCustomer(id);
+//        model.addAttribute("customer", customer);
+//        return "customer/customerInfo";
+//    }
 
     // 회원 수정
 
