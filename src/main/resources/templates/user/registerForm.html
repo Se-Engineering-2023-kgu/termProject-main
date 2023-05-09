@@ -7,7 +7,7 @@
 <body>
 <h1>customer 회원가입</h1>
 <div>
-    <form method="post" th:action="@{/customer/register}" th:object="${customer}">
+    <form method="post" th:action="@{/customer/register}" th:object="${user}">
         <div>
             <label for="loginId">Login ID:</label>
             <input id="loginId" th:field="*{loginId}" type="text"/>
@@ -20,6 +20,14 @@
             <label for="name">Name:</label>
             <input id="name" th:field="*{name}" type="text"/>
         </div>
+
+        <select name="choice" th:field="*{userType}">
+            <option th:each="class : ${T(rest.order.reservation.DefineEnum.UserClass).values()}"
+                    th:text="${class.description}"
+                    th:value="${class.name()}">
+            </option>
+        </select>
+
         <div>
             <label for="phoneNumber">Phone Number:</label>
             <input id="phoneNumber" th:field="*{phoneNumber}" type="text"/>

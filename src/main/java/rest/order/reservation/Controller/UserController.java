@@ -8,8 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import rest.order.reservation.Model.DTO.Customer.CustomerRegistForm;
-import rest.order.reservation.Model.DTO.Customer.CustomerRequestDTO;
+import rest.order.reservation.Model.DTO.AppUser.UserRegistForm;
 import rest.order.reservation.Service.UserService;
 
 
@@ -27,14 +26,14 @@ public class UserController {
 
     @GetMapping("/register")
     public String customerRegister(Model model) {
-        model.addAttribute("customer", new CustomerRegistForm(null, null, null, null, null));
-        return "/customer/registerForm";
+        model.addAttribute("user", new UserRegistForm(null, null, null, null, null, null));
+        return "/user/registerForm";
     }
 
     @PostMapping("/register")
-    public String registerCustomer(@ModelAttribute("customer") CustomerRequestDTO request, BindingResult result) {
+    public String registerCustomer(@ModelAttribute("user") UserRegistForm request, BindingResult result) {
         System.out.println("request : " + request);
-        userService.addCustomer(request);
+        userService.addUser(request);
         return "redirect:/";
     }
 

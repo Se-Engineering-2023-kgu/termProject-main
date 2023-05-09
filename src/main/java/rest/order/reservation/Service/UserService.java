@@ -1,9 +1,8 @@
 package rest.order.reservation.Service;
 
 import org.springframework.stereotype.Service;
-import rest.order.reservation.DefineEnum.UserClass;
 import rest.order.reservation.Model.DTO.AppUser.AppUserDTO;
-import rest.order.reservation.Model.DTO.Customer.CustomerRequestDTO;
+import rest.order.reservation.Model.DTO.AppUser.UserRegistForm;
 import rest.order.reservation.Model.User.AppUser;
 import rest.order.reservation.Repository.AppUserRepo;
 
@@ -19,19 +18,18 @@ public class UserService {
     }
 
     // 회원가입
-    public Long addCustomer(CustomerRequestDTO request) {
-        AppUser customer = new AppUser(
+    public Long addUser(UserRegistForm request) {
+        AppUser user = new AppUser(
                 null,
                 request.loginId(),
                 request.loginPwd(),
                 request.name(),
+                request.userType(),
                 request.phoneNumber(),
-                request.email(),
-
+                request.email()
         );
-
-        AppUserRepository.save(customer);
-        return customer.getUid();
+        AppUserRepository.save(user);
+        return user.getUid();
     }
 
     //

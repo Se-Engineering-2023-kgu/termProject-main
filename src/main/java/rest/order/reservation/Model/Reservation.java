@@ -2,7 +2,7 @@ package rest.order.reservation.Model;
 
 import jakarta.persistence.*;
 import rest.order.reservation.DefineEnum.TimeSlot;
-import rest.order.reservation.Model.User.Customer;
+import rest.order.reservation.Model.User.AppUser;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -24,7 +24,7 @@ public class Reservation implements TimeTable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private Customer user;  // 고객 1 - 예약 n
+    private AppUser user;  // 고객 1 - 예약 n
 
     // 단방향을 생각해야하지만 , 예약에 다른 종류의 OrderMenuList가 있을 것 같아서 표현
     // FK 가 예약에 있기 때문에 mappedBy
@@ -41,7 +41,7 @@ public class Reservation implements TimeTable {
     public Reservation() {
     }
 
-    public Reservation(Long reservationID, TimeSlot timeSlot, Customer user, List<OrderMenu> orderList, TableList tables, int members) {
+    public Reservation(Long reservationID, TimeSlot timeSlot, AppUser user, List<OrderMenu> orderList, TableList tables, int members) {
         this.reservationID = reservationID;
         this.timeSlot = timeSlot;
         this.user = user;
