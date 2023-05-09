@@ -2,11 +2,9 @@ package rest.order.reservation.Service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import rest.order.reservation.DefineEnum.UserClass;
 import rest.order.reservation.Model.DTO.Customer.CustomerRequestDTO;
 import rest.order.reservation.Model.DTO.Customer.CustomerUpdateDTO;
-import rest.order.reservation.Model.User.AppUser;
 import rest.order.reservation.Model.User.Customer;
 import rest.order.reservation.Repository.CustomerRepo;
 
@@ -41,7 +39,6 @@ public class CustomerService {
                 request.phoneNumber(),
                 request.email(),
                 UserClass.guest
-                
         );
 
         customerRepository.save(customer);

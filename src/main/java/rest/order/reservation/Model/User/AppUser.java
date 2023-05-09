@@ -2,12 +2,13 @@ package rest.order.reservation.Model.User;
 
 
 import jakarta.persistence.*;
+import rest.order.reservation.DefineEnum.UserClass;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "uClass")
 public abstract class AppUser {  // 상속을 이용할 것이면 최소한으로 줄여야 할듯
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
@@ -20,6 +21,9 @@ public abstract class AppUser {  // 상속을 이용할 것이면 최소한으�
 
     @Column(name = "name")
     private String name;
+
+    @Enumerated(EnumType.STRING)
+    private UserClass userType;
 
     public AppUser() {
     }
@@ -73,4 +77,12 @@ public abstract class AppUser {  // 상속을 이용할 것이면 최소한으�
     public void setName(String name) {
         this.name = name;
     }
+
+//    public UserClass getUserType() {
+//        return userType;
+//    }
+//
+//    public void setUserType(UserClass userType) {
+//        this.userType = userType;
+//    }
 }
