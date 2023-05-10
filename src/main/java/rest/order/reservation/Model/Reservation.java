@@ -20,7 +20,7 @@ public class Reservation implements TimeTable {
     private Long reservationID;
 
     @Column(name = "date")
-    private LocalDate date;
+    private LocalDate dateSlot;  // date 이름이 겹칩니다!
     @Column(name = "timeslot")
     @Enumerated(EnumType.STRING)
     private TimeSlot timeSlot;
@@ -50,6 +50,83 @@ public class Reservation implements TimeTable {
         this.user = user;
         this.orderList = orderList;
         this.tables = tables;
+        this.members = members;
+    }
+    
+    public static Reservation createReservation(AppUser user, int members, TableList tables, LocalDate date, TimeSlot time, List<OrderMenu> userOrderMenuList) {
+//
+        Reservation reservation = new Reservation();
+        reservation.setUser(user);
+        reservation.setMembers(members);
+        reservation.setTables(tables);
+        reservation.setDateSlot(date);
+        reservation.setTimeSlot(time);
+//
+        for (OrderMenu orderMenu : userOrderMenuList) {  // 주문 아이템 넣기?
+            reservation.addOrderMenu(orderMenu);
+        }
+        return reservation;
+//    }
+    }
+
+    public void addOrderMenu(OrderMenu orderMenu) {
+        orderList.add(orderMenu);   // reservation에 존재하는 orderList에 orderMenu를 추가해줌
+        orderMenu.setReservationID(this); // 추가한 orderMenu 에 맵핑된 reservationId를 지정해줌
+    }
+
+    public Long getReservationID() {
+        return reservationID;
+    }
+
+    public void setReservationID(Long reservationID) {
+        this.reservationID = reservationID;
+    }
+
+    public LocalDate getDateSlot() {
+        return dateSlot;
+    }
+
+    public void setDateSlot(LocalDate dateSlot) {
+        this.dateSlot = dateSlot;
+    }
+
+    public TimeSlot getTimeSlot() {
+        return timeSlot;
+    }
+
+    public void setTimeSlot(TimeSlot timeSlot) {
+        this.timeSlot = timeSlot;
+    }
+
+    public AppUser getUser() {
+        return user;
+    }
+
+    public void setUser(AppUser user) {
+        this.user = user;
+    }
+
+    public List<OrderMenu> getOrderList() {
+        return orderList;
+    }
+
+    public void setOrderList(List<OrderMenu> orderList) {
+        this.orderList = orderList;
+    }
+
+    public TableList getTables() {
+        return tables;
+    }
+
+    public void setTables(TableList tables) {
+        this.tables = tables;
+    }
+
+    public int getMembers() {
+        return members;
+    }
+
+    public void setMembers(int members) {
         this.members = members;
     }
 
