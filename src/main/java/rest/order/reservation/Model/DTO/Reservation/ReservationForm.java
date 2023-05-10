@@ -1,6 +1,7 @@
 package rest.order.reservation.Model.DTO.Reservation;
 
 import rest.order.reservation.DefineEnum.TimeSlot;
+import rest.order.reservation.Model.DTO.Menu.OrderMenuDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +15,7 @@ public class ReservationForm {
     private Long tid; // tableID
 
     // 예약한 메뉴의 리스트를 가져옴
-    private List<Long> orderMenuList = new ArrayList<>();
+    private List<OrderMenuDTO> orderMenuList = new ArrayList<>();
 
 
     public int getMembers() {
