@@ -22,6 +22,7 @@ public class AppUser {  // 상속을 이용할 것이면 최소한으로 줄여�
 
     @Enumerated(EnumType.STRING)
     private UserClass userType;
+    
     private String phoneNumber;
 
     private String email;

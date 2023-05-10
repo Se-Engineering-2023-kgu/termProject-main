@@ -34,8 +34,14 @@ public class UserService {
     }
 
 
-    public AppUser findUser(Long id) {
-        return AppUserRepository.findById(id).get();
+    public AppUserDTO findUser(Long id) {
+        AppUser appUser = 
+        AppUserRepository.findById(id).get();
+
+        AppUserDTO appUserDTO = AppUserDTO.form(appUser);
+
+        return appUserDTO;
+
     }
 
     @Transactional

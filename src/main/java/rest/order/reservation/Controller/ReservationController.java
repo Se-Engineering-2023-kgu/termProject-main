@@ -54,7 +54,8 @@ public class ReservationController {
         System.out.println("reservation = " + reservation);
         System.out.println("예약하였습니다.");
         reservationService.addReservation(id, reservation);
-
+        model.addAttribute("reservationID", model);
+        
         return "reservation/reservationInfo";
 
 
