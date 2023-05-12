@@ -5,9 +5,9 @@
     <title>Title</title>
 </head>
 <body>
-<div th:replace="~{fragments/bodyHeader :: bodyHeader}"/>
+
 <div>
-    <form method="post" th:action="@{admin/addTable}" th:object="${table}">
+    <form method="post" th:action="@{table}" th:object="${table}">
         <div>
             <label for="number">Number:</label>
             <input id="number" required th:field="*{number}" type="number">

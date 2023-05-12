@@ -7,9 +7,15 @@
 <body>
 <h1>admin Main Page</h1>
 
-<div th:replace="~{fragments/bodyHeader :: bodyHeader}"/>
 <div>
-    
+    <a class="" th:href="@{table}">테이블 추가</a>
+</div>
+<div>
+    <a class="" th:href="@{menu}">메뉴 추가</a>
+
+</div>
+<div>
+    <a class="" th:href="@{reservation}">예약 현황</a>
 </div>
 </body>
 </html>

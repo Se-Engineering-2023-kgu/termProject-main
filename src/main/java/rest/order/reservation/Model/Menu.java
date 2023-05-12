@@ -1,6 +1,7 @@
 package rest.order.reservation.Model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import rest.order.reservation.DefineEnum.MenuType;
 
 @Entity
@@ -16,7 +17,7 @@ public class Menu {
     @Column(name = "menu_intro")
     private String intro;
     @Column(name = "price")
-    private int price;
+    private Long price;
 
     @Column(name = "type")
     @Enumerated(EnumType.STRING)
@@ -25,7 +26,7 @@ public class Menu {
     public Menu() {
     }
 
-    public Menu(Long mid, String name, String intro, int price, MenuType type) {
+    public Menu(Long mid, String name, String intro, Long price, MenuType type) {
         this.mid = mid;
         this.name = name;
         this.intro = intro;
@@ -33,7 +34,7 @@ public class Menu {
         this.type = type;
     }
 
-    public Menu(String name, String intro, int price, MenuType type) {
+    public Menu(String name, String intro, Long price, MenuType type) {
         this.name = name;
         this.intro = intro;
         this.price = price;
@@ -42,7 +43,7 @@ public class Menu {
 
     // 메뉴 수정
     // set 사용 x
-    public void changeMenuInfo(String name, String intro, int price, MenuType type) {
+    public void changeMenuInfo(String name, String intro, Long price, MenuType type) {
         this.name = name;
         this.intro = intro;
         this.price = price;
@@ -73,11 +74,11 @@ public class Menu {
         this.intro = intro;
     }
 
-    public int getPrice() {
+    public Long getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(Long price) {
         this.price = price;
     }
 

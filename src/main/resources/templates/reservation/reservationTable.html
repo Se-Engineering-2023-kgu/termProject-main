@@ -8,7 +8,7 @@
 <div th:replace="~{fragments/bodyHeader :: bodyHeader}"/>
 <h1>2. 테이블 선택 </h1>
 <div>
-    <form method="post" role="form" th:action="@{/reservation/menu}" th:object="${reservation}">
+    <form method="post" role="form" th:action="@{info}" th:object="${reservation}">
         <!--th:object -> 이 안에서 이객체를 계속사용하겠다-->
         <div class="">
             <!--            <label>인원수 - hidden</label>-->
@@ -24,11 +24,25 @@
             <input th:field="*{time}" type="hidden"/>
         </div>
 
+        <h2>테이블 선택 </h2>
         <div th:each="table : ${tableList}">
             <label>
                 <input th:name="tid" th:value="${table.tid}" type="radio"/>
                 <span th:text="${table.number}"></span>
             </label>
+        </div>
+
+        <br/>
+        <h2>메뉴 선택</h2>
+        <div>
+            <!--            <label>메뉴 선택</label>-->
+            <div th:each="menu : ${menuList}">
+                <label>
+                    <input th:field="*{orderMenuList}" th:text="${menu.name}" th:value="${menu.mid}"
+                           type="checkbox"/>
+                    <span th:text="${menu.price}"></span>
+                </label>
+            </div>
         </div>
 
         <button class="" type="submit">확인</button>
