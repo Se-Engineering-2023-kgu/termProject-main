@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import rest.order.reservation.DefineEnum.MenuType;
 
+<<<<<<< HEAD
 @Entity
 @Table(name = "menu") // DB 에 menu 테이블이 만들어져요 
 public class Menu {
@@ -12,6 +13,29 @@ public class Menu {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "menu_id")
     private Long mid; // PK 로 mid 등록됨 
+=======
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.Column;
+
+@Entity
+@Table(name = "Menu")
+public class Menu {
+    //  메뉴라면 가져야 할 것들은? 
+    
+    @Id
+    int MenuID;
+    MenuType type;
+    int price; 
+    String menuNameString;
+    int discount;
+    int kCal;
+    int weight;
+    String desCriptionString;
+>>>>>>> choi4624-greeting
     
     
     @Column(name = "menu_name")
