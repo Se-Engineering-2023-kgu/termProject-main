@@ -15,8 +15,9 @@ public class ReservationForm {
     private Long tid; // tableID
 
     // 예약한 메뉴의 리스트를 가져옴
-    private List<OrderMenuDTO> orderMenuList = new ArrayList<>();
-
+    private List<Long> orderMenuList = new ArrayList<>();
+    // change List<OrderMenuDTO> to List<Long> 
+    //약간 이해는 안되는데 결국엔 여기 쓰이는 리스트는 그냥 for 를 위한 리스트라고 봐도 되나요? 
 
     public int getMembers() {
         return members;
@@ -50,7 +51,6 @@ public class ReservationForm {
 //        this.time = time;
 //    }
 
-
     public List<Long> getOrderMenuList() {
         return orderMenuList;
     }
@@ -77,4 +77,6 @@ public class ReservationForm {
                 ", orderMenuList=" + orderMenuList +
                 '}';
     }
+
+
 }
