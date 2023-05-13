@@ -42,9 +42,41 @@ public class CustomerController {
     }
 
     // 회원 수정
+    @GetMapping("/edit/{id}")
+    public String showUpdateForm(@PathVariable("id") Long id, Model model) {
+        Customer customer = customerService.viewCustomer(id);
+        CustomerUpdateDTO customerUpdateDTO = new CustomerUpdateDTO();
+        customerUpdateDTO.setLoginId(customer.getLoginId());
+        customerUpdateDTO.setLoginPwd(customer.getLoginPwd());
+        customerUpdateDTO.setName(customer.getName());
+        customerUpdateDTO.setPhoneNumber(customer.getPhoneNumber());
+        customerUpdateDTO.setEmail(customer.getEmail());
+        model.addAttribute("customer", customerUpdateDTO);
+        return "customer/editCustomerInfo";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String updateCustomer(@PathVariable("id") Long id, @ModelAttribute("customer") CustomerUpdateDTO customerUpdateDTO, BindingResult result) {
+        if (result.hasErrors()) {
+            return "customer/editCustomerInfo";
+        }
+        customerService.modifyCustomer(id, customerUpdateDTO);
+        return "redirect:/customer/customer/" + id;
+    }
 
 
     // 회원 삭제
+    @GetMapping("/{id}/delete")
+    public String deleteCustomer(@PathVariable Long id, Model model) {
+        Customer customer = customerService.viewCustomer(id);
+        model.addAttribute("customer", customer);
+        return "customer/deleteConfirmation";
+    }
 
+    @PostMapping("/{id}/delete")
+    public String deleteCustomer(@PathVariable Long id) {
+        customerService.deleteCustomer(id);
+        return "redirect:/";
+    }
 
 }
