@@ -17,6 +17,16 @@ public class ReservationForm {
     private List<Long> orderMenuList = new ArrayList<>(); // view 에서 가져오는 메뉴들의 id
     // 여기서 id로 가져온 이유는 체크박스였기 때문에... service에서 for문으로 id를 통해 메뉴를 찾으려고 했습니다.
 
+    public ReservationForm() {
+    }
+
+    public ReservationForm(int members, String date, TimeSlot time, Long tid, List<Long> orderMenuList) {
+        this.members = members;
+        this.date = date;
+        this.time = time;
+        this.tid = tid;
+        this.orderMenuList = orderMenuList;
+    }
 
     public int getMembers() {
         return members;

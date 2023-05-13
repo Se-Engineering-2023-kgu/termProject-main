@@ -36,24 +36,27 @@ public class ReservationController {
     @GetMapping("customer/{id}/date")
     public String reservationDate(@PathVariable Long id, Model model) {
         model.addAttribute("reservation", new ReservationForm());
+        model.addAttribute("id", id);
         return "reservation/reservationDate";
     }
 
     // 2. 테이블 선택 페이지
     @PostMapping("customer/{id}/table")
-    public String reservationTable(@ModelAttribute("reservation") ReservationForm reservation, Model model) {
+    public String reservationTable(@PathVariable Long id, @ModelAttribute("reservation") ReservationForm reservation, Model model) {
         List<TableList> tableList = tableService.findAllTable();
         List<Menu> menuList = menuService.findAllMenu();
         model.addAttribute("tableList", tableList);
         model.addAttribute("menuList", menuList); // 메뉴리스트 전달
+        model.addAttribute("id", id);
         return "reservation/reservationTable";
     }
 
-    @PostMapping("customer/{id}/info")
+    @PostMapping("customer/{id}/reserInfo")
     public String reservationInfo(@PathVariable Long id, @ModelAttribute("reservation") ReservationForm reservation, Model model) {
         System.out.println("reservation = " + reservation);
         System.out.println("예약하였습니다.");
         reservationService.addReservation(id, reservation);
+        model.addAttribute("id", id);
         model.addAttribute("reservationID", model);
 
         return "reservation/reservationInfo";

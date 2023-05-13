@@ -9,8 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import rest.order.reservation.DefineEnum.MenuType;
 import rest.order.reservation.Model.DTO.Menu.MenuRegistForm;
 import rest.order.reservation.Model.DTO.TableDTO;
+import rest.order.reservation.Model.Reservation;
+import rest.order.reservation.Repository.ReservationRepo;
 import rest.order.reservation.Service.MenuService;
 import rest.order.reservation.Service.TableService;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/admin")
@@ -19,11 +23,13 @@ public class AdminController {
 
     private final TableService tableService;
     private final MenuService menuService;
+    private final ReservationRepo reservationRepository;
 
 
-    public AdminController(TableService tableService, MenuService menuService) {
+    public AdminController(TableService tableService, MenuService menuService, ReservationRepo reservationRepository) {
         this.tableService = tableService;
         this.menuService = menuService;
+        this.reservationRepository = reservationRepository;
     }
 
     @ModelAttribute("menuTypes")
@@ -46,7 +52,7 @@ public class AdminController {
     @GetMapping("/table")
     public String addTableForm(Model model) {
         model.addAttribute("table", new TableDTO());
-        return "admin/addTable";
+        return "admin/addTablePage";
     }
 
     @PostMapping("/table")
@@ -54,6 +60,14 @@ public class AdminController {
         tableService.addTable(tableRequest);
 //        return ResponseEntity.ok(responseRequestDTO.toString());
         return "redirect:/admin";
+    }
+
+    @GetMapping("/reservationList")
+    public String reservationList(Model model) {
+
+        List<Reservation> reservationList = reservationRepository.findAll();
+        model.addAttribute("reservationList", reservationList);
+        return "admin/reservationList";
     }
 
 
@@ -71,7 +85,12 @@ public class AdminController {
     public String addMenu(MenuRegistForm menu) {
         menuService.addMenu(menu);
         return "redirect:/admin";
+    }
 
+    @GetMapping("/customer")
+    public String manageUser(Model model) {
+
+        return "admin/manageCustomerPage";
     }
 
 

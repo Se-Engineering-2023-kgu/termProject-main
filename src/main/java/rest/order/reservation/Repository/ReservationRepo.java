@@ -1,7 +1,7 @@
 package rest.order.reservation.Repository;
 
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import rest.order.reservation.Model.Reservation;
 
@@ -12,6 +12,6 @@ import rest.order.reservation.Model.Reservation;
  */
 
 @Repository
-public interface ReservationRepo extends CrudRepository<Reservation, Long> {
+public interface ReservationRepo extends JpaRepository<Reservation, Long> {
 
 }

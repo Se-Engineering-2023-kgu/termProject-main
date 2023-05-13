@@ -1,6 +1,7 @@
 package rest.order.reservation.Service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import rest.order.reservation.DefineEnum.TimeSlot;
 import rest.order.reservation.Model.DTO.Reservation.ReservationForm;
 import rest.order.reservation.Model.Menu;
@@ -8,10 +9,7 @@ import rest.order.reservation.Model.OrderMenu;
 import rest.order.reservation.Model.Reservation;
 import rest.order.reservation.Model.TableList;
 import rest.order.reservation.Model.User.AppUser;
-import rest.order.reservation.Repository.AppUserRepo;
-import rest.order.reservation.Repository.MenuRepo;
-import rest.order.reservation.Repository.ReservationRepo;
-import rest.order.reservation.Repository.TableRepo;
+import rest.order.reservation.Repository.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -23,13 +21,15 @@ public class ReservationService {
     private final AppUserRepo appUserRepository;
     private final TableRepo tableRepository;
     private final MenuRepo menuRepository;
+    private final OrderMenuRepo orderMenuRepository;
 
     private final ReservationRepo reservationRepository;
 
-    public ReservationService(AppUserRepo appUserRepository, TableRepo tableRepository, MenuRepo menuRepository, ReservationRepo reservationRepository) {
+    public ReservationService(AppUserRepo appUserRepository, TableRepo tableRepository, MenuRepo menuRepository, OrderMenuRepo orderMenuRepository, ReservationRepo reservationRepository) {
         this.appUserRepository = appUserRepository;
         this.tableRepository = tableRepository;
         this.menuRepository = menuRepository;
+        this.orderMenuRepository = orderMenuRepository;
         this.reservationRepository = reservationRepository;
     }
 
@@ -41,9 +41,9 @@ public class ReservationService {
         // 2. ReservationForm : 예약인원 , 날짜 , 시간 , 테이블(번호) , 주문한 메뉴들 종류(List)
 
         // 엔티티 조회
-        AppUser user = appUserRepository.findById(id).get();  // customerId로 회원 찾기
+        AppUser user = appUserRepository.findById(id).orElseThrow(() -> new RuntimeException("reservation add appUser : " + id));  // customerId로 회원 찾기
         Long tid = form.getTid();                             // tableId
-        TableList tables = tableRepository.findById(tid).get(); // tableId로 table찾기
+        TableList tables = tableRepository.findById(tid).orElseThrow(() -> new RuntimeException("reservation update tables : " + tid)); // tableId로 table찾기
 
         // ReservationForm 내부에서 값 전달되어 있는지 확인용
         int members = form.getMembers();                    // 인원수
@@ -65,6 +65,39 @@ public class ReservationService {
         Reservation reservation = Reservation.createReservation(user, members, tables, date, time, userOrderMenuList); // Reservation 생성
         reservationRepository.save(reservation); // 주문 저장
         return reservation.getReservationID();   // 주문 id 반환  --> Test 할때보니 생성할때 id 반환해주는것이 쉽더군요
+    }
+
+    public List<Reservation> findAllReservation() {
+        return reservationRepository.findAll();
+    }
+
+    // 예약 삭제 : db 기준으로 reservationId 의 orderList들을 모두 삭제해야 -> reservationId가 삭제될 것 같다. : orderList에는 cascade가 없으므로
+    @Transactional
+    public void deleteReservation(Long id) {
+        Reservation reservation = reservationRepository.findById(id).orElseThrow(() -> new RuntimeException("reservation delete reservation : " + id));
+        for (OrderMenu orderMenu : reservation.getOrderList())
+            orderMenuRepository.delete(orderMenu);
+        reservationRepository.delete(reservation);
+    }
+
+    // 수정을 Form으로 받아와 재 수정해주는 것
+    @Transactional
+    public void updateReservation(Long id, ReservationForm form) {
+        Reservation reservation = reservationRepository.findById(id).orElseThrow(() -> new RuntimeException("reservation update reservation : " + id));  // 여기서는 null 체크 해야함
+
+        Long tid = form.getTid();
+        TableList tables = tableRepository.findById(tid).orElseThrow(() -> new RuntimeException("reservation update tables : " + tid));
+        int members = form.getMembers();
+        LocalDate date = LocalDate.parse(form.getDate());
+        TimeSlot time = form.getTime();
+
+        List<OrderMenu> userOrderMenuList = new ArrayList<>();
+        for (Long mid : form.getOrderMenuList()) {
+            Menu menu = menuRepository.findById(mid).orElseThrow(() -> new RuntimeException("reservation update menu : " + mid));
+            OrderMenu orderMenu = OrderMenu.createOrderMenu(menu, 1);
+            userOrderMenuList.add(orderMenu);
+        }
+        reservation.changeReservationInfo(members, tables, date, time, userOrderMenuList);
     }
 
 }
