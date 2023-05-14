@@ -58,6 +58,13 @@ public class CustomerController {
     customerService.deleteUser(id);
     return "redirect:/login";
 }
+    //회원 조회
+    @GetMapping("/{id}/view")
+    public String getCustomerView(@PathVariable Long id, Model model) {
+    AppUserDTO appUserDTO = customerService.findUser(id);
+    model.addAttribute("userinfo", appUserDTO);
+    return "customer/customerViewPage";
+}
     
     //    @GetMapping("customer/{id}")
 //    public String viewCustomer(@PathVariable Long id, Model model) {
