@@ -80,7 +80,7 @@ public class ReservationService {
         reservationRepository.delete(reservation);
     }
 
-    // 수정을 Form으로 받아와 재 수정해주는 것
+    // RegisterForm으로 다시 받아와 예약 수정
     @Transactional
     public void updateReservation(Long id, ReservationForm form) {
         Reservation reservation = reservationRepository.findById(id).orElseThrow(() -> new RuntimeException("reservation update reservation : " + id));  // 여기서는 null 체크 해야함

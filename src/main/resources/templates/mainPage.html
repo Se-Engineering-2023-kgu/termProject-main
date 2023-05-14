@@ -5,10 +5,12 @@
     <title>Title</title>
 </head>
 <body>
+<div th:replace="~{fragments/Header :: Header}"/>
 <h1>Login x : Guest</h1>
 <div>
     <a class="" th:href="@{user/register}">회원 가입</a>
 </div>
+
 <div>
     <a class="" th:href="@{login/login}">로그인</a>
 </div>

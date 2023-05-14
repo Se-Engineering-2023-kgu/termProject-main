@@ -1,21 +1,23 @@
 package rest.order.reservation.Controller;
 
+
+import groovy.util.logging.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import rest.order.reservation.DefineEnum.MenuType;
 import rest.order.reservation.Model.DTO.Menu.MenuRegistForm;
 import rest.order.reservation.Model.DTO.TableDTO;
 import rest.order.reservation.Model.Reservation;
-import rest.order.reservation.Repository.ReservationRepo;
 import rest.order.reservation.Service.MenuService;
+import rest.order.reservation.Service.ReservationService;
 import rest.order.reservation.Service.TableService;
 
 import java.util.List;
 
+@Slf4j
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
@@ -23,13 +25,13 @@ public class AdminController {
 
     private final TableService tableService;
     private final MenuService menuService;
-    private final ReservationRepo reservationRepository;
+    private final ReservationService reservationService;
 
 
-    public AdminController(TableService tableService, MenuService menuService, ReservationRepo reservationRepository) {
+    public AdminController(TableService tableService, MenuService menuService, ReservationService reservationService) {
         this.tableService = tableService;
         this.menuService = menuService;
-        this.reservationRepository = reservationRepository;
+        this.reservationService = reservationService;
     }
 
     @ModelAttribute("menuTypes")
@@ -64,8 +66,7 @@ public class AdminController {
 
     @GetMapping("/reservationList")
     public String reservationList(Model model) {
-
-        List<Reservation> reservationList = reservationRepository.findAll();
+        List<Reservation> reservationList = reservationService.findAllReservation();
         model.addAttribute("reservationList", reservationList);
         return "admin/reservationList";
     }
@@ -93,5 +94,17 @@ public class AdminController {
         return "admin/manageCustomerPage";
     }
 
+    @DeleteMapping("reservation/delete/{reservationId}")
+    @ResponseBody
+    public ResponseEntity<?> reservationDelete(@PathVariable("reservationId") Long id) {
+//        log.info("delete 까지는 왔다");
+        try {
+            reservationService.deleteReservation(id);
+            return new ResponseEntity(HttpStatus.OK);
+        } catch (RuntimeException e) {
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
+
+    }
 
 }

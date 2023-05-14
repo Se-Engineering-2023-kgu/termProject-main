@@ -65,6 +65,8 @@ public class ReservationController {
         // members , date , time , id , tableID , orderList
     }
 
+//
+
     //   테이블 선택 값 받고 -> 메뉴 선택
 //    @PostMapping("customer/{id}//menu")
 //    public String reservationMenu(@ModelAttribute("reservation") ReservationForm reservation, Model model) {
