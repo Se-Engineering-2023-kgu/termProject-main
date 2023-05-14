@@ -2,6 +2,8 @@ package rest.order.reservation.Controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +32,33 @@ public class CustomerController {
         model.addAttribute("userinfo", appUserDTO);
         return "customer/customerMainPage";
     }
+
+    //회원 수정
+    @GetMapping("/{id}/modify")
+    public String getModifyCustomer(@PathVariable Long id, Model model) {
+        AppUserDTO appUserDTO = customerService.findUser(id);
+        model.addAttribute("appUser", appUserDTO);
+        return "customer/customerModifyPage";
+    }
+    @PostMapping("/{id}/modify")
+    public String modifyCustomer(@PathVariable Long id, @ModelAttribute("customer") AppUserDTO appUserDTO) {
+    customerService.modify(id, appUserDTO);
+    return "redirect:/customer/{id}/main";
+}
+    //회원 삭제
+    @GetMapping("/{id}/delete")
+    public String getDeleteCustomer(@PathVariable Long id, Model model) {
+    AppUserDTO appUserDTO = customerService.findUser(id);
+    model.addAttribute("userinfo", appUserDTO);
+    return "customer/customerDeletePage";
+}
+
+    @PostMapping("/{id}/delete")
+    public String deleteCustomer(@PathVariable Long id) {
+    customerService.deleteUser(id);
+    return "redirect:/login";
+}
+    
     //    @GetMapping("customer/{id}")
 //    public String viewCustomer(@PathVariable Long id, Model model) {
 //
