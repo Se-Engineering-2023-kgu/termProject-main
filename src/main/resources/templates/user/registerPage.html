@@ -5,21 +5,23 @@
     <title>Title</title>
 </head>
 <body>
-<h1>customer 회원가입</h1>
+<h1> 회원가입</h1>
 <div>
-    <form method="post" th:action="@{/customer/register}" th:object="${customer}">
+    <form method="post" required th:action="@{/user/register}" th:object="${user}">
         <div>
             <label for="loginId">Login ID:</label>
-            <input id="loginId" th:field="*{loginId}" type="text"/>
+            <input id="loginId" required th:field="*{loginId}" type="text"/>
         </div>
         <div>
             <label for="loginPwd">Login Password:</label>
-            <input id="loginPwd" th:field="*{loginPwd}" type="password"/>
+            <input id="loginPwd" required th:field="*{loginPwd}" type="password"/>
         </div>
         <div>
             <label for="name">Name:</label>
-            <input id="name" th:field="*{name}" type="text"/>
+            <input id="name" required th:field="*{name}" type="text"/>
         </div>
+
+
         <div>
             <label for="phoneNumber">Phone Number:</label>
             <input id="phoneNumber" th:field="*{phoneNumber}" type="text"/>
@@ -27,6 +29,15 @@
         <div>
             <label for="email">Email:</label>
             <input id="email" th:field="*{email}" type="text"/>
+        </div>
+
+        <div>
+            <select name="choice" th:field="*{userType}">
+                <option th:each="class : ${T(rest.order.reservation.DefineEnum.UserClass).values()}"
+                        th:text="${class.description}"
+                        th:value="${class.name()}">
+                </option>
+            </select>
         </div>
         <button type="submit">Submit</button>
     </form>

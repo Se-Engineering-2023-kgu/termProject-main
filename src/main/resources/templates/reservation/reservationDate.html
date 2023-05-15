@@ -8,7 +8,7 @@
 <h1>예약 페이지 1. 인원수 날짜 , 시간 페이지</h1>
 
 <div>
-    <form method="post" role="form" th:action="@{/reservation/table}" th:object="${reservation}">
+    <form method="post" role="form" th:action="@{table}" th:object="${reservation}">
         <div class="">
             <label>인원수</label>
             <input class="" placeholder="인원수을 입력하세요"
@@ -24,28 +24,15 @@
 
         <div class="">
             <label>시간</label>
-            <select id="time" name="time">
-                <option>시간 선택</option>
-                <option value="08:00">08 : 00</option>
-                <option value="09:00">09 : 00</option>
-                <option value="10:00">10 : 00</option>
-                <option value="11:00">11 : 00</option>
-                <option value="12:00">12 : 00</option>
-                <option value="13:00">13 : 00</option>
-                <option value="14:00">14 : 00</option>
-                <option value="15:00">15 : 00</option>
-                <option value="16:00">16 : 00</option>
-                <option value="17:00">17 : 00</option>
-                <option value="18:00">18 : 00</option>
-                <option value="19:00">19 : 00</option>
-                <option value="20:00">20 : 00</option>
+            <select th:field="*{time}">
+                <option th:each="timeSlot : ${T(rest.order.reservation.DefineEnum.TimeSlot).values()}"
+                        th:text="${timeSlot.detail}" th:value="${timeSlot}"></option>
             </select>
 
 
             <button class="" type="submit">확인</button>
         </div>
     </form>
-
 </div>
 
 </body>
