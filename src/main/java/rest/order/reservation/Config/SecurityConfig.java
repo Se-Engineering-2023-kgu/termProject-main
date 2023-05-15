@@ -34,35 +34,35 @@ public class SecurityConfig {
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests()
-                .requestMatchers("/customer/**").authenticated()
-                .requestMatchers("/admin/**").hasRole("ADMIN")
-                .anyRequest().permitAll()
+                .requestMatchers("/customer/**").authenticated() // 이 경로로 진입하면 인증을 요구함
+                .requestMatchers("/admin/**").hasRole("ADMIN") // 이 경로로 진입하면 ADMIN 역할을 가진 인증을 요구함
+                .anyRequest().permitAll() // 그 외에는 허용
                 .and()
-                .formLogin()
-                .loginPage("/customer/login")
-                .loginProcessingUrl("/customer/login/trylogin")
-                .usernameParameter("login_id")
-                .passwordParameter("login_pwd")
-                .defaultSuccessUrl("/customer/{id}", true)
-                .failureUrl("/customer/login/login?error=true")
+                .formLogin() // http form 방식의 로그인 진행
+                .loginPage("/customer/login") // controller에 정의한 로그인 페이지 (강제로 이상한데 가도 이 페이지로 감)
+                .loginProcessingUrl("/customer/login/trylogin") // form submit해서 제출하는 로그인 페이지
+                .usernameParameter("username") // 타임리프 페이지에서 받을 http form 파라미터 (기본값 : username)
+                .passwordParameter("password") // pw 파라미터를 제출받음
+                .defaultSuccessUrl("/customer/{id}", true) // 로그인 하면 id 페이지로 이동
+                .failureUrl("/customer/login?error=true") // 로그인 실패하면 error=true 파라미터 페이지로 나오게 하기 (다른 경로 가능)
                 .permitAll()
                 .and()
                 .logout()
                 .permitAll()
-                .logoutSuccessUrl("/customer/logout")
+                .logoutSuccessUrl("/customer/logout") // 로그아웃 경로 들어가면 세션 날리고 쿠키도 나림
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID")
                 .and()
-                .rememberMe().key("SpringSecurityKeys_4000")
+                .rememberMe().key("SpringSecurityKeys_4000") // 암호화 키 (이걸로 암호화 함)
                 .and()
                 .httpBasic()
                 .and()
-                .csrf().disable()
-                .headers().frameOptions().disable();
+                .csrf().disable() // csrf 끄기
+                .headers().frameOptions().disable(); // x -forward 끄기
         ;
 
         http.headers().frameOptions().sameOrigin();
-        // https://ksyy.tistory.com/306
+        // https://ksyy.tistory.com/306 관련 글
         return http.build();
     }
 
