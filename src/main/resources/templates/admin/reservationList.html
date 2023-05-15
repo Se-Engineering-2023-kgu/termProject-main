@@ -12,23 +12,25 @@
     <div>
 
         <form class="" th:object="${researvationSearch}">
-            <!--            <div class="">-->
-            <!--                <input class="" placeholder="회원명" th:field="*{name}" type="text"/>-->
-            <!--            </div>-->
-
-            <div class="">
-                <label>날짜</label>
-                <input class="" id="currentDate" placeholder="날짜" th:field="${researvationSearch.date}"
-                       type="date">
-            </div>
             <div>
-                <select th:field="*{time}">
-                    <option value="">예약 시간</option>
-                    <option th:each="timeSlot : ${T(rest.order.reservation.DefineEnum.TimeSlot).values()}"
-                            th:text="${timeSlot.detail}" th:value="${timeSlot}"></option>
-                </select>
+                <div class="">
+                    <input class="" placeholder="회원명" th:field="*{name}" type="text"/>
+                </div>
+
+                <div class="">
+                    <label></label>
+                    <input class="" id="currentDate" placeholder="날짜" th:field="${researvationSearch.date}"
+                           type="date">
+                </div>
+                <div>
+                    <select th:field="*{time}">
+                        <option value="">예약 시간</option>
+                        <option th:each="timeSlot : ${T(rest.order.reservation.DefineEnum.TimeSlot).values()}"
+                                th:text="${timeSlot.detail}" th:value="${timeSlot}"></option>
+                    </select>
+                </div>
+                <button class="" type="submit">검색</button>
             </div>
-            <button class="" type="submit">검색</button>
         </form>
 
     </div>

@@ -5,17 +5,17 @@ import rest.order.reservation.DefineEnum.TimeSlot;
 import java.time.LocalDate;
 
 public class ReservationSearch {
-    //    private String name;
+    private String name;
     private LocalDate date;
     private TimeSlot time;
 
-//    public String getName() {
-//        return name;
-//    }
-//
-//    public void setName(String name) {
-//        this.name = name;
-//    }
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public LocalDate getDate() {
         return date;
