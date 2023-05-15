@@ -36,6 +36,7 @@ public class ReservationController {
     @GetMapping("customer/{id}/date")
     public String reservationDate(@PathVariable Long id, Model model) {
         model.addAttribute("reservation", new ReservationForm());
+        model.addAttribute("id", id);
         return "reservation/reservationDate";
     }
 

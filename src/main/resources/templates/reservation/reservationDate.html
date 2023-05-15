@@ -10,7 +10,7 @@
     <div class="reservation_date">
         <h3>예약 페이지 1. 인원수 날짜 , 시간 페이지</h3>
         <br>
-        <form method="post" role="form" th:action="@{table}" th:object="${reservation}">
+        <form method="post" role="form" th:action="@{customer/{id}/table{id=${id}}}" th:object="${reservation}">
             <div class="NumberOfPeople">
                 <label>인원수</label>
                 <input class="" placeholder="인원수을 입력하세요"
