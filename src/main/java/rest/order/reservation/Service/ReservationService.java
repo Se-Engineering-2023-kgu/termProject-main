@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import rest.order.reservation.DefineEnum.TimeSlot;
 import rest.order.reservation.Model.DTO.Reservation.ReservationForm;
+import rest.order.reservation.Model.DTO.Reservation.ReservationSearch;
 import rest.order.reservation.Model.Menu;
 import rest.order.reservation.Model.OrderMenu;
 import rest.order.reservation.Model.Reservation;
@@ -67,14 +68,14 @@ public class ReservationService {
         return reservation.getReservationID();   // 주문 id 반환  --> Test 할때보니 생성할때 id 반환해주는것이 쉽더군요
     }
 
-    public List<Reservation> findAllReservation() {
-        return reservationRepository.findAll();
-    }
-
-//    public List<Reservation> findAllReservation(ReservationSearch reservationSearch) {
-    
+//    public List<Reservation> findAllReservation() {
 //        return reservationRepository.findAll();
 //    }
+
+    public List<Reservation> findAllReservation(ReservationSearch reservationSearch) {
+
+        return reservationRepository.findAll(reservationSearch);
+    }
 
     // 예약 삭제 : db 기준으로 reservationId 의 orderList들을 모두 삭제해야 -> reservationId가 삭제될 것 같다. : orderList에는 cascade가 없으므로
     @Transactional

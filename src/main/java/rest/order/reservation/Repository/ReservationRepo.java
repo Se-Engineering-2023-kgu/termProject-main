@@ -12,6 +12,7 @@ import rest.order.reservation.Model.Reservation;
  */
 
 @Repository
-public interface ReservationRepo extends JpaRepository<Reservation, Long> {
+public interface ReservationRepo extends JpaRepository<Reservation, Long>, ReservationRepoCustom {
+
 
 }
