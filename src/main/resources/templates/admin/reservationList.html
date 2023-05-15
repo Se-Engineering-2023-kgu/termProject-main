@@ -21,10 +21,9 @@
                 <input class="" placeholder="날짜" th:field="${researvationSearch.date}"
                        type="date">
             </div>
-
             <div>
                 <select th:field="*{time}">
-                    <option value="">시간</option>
+                    <option value="">예약 시간</option>
                     <option th:each="timeSlot : ${T(rest.order.reservation.DefineEnum.TimeSlot).values()}"
                             th:text="${timeSlot.detail}" th:value="${timeSlot}"></option>
                 </select>

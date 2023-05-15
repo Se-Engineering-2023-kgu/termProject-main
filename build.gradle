@@ -67,6 +67,7 @@ tasks.named('asciidoctor') {
 // }
 
 // QueryDsl 빌드 옵션 (선택)
+
 clean {
     delete file('src/main/generated')
 }

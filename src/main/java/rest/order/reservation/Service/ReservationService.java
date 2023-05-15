@@ -71,6 +71,11 @@ public class ReservationService {
         return reservationRepository.findAll();
     }
 
+//    public List<Reservation> findAllReservation(ReservationSearch reservationSearch) {
+    
+//        return reservationRepository.findAll();
+//    }
+
     // 예약 삭제 : db 기준으로 reservationId 의 orderList들을 모두 삭제해야 -> reservationId가 삭제될 것 같다. : orderList에는 cascade가 없으므로
     @Transactional
     public void deleteReservation(Long id) {
