@@ -1,16 +1,25 @@
 package rest.order.reservation.Service;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import rest.order.reservation.Model.DTO.AppUser.AppUserDTO;
 import rest.order.reservation.Model.DTO.AppUser.UserRegistForm;
 import rest.order.reservation.Model.User.AppUser;
 import rest.order.reservation.Repository.AppUserRepo;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserService {
+public class UserService implements UserDetailsService {
 
     private final AppUserRepo AppUserRepository;
 
@@ -27,16 +36,13 @@ public class UserService {
                 request.name(),
                 request.userType(),
                 request.phoneNumber(),
-                request.email()
-        );
+                request.email());
         AppUserRepository.save(user);
         return user.getUid();
     }
 
-
     public AppUserDTO findUser(Long id) {
-        AppUser appUser = 
-        AppUserRepository.findById(id).get();
+        AppUser appUser = AppUserRepository.findById(id).get();
 
         AppUserDTO appUserDTO = AppUserDTO.form(appUser);
 
@@ -68,5 +74,22 @@ public class UserService {
         return null;
     }
 
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        AppUser appUser = AppUserRepository.findByLoginId(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + username));
 
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(new SimpleGrantedAuthority(appUser.getUserType().name()));
+
+        return toUserDetails(appUser);
+    }
+
+    private UserDetails toUserDetails(AppUser appUser) {
+        return User.builder()
+                .username(appUser.getLoginId())
+                .password(appUser.getLoginPwd())
+                .authorities(new SimpleGrantedAuthority(appUser.getUserType().toString()))
+                .build();
+    }
 }

@@ -30,6 +30,25 @@ public class CustomerController {
         model.addAttribute("userinfo", appUserDTO);
         return "customer/customerMainPage";
     }
+
+
+
+        /*
+     * Security login
+     * 
+     */
+    @RequestMapping("/login")
+    public String loginString() {
+        return "/customer/customerlogin";
+    }
+
+    @RequestMapping("/login?error=true")
+    public String loginError(Model model) {
+        model.addAttribute(null, model);
+        return "/customer/customerlogin";
+    }
+
+    
     //    @GetMapping("customer/{id}")
 //    public String viewCustomer(@PathVariable Long id, Model model) {
 //
