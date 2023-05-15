@@ -25,32 +25,38 @@ public class LoginController {
         return "user/loginPage";
     }
 
+    /*
+     * 로그인 postMapping을 스프링 시큐리티의 기능으로 들어감
+     * 
+     */
+
     // @PostMapping("/login")
-    // public String login(@RequestParam String loginId, @RequestParam String loginPwd,
-    //         RedirectAttributes redirectAttributes) {
-    //     System.out.println("loginId = " + loginId);
-    //     System.out.println("loginPwd = " + loginPwd);
+    // public String login(@RequestParam String loginId, @RequestParam String
+    // loginPwd,
+    // RedirectAttributes redirectAttributes) {
+    // System.out.println("loginId = " + loginId);
+    // System.out.println("loginPwd = " + loginPwd);
 
-    //     AppUserDTO user = userService.loginCheck(loginId, loginPwd);
-    //     System.out.println("user = " + user);
+    // AppUserDTO user = userService.loginCheck(loginId, loginPwd);
+    // System.out.println("user = " + user);
 
-    //     if (user == null)
-    //         return "user/loginPage";
+    // if (user == null)
+    // return "user/loginPage";
 
-    //     if (user.userType() == UserClass.admin) {
-    //         // redirectAttributes.addAttribute("adminId", user.uid());
-    //         System.out.println("관리자 입니다.");
-    //         return "redirect:/admin";
-    //     }
-    //     // 로그인 시도하는 appUser 가 admin 타입이라면?
-    //     // if (user.menuType() == UserClass.admin)
-    //     // model.addAttribute("id",user.uid());
-    //     // return "admin/adminMainPage";
+    // if (user.userType() == UserClass.admin) {
+    // // redirectAttributes.addAttribute("adminId", user.uid());
+    // System.out.println("관리자 입니다.");
+    // return "redirect:/admin";
+    // }
+    // // 로그인 시도하는 appUser 가 admin 타입이라면?
+    // // if (user.menuType() == UserClass.admin)
+    // // model.addAttribute("id",user.uid());
+    // // return "admin/adminMainPage";
 
-    //     // 로그인 시도하는 appUser가 customer 타입이라면?
+    // // 로그인 시도하는 appUser가 customer 타입이라면?
 
-    //     redirectAttributes.addAttribute("id", user.uid());
-    //     return "redirect:/customer/{id}";
+    // redirectAttributes.addAttribute("id", user.uid());
+    // return "redirect:/customer/{id}";
     // }
 
     @GetMapping("/logout")
