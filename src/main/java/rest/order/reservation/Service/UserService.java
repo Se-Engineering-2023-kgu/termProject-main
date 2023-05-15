@@ -1,12 +1,16 @@
 package rest.order.reservation.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,14 +27,12 @@ import java.util.Optional;
 @Service
 public class UserService implements UserDetailsService {
 
-    @Autowired
     private final AppUserRepo AppUserRepository;
 
-    @Autowired
-    private final PasswordEncoder passwordEncoder;
+    private final BCryptPasswordEncoder passwordEncoder;
 
-    public UserService(AppUserRepo appUserRepository, PasswordEncoder passwordEncoder) {
-        AppUserRepository = appUserRepository;
+    public UserService(AppUserRepo appUserRepository, BCryptPasswordEncoder passwordEncoder) {
+        this.AppUserRepository = appUserRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -101,4 +103,5 @@ public class UserService implements UserDetailsService {
                 .authorities(new SimpleGrantedAuthority(appUser.getUserType().toString()))
                 .build();
     }
+
 }

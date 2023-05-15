@@ -1,6 +1,5 @@
-package rest.order.Security.config;
+package rest.order.reservation.Config;
 
-import rest.order.reservation.*;
 import rest.order.reservation.Repository.AppUserRepo;
 import rest.order.reservation.Service.UserService;
 
@@ -8,7 +7,6 @@ import org.springframework.boot.autoconfigure.security.SecurityProperties;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
-import org.hibernate.metamodel.model.domain.internal.PluralAttributeBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,15 +24,7 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
     @Autowired
-    private final UserService userService;
-
-    @Autowired
     private AppUserRepo appUserRepo;
-
-    @Autowired
-    public SecurityConfig(UserService userService) {
-        this.userService = userService;
-    }
 
     // https://magicmk.tistory.com/m/31
     // 스프링 시큐리티 추가 버전을 사용한 로그인 기본 필터체인
@@ -77,9 +67,9 @@ public class SecurityConfig {
     }
 
     @Bean
-    public UserDetailsService userDetailsService() {
-        return null;
-
+    public WebSecurityCustomizer webSecurityCustomizer() {
+        // 정적 리소스들이 보안필터를 거치지 않게끔
+        return (web) -> web.ignoring().requestMatchers("/css/**", "/js/**", "/img/**", "/font/**");
     }
 
     @Bean
@@ -88,17 +78,11 @@ public class SecurityConfig {
     }
 
     @Bean
-    public DaoAuthenticationProvider AuthenticationProvider() {
+    public DaoAuthenticationProvider AuthenticationProvider(UserService userService) {
         DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
-        auth.setUserDetailsService((UserDetailsService) userService);
+        auth.setUserDetailsService(userService);
         auth.setPasswordEncoder(passwordEncoder());
         return auth;
-    }
-
-    @Bean
-    public WebSecurityCustomizer webSecurityCustomizer() {
-        // 정적 리소스들이 보안필터를 거치지 않게끔
-        return (web) -> web.ignoring().requestMatchers("/css/**", "/js/**", "/img/**", "/font/**");
     }
 
 }
