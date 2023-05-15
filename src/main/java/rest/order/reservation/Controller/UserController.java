@@ -13,7 +13,7 @@ import rest.order.reservation.Service.UserService;
 
 
 @Controller
-@RequestMapping("user")
+@RequestMapping("/user")
 public class UserController {
 
     private final UserService userService;
@@ -37,34 +37,5 @@ public class UserController {
         userService.addUser(request);
         return "redirect:/";
     }
-
-    // 로그인 페이지
-//    @GetMapping("/login")
-//    public String loginPage() {
-//        return "user/loginPage";
-//    }
-//
-//    @PostMapping("/login")
-//    public String login(@RequestParam String loginId, @RequestParam String loginPwd, RedirectAttributes redirectAttributes) {
-//        System.out.println("loginId = " + loginId);
-//        System.out.println("loginPwd = " + loginPwd);
-//
-//        AppUserDTO user = userService.loginCheck(loginId, loginPwd);
-//        System.out.println("user = " + user);
-//
-//        if (user == null)
-//            return "user/loginPage";
-//
-//        // 관리자
-//        if (user.userType() == UserClass.admin) {
-//            redirectAttributes.addAttribute("adminId", user.uid());
-//            return "redirect:/admin";
-//        }
-//
-//        //고객
-//        redirectAttributes.addAttribute("id", user.uid());
-//        return "redirect:/customer/{id}";
-//    }
-
 
 }

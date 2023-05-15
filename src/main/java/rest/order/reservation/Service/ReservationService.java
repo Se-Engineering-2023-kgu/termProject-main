@@ -57,8 +57,8 @@ public class ReservationService {
         // 주문 생성
         // 몇몇 로직들이 있어서 DTO 사용 X
         Reservation reservation = Reservation.createReservation(user, members, tables, date, time, userOrderMenuList);
-        reservationRepository.save(reservation); // 주문 저장
-        return reservation.getReservationID();   // 주문 id 반환
+        reservationRepository.save(reservation); // 주문 저장 
+        return reservation.getReservationID();   // 주문 id 반환 
     }
 
 }
