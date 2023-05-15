@@ -58,7 +58,7 @@ class ReservationServiceTest {
         orderMenuList.add(menu2.getMid());
         System.out.println("orderMenuList.size() = " + orderMenuList.size());
 
-        ReservationForm rvf = new ReservationForm(3, "2023-05-13", TimeSlot.EIGHT, table.getTid(), orderMenuList);
+        ReservationForm rvf = new ReservationForm(3, "2023-05-13", TimeSlot.ELEVEN, table.getTid(), orderMenuList);
 
         Long id = reservationService.addReservation(user.getUid(), rvf);
         Reservation reservation = reservationRepository.findById(id).get();
@@ -96,7 +96,7 @@ class ReservationServiceTest {
         System.out.println("orderMenuList.size() = " + orderMenuList.size());
 
 
-        ReservationForm rvf = new ReservationForm(3, "2023-05-13", TimeSlot.EIGHT, table.getTid(), orderMenuList);
+        ReservationForm rvf = new ReservationForm(3, "2023-05-13", TimeSlot.ELEVEN, table.getTid(), orderMenuList);
 
         System.out.println("1. reservationRepository.count() = " + reservationRepository.count());
         Long id = reservationService.addReservation(user.getUid(), rvf);
@@ -142,7 +142,7 @@ class ReservationServiceTest {
 
         System.out.println("4. reservationRepository.count() = " + reservationRepository.count());
 
-        
+
         reservationService.deleteReservation(id);
 //        System.out.println("5. reservationRepository.count() = " + reservationRepository.count());
 //        Assertions.assertEquals(reservationRepository.count(), 2); // 삭제후  2
