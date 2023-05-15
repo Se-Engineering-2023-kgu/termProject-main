@@ -39,11 +39,11 @@ public class SecurityConfig {
                 .anyRequest().permitAll() // 그 외에는 허용
                 .and()
                 .formLogin() // http form 방식의 로그인 진행
-                .loginPage("/customer/login") // controller에 정의한 로그인 페이지 (강제로 이상한데 가도 이 페이지로 감)
-                .loginProcessingUrl("/customer/login/trylogin") // form submit해서 제출하는 로그인 페이지
-                .usernameParameter("username") // 타임리프 페이지에서 받을 http form 파라미터 (기본값 : username)
-                .passwordParameter("password") // pw 파라미터를 제출받음
-                .defaultSuccessUrl("/customer/{id}", true) // 로그인 하면 id 페이지로 이동
+                .loginPage("/login/login") // controller에 정의한 로그인 페이지 (강제로 이상한데 가도 이 페이지로 감)
+                .loginProcessingUrl("/login/login") // form submit해서 제출하는 로그인 페이지
+                .usernameParameter("loginId") // 타임리프 페이지에서 받을 http form 파라미터 (기본값 : username)
+                .passwordParameter("loginPwd") // pw 파라미터를 제출받음
+                .defaultSuccessUrl("/customer/", true) // 로그인 하면 id 페이지로 이동
                 .failureUrl("/customer/login?error=true") // 로그인 실패하면 error=true 파라미터 페이지로 나오게 하기 (다른 경로 가능)
                 .permitAll()
                 .and()

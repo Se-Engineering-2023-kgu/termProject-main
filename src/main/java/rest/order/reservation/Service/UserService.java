@@ -76,8 +76,10 @@ public class UserService implements UserDetailsService {
         Optional<AppUser> appUser = AppUserRepository.findByLoginId(loginId);
 
         if (appUser.isPresent())
-            if (appUser.get().getLoginPwd().equals(loginPwd)) {
+            if (appUser.get().getLoginPwd().equals(passwordEncoder.encode(loginPwd))) {
                 AppUserDTO appUserDTO = AppUserDTO.form(appUser.get());
+
+                System.out.println("login Success? ");
                 return appUserDTO;
             }
         return null;
