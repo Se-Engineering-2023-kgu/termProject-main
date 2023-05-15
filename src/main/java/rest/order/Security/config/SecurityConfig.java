@@ -36,6 +36,9 @@ public class SecurityConfig {
         this.userService = userService;
     }
 
+    // https://magicmk.tistory.com/m/31
+    // 스프링 시큐리티 추가 버전을 사용한 로그인 기본 필터체인
+
     @Bean
     @Order(SecurityProperties.BASIC_AUTH_ORDER)
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {

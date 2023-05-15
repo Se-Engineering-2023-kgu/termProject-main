@@ -1,11 +1,13 @@
 package rest.order.reservation.Service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,10 +23,15 @@ import java.util.Optional;
 @Service
 public class UserService implements UserDetailsService {
 
+    @Autowired
     private final AppUserRepo AppUserRepository;
 
-    public UserService(AppUserRepo appUserRepository) {
+    @Autowired
+    private final PasswordEncoder passwordEncoder;
+
+    public UserService(AppUserRepo appUserRepository, PasswordEncoder passwordEncoder) {
         AppUserRepository = appUserRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     // 회원가입
@@ -32,7 +39,7 @@ public class UserService implements UserDetailsService {
         AppUser user = new AppUser(
                 null,
                 request.loginId(),
-                request.loginPwd(),
+                request.loginPwd(passwordEncoder.encode(request.loginPwd())), // loginPWD를 암호화하여 적용
                 request.name(),
                 request.userType(),
                 request.phoneNumber(),
@@ -73,6 +80,8 @@ public class UserService implements UserDetailsService {
             }
         return null;
     }
+
+    // user load 서비스 부분
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
