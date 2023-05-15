@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import rest.order.reservation.DefineEnum.MenuType;
 import rest.order.reservation.Model.DTO.Menu.MenuRegistForm;
+import rest.order.reservation.Model.DTO.Reservation.ReservationSearch;
 import rest.order.reservation.Model.DTO.TableDTO;
 import rest.order.reservation.Model.Reservation;
 import rest.order.reservation.Service.MenuService;
@@ -67,6 +68,14 @@ public class AdminController {
     @GetMapping("/reservationList")
     public String reservationList(Model model) {
         List<Reservation> reservationList = reservationService.findAllReservation();
+        model.addAttribute("reservationList", reservationList);
+        return "admin/reservationList";
+    }
+
+    @GetMapping("/reservationList")
+    public String reservationSearch(@ModelAttribute("researvationSearch") ReservationSearch reservationSearch, Model model) {
+        List<Reservation> reservationList = reservationService.findAllReservation();
+//        List<Reservation> reservationList = reservationService.findAllReservation(reservationSearch);
         model.addAttribute("reservationList", reservationList);
         return "admin/reservationList";
     }

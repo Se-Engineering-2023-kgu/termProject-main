@@ -8,46 +8,71 @@
 
 <body>
 <h1>예약 현황</h1>
+<div>
+    <div>
 
-<table class="">
-    <thead>
-    <tr>
-        <th>취소</th>
-        <th>번호</th>
-        <th>회원명</th>
-        <th>날짜</th>
-        <th>시간</th>
-        <th>예약 인원 수</th>
-        <th>테이블 번호</th>
-        <th>주문 메뉴</th>
+        <form class="" th:object="${researvationSearch}">
+            <div class="">
+                <input class="" placeholder="회원명" th:field="*{name}" type="text"/>
+            </div>
 
-    </tr>
-    </thead>
-    <tbody>
+            <div class="">
+                <label>날짜</label>
+                <input class="" placeholder="날짜" th:field="${researvationSearch.date}"
+                       type="date">
+            </div>
 
-    <tr th:each="reservation : ${reservationList}">
-        <td>
-            <button class="deleteBtn" th:data-reservation-id="${reservation.reservationID}" type="button">
-                삭제
-            </button>
-        </td>
-        <td th:text="${reservation.reservationID}">번호</td>
-        <td th:text="${reservation.user.name}">회원명</td>
-        <td th:text="${reservation.dateSlot}">날짜</td>
-        <td th:text="${reservation.timeSlot.getDetail()}">시간</td>
-        <td th:text="${reservation.members}">예약 인원 수</td>
-        <td th:text="${reservation.tables.number}">테이블 번호</td>
-        <td>
-            <button class="btn btn-primary" data-target="#orderListModal" data-toggle="modal" type="button">
-                주문 리스트
-            </button>
-        </td>
-        <!--        <td th:text="${reservation.orderList}">주문 메뉴</td>-->
+            <div>
+                <select th:field="*{time}">
+                    <option value="">시간</option>
+                    <option th:each="timeSlot : ${T(rest.order.reservation.DefineEnum.TimeSlot).values()}"
+                            th:text="${timeSlot.detail}" th:value="${timeSlot}"></option>
+                </select>
+            </div>
+            <button class="" type="submit">검색</button>
+        </form>
 
-    </tbody>
+    </div>
 
-</table>
+    <br/>
 
+    <table class="">
+        <thead>
+        <tr>
+            <th>취소</th>
+            <th>번호</th>
+            <th>회원명</th>
+            <th>날짜</th>
+            <th>시간</th>
+            <th>예약 인원 수</th>
+            <th>테이블 번호</th>
+            <th>주문 메뉴</th>
+
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr th:each="reservation : ${reservationList}">
+            <td>
+                <button class="deleteBtn" th:data-reservation-id="${reservation.reservationID}" type="button">
+                    삭제
+                </button>
+            </td>
+            <td th:text="${reservation.reservationID}">번호</td>
+            <td th:text="${reservation.user.name}">회원명</td>
+            <td th:text="${reservation.dateSlot}">날짜</td>
+            <td th:text="${reservation.timeSlot.getDetail()}">시간</td>
+            <td th:text="${reservation.members}">예약 인원 수</td>
+            <td th:text="${reservation.tables.number}">테이블 번호</td>
+            <td>
+                <button class="btn btn-primary" data-target="#orderListModal" data-toggle="modal" type="button">
+                    주문 리스트
+                </button>
+            </td>
+        </tbody>
+
+    </table>
+</div>
 </body>
 </html>
 <script>
@@ -58,14 +83,6 @@
                 $.ajax({
                     url: "/admin/reservation/delete/" + reservationId,
                     method: "DELETE",
-                    // success: function (result) {
-                    //     alert("삭제완료 했습니다.")
-                    //     window.location.replace("@{admin/reservationList}")
-                    // },
-                    // error: function (xhr, status, error) {
-                    //     // 예약 삭제에 실패한 경우 처리할 내용
-                    //     alert("삭제 실패했습니다.")
-                    // }
                 }).done(function () {
                     alert("삭제완료 했습니다.")
                     window.location.href = '/admin/reservationList';
