@@ -36,7 +36,7 @@ dependencies {
 
     //querydsl 추가 
     implementation 'com.querydsl:querydsl-jpa:5.0.0:jakarta'
-    annotationProcessor "com.querydsl:querydsl-apt:${dependencyManagement.importedProperties['querydsl.version']}:jakarta"
+    annotationProcessor "com.querydsl:querydsl-apt:5.0.0:jakarta"
     annotationProcessor "jakarta.annotation:jakarta.annotation-api"
     annotationProcessor "jakarta.persistence:jakarta.persistence-api"
     // querydsl 추가 완료
@@ -68,8 +68,10 @@ tasks.named('asciidoctor') {
 
 // QueryDsl 빌드 옵션 (선택)
 
+def generatedDir = 'src/main/generated'
+
 clean {
-    delete file('src/main/generated')
+    delete file(generatedDir)
 }
 
 
