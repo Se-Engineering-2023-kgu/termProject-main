@@ -10,6 +10,7 @@ import rest.order.reservation.Model.OrderMenu;
 import rest.order.reservation.Model.Reservation;
 import rest.order.reservation.Model.TableList;
 import rest.order.reservation.Model.User.AppUser;
+import rest.order.reservation.Repository.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -18,14 +19,14 @@ import java.util.List;
 @Service
 public class ReservationService {
 
-    private final rest.order.reservation.Repository.AppUserRepo appUserRepository;
-    private final rest.order.reservation.Repository.TableRepo tableRepository;
-    private final rest.order.reservation.Repository.MenuRepo menuRepository;
-    private final rest.order.reservation.Repository.OrderMenuRepo orderMenuRepository;
+    private final AppUserRepo appUserRepository;
+    private final TableRepo tableRepository;
+    private final MenuRepo menuRepository;
+    private final OrderMenuRepo orderMenuRepository;
 
-    private final rest.order.reservation.Repository.ReservationRepo reservationRepository;
+    private final ReservationRepo reservationRepository;
 
-    public ReservationService(rest.order.reservation.Repository.AppUserRepo appUserRepository, rest.order.reservation.Repository.TableRepo tableRepository, rest.order.reservation.Repository.MenuRepo menuRepository, rest.order.reservation.Repository.OrderMenuRepo orderMenuRepository, rest.order.reservation.Repository.ReservationRepo reservationRepository) {
+    public ReservationService(AppUserRepo appUserRepository, TableRepo tableRepository, MenuRepo menuRepository, OrderMenuRepo orderMenuRepository, ReservationRepo reservationRepository) {
         this.appUserRepository = appUserRepository;
         this.tableRepository = tableRepository;
         this.menuRepository = menuRepository;
