@@ -18,7 +18,7 @@
 
             <div class="">
                 <label>날짜</label>
-                <input class="" placeholder="날짜" th:field="${researvationSearch.date}"
+                <input class="" id="currentDate" placeholder="날짜" th:field="${researvationSearch.date}"
                        type="date">
             </div>
             <div>
@@ -46,7 +46,6 @@
             <th>예약 인원 수</th>
             <th>테이블 번호</th>
             <th>주문 메뉴</th>
-
         </tr>
         </thead>
         <tbody>
@@ -91,4 +90,8 @@
             }
         });
     });
+</script>
+
+<script>
+    document.getElementById('currentDate').value = new Date().toISOString().substring(0, 10);
 </script>
