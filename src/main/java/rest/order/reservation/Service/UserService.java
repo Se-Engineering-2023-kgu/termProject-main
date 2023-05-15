@@ -72,6 +72,7 @@ public class UserService implements UserDetailsService {
     }
 
     // login Check
+    // 아무래도 이 부분은 springSecurity에 의해 덮어씌워진 듯 함
     public AppUserDTO loginCheck(String loginId, String loginPwd) {
         Optional<AppUser> appUser = AppUserRepository.findByLoginId(loginId);
 
