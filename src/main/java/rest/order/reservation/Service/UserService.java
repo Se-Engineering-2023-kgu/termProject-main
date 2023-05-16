@@ -35,13 +35,8 @@ public class UserService {
 
 
     public AppUserDTO findUser(Long id) {
-        AppUser appUser = 
-        AppUserRepository.findById(id).get();
-
-        AppUserDTO appUserDTO = AppUserDTO.form(appUser);
-
-        return appUserDTO;
-
+        Optional<AppUser> optionalAppUser = AppUserRepository.findById(id);
+        return optionalAppUser.map(AppUserDTO::form).orElse(null);
     }
 
     @Transactional
