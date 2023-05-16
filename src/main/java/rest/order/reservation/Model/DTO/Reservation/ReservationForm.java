@@ -7,15 +7,26 @@ import java.util.List;
 
 public class ReservationForm {
 
-    private int members;
-    private String date; // 문자열 형태로
-    private TimeSlot time; // 문자열 형탵로 -> enum으로 바꿀 수 있음
+    private int members; // view 에서 가져오는 예약 인원
+    private String date; // view 에서 가져오는 date
+    private TimeSlot time; // view에서 가져오는 time 문자열 형태
 
-    private Long tid; // tableID
+    private Long tid; // view  가져오는 고객이 선택한 tableID
 
-    // 예약한 메뉴의 리스트를 가져옴
-    private List<Long> orderMenuList = new ArrayList<>();
+    // checkBox를 썼을 시 :  고객이 예약시 선택한 메뉴들을 form 안에 list 형태로 가져오려고 한 것입니다.
+    private List<Long> orderMenuList = new ArrayList<>(); // view 에서 가져오는 메뉴들의 id
+    // 여기서 id로 가져온 이유는 체크박스였기 때문에... service에서 for문으로 id를 통해 메뉴를 찾으려고 했습니다.
 
+    public ReservationForm() {
+    }
+
+    public ReservationForm(int members, String date, TimeSlot time, Long tid, List<Long> orderMenuList) {
+        this.members = members;
+        this.date = date;
+        this.time = time;
+        this.tid = tid;
+        this.orderMenuList = orderMenuList;
+    }
 
     public int getMembers() {
         return members;
