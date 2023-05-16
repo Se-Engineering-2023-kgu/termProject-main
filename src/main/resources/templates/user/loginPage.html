@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="loginPage.css">
 </head>
 <body>
+<<<<<<< HEAD
 <div class="wrap">
     <div class="login">
         <h2>Log-in</h2>
@@ -21,6 +22,19 @@
             <button type="submit">Submit</button>
         </form>
     </div>
+=======
+<h1> 로그인 페이지</h1>
+<div>
+    <form method="post" th:action="@{/login/login}">
+        <label for="loginId">Id:</label>
+        <input id="loginId" name="loginId" required type="text"/>
+        <br/>
+        <label for="loginPwd">Password:</label>
+        <input id="loginPwd" name="loginPwd" required type="password"/>
+        <br/>
+        <button type="submit">Submit</button>
+    </form>
+>>>>>>> d67a5e20669055ff37266595042b9e5862f0f67b
 </div>
 </body>
 </html>

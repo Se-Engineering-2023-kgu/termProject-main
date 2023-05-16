@@ -52,17 +52,17 @@ public class Reservation implements TimeTable {
         this.tables = tables;
         this.members = members;
     }
-    
+
     public static Reservation createReservation(AppUser user, int members, TableList tables, LocalDate date, TimeSlot time, List<OrderMenu> userOrderMenuList) {
 //
-        Reservation reservation = new Reservation();
+        Reservation reservation = new Reservation();  // OrderMenu에 생성자로 썼으니 Reservation에서는 set으로 써봤습니다 ㅋ..
         reservation.setUser(user);
         reservation.setMembers(members);
         reservation.setTables(tables);
         reservation.setDateSlot(date);
         reservation.setTimeSlot(time);
 //
-        for (OrderMenu orderMenu : userOrderMenuList) {  // 주문 아이템 넣기?
+        for (OrderMenu orderMenu : userOrderMenuList) {  // 여기가 제가 수정,삭제가 될지 걱정하는 부분 2번 입니다.
             reservation.addOrderMenu(orderMenu);
         }
         return reservation;
@@ -70,8 +70,16 @@ public class Reservation implements TimeTable {
     }
 
     public void addOrderMenu(OrderMenu orderMenu) {
-        orderList.add(orderMenu);   // reservation에 존재하는 orderList에 orderMenu를 추가해줌
-        orderMenu.setReservationID(this); // 추가한 orderMenu 에 맵핑된 reservationId를 지정해줌
+        orderList.add(orderMenu);           // reservation에 존재하는 orderList에 orderMenu를 추가해줌
+        orderMenu.setReservationID(this);   // 추가한 orderMenu 에 맵핑된 reservationId를 지정해줌   --> 걱정 2번 이부분(외래키 지정) 때문에 Reservation의 orderList를 지울까 고민중입니다...
+    }
+
+    public void changeReservationInfo(int members, TableList tables, LocalDate date, TimeSlot time, List<OrderMenu> userOrderMenuList) {
+        setMembers(members);
+        setTables(tables);
+        setDateSlot(date);
+        setTimeSlot(time);
+        setOrderList(userOrderMenuList);
     }
 
     public Long getReservationID() {
