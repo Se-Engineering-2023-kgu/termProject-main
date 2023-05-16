@@ -11,20 +11,20 @@
         <div class="reservation_date">
             <h3>예약 페이지 1. 인원수 날짜 , 시간 페이지</h3>
             <form method="post" role="form" th:action="@{/customer/{id}/table(id=${id})}" th:object="${reservation}">
-                <div class="">
+                <div class="NumberOfPeople">
                     <label>인원수</label>
                     <input class="" placeholder="인원수을 입력하세요"
                         th:field="${reservation.members}"
                         type="number">
                 </div>
 
-                <div class="">
+                <div class="Date">
                     <label>날짜</label>
                     <input class="" placeholder="날짜를 입력하세요" th:field="${reservation.date}"
                         type="date" id="Date">
                 </div>
 
-                <div class="">
+                <div class="Time">
                     <label>시간</label>
                     <select th:field="*{time}">
                         <option value="">예약시간</option>
@@ -33,7 +33,7 @@
                     </select>
 
 
-                    <button class="" type="submit">확인</button>
+                    <button class="submit" type="submit">확인</button>
                 </div>
             </form>
         </div>

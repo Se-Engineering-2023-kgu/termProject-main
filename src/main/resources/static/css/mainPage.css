@@ -6,25 +6,27 @@ body{
 }
 a{
     text-decoration: none;
-    color: rgb(182, 106, 106);
+    color: rgb(255, 255, 255);
 }
  .main_site{
     width: 100vw;
     height: 80vh;
-    background-image: url("img/restaurant.jpg");
+    background-image: url("../img/restaurant.jpg");
     background-repeat: no-repeat;
     background-size: cover;
 }
+
 
 .navbar{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 8px 12px;
+    padding: 0 8px;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
+    background-color: rgb(0, 0, 0, 0.5);
 }
 
 .navbar_menu{
@@ -47,7 +49,7 @@ a{
 .navbar_member{
     display: flex;
     list-style: none;
-    font-size: 10px;
+    font-size: 13px;
     font-family: Merriweather Sans;
 }
 
@@ -61,4 +63,47 @@ a{
     left: 50%;
     transform: translate(-50%, -50%);
     color: white;
+}
+.About_text_center {
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    height: 400px
+    ;
+}
+
+.About_text_center h2{
+    margin: 0;
+}
+
+.Menu_text_center {
+    text-align: center;
+    background-color: rgb(0, 0, 0);
+    height: 400px;
+    color: #ffffff;
+}
+
+.Menu_text_center h2{
+    margin: 0;
+}
+
+.Reservation_text_center {
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    height: 400px;
+}
+.Reservation_text_center h2{
+
+}
+
+.Location_text_center {
+    text-align: center;
+    background-color: black;
+    color: white;
+    height: 400px;
+}
+
+.Location_text_center h2{
+    margin: 0;
 }
