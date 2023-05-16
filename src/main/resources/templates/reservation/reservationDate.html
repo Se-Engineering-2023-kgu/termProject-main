@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Reservation</title>
-    <link rel="stylesheet" href="reservationDate.css">
+    <link rel="stylesheet" type="text/css" href="/css/reservationDate.css">
 </head>
 <body>
 <div class="wrap">
@@ -21,7 +21,7 @@
             <div class="Date">
                 <label>날짜</label>
                 <input class="" placeholder="날짜를 입력하세요" th:field="${reservation.date}"
-                       type="date">
+                       type="date" id="Date">
             </div>
     
             <div class="Time">
@@ -32,17 +32,20 @@
                 </select>
     
     
-                <button class="submit" type="submit" onclick="nextpage()">확인</button>
+                <button class="submit" type="submit">확인</button>
             </div>
         </form>
-
-        <script type="text/javascript">
-            function nextpage(){
-                window.location.href="reservationTable.html";
-            }
-        </script>
     </div>
-    
 </div>
+<script>
+    var now_utc = Date.now() // 지금 날짜를 밀리초로
+    // getTimezoneOffset()은 현재 시간과의 차이를 분 단위로 반환
+    var timeOff = new Date().getTimezoneOffset()*60000; // 분단위를 밀리초로 변환
+    var today = new Date(now_utc-timeOff).toISOString().split("T")[0];
+    // 현재 날짜에 오프셋을 적용하고, 7일 후의 날짜를 계산하여 ISO 형식으로 변환하고, 날짜 부분만 가져옴
+    var maxDate = new Date(now_utc - timeOff + 7 * 24 * 60 * 60 * 1000).toISOString().split("T")[0]; 
+    document.getElementById("Date").setAttribute("min", today);
+    document.getElementById("Date").setAttribute("max", maxDate);
+</script>
 </body>
 </html>
