@@ -10,7 +10,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgb(158, 158, 158);
+    background: rgb(93, 86, 78);
 }
 .Sign-up {
     width: 30%;
@@ -25,7 +25,7 @@
 
 h2{
     font-size: 2em;
-    padding: 50px 0;
+    padding: 50px;
 }
 
 .Sign-up input{
@@ -53,7 +53,7 @@ h2{
 }
 
 .Sign-up label{
-    font-size: 15px;
+    font-size: 18px;
 }
 
 .Sign-up select{

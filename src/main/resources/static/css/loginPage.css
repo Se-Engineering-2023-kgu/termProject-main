@@ -10,7 +10,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgb(158, 158, 158);
+    background: rgb(93, 86, 78);
 }
 
 .login {
@@ -51,7 +51,7 @@ h2{
 }
 
 .login label{
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .login button{
