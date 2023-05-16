@@ -1,56 +1,26 @@
 package rest.order.reservation.Controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 
-import jakarta.servlet.http.HttpServletRequest;
-import rest.order.reservation.Model.User.AppUser;
-import rest.order.reservation.Service.MenuService;
-import rest.order.reservation.Service.TableService;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class WebMainController {
 
-    @Autowired
-    MenuService mService;
-
-    @Autowired
-    TableService tService;
 
     @GetMapping("/")
-    public String rootPage() {
-        return "hi";
+    public String rootPage() { // 세션을 기준으로 "/" 를  판단해야하나?
+//        log.info("메인페이지 접근");
+        // 로그인x 세션 x  redirect:/ --> guest 페이지
+        return "mainPage";
+
+        // 로그인 o 세션 o redirect:/ --> customer , admin  페이지
+
+        //           user 타입 customer
+        //                return "customer/customerMainPage"
+        //           user 타입 admin
+        //                  return "admin/adminMainPage";
     }
 
-    @GetMapping("/menu")
-    public String menuPage(Model mode) {
-        return "menupage";
-    }
-
-    @PostMapping("/menu/menuaddd")
-    public String menuadd() {
-
-        mService.addMenu();// 메뉴 아이디, 이름, 단가, 등등등
-        // 수행하면 menu DB 에 메뉴 등록
-
-        return "menulist";
-
-    }
-
-    @GetMapping("/user")
-    public String helloPage(Model model) {
-        model.addAttribute("userinfo", "thymeleaf");
-        System.out.println(mService.menuName());
-        return "usertemp";
-    }
-
-    @GetMapping("/good")
-    public String uploadString(@ModelAttribute AppUser uri, HttpServletRequest request) {
-        return "greeting";
-    }
 
 }

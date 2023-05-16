@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+<h1>예약 현황</h1>
+<div>
+    <div>
+
+        <form class="" th:object="${researvationSearch}">
+            <div>
+                <div class="">
+                    <input class="" placeholder="회원명" th:field="*{name}" type="text"/>
+                </div>
+
+                <div class="">
+                    <label></label>
+                    <input class="" id="currentDate" placeholder="날짜" th:field="${researvationSearch.date}"
+                           type="date">
+                </div>
+                <div>
+                    <select th:field="*{time}">
+                        <option value="">예약 시간</option>
+                        <option th:each="timeSlot : ${T(rest.order.reservation.DefineEnum.TimeSlot).values()}"
+                                th:text="${timeSlot.detail}" th:value="${timeSlot}"></option>
+                    </select>
+                </div>
+                <button class="" type="submit">검색</button>
+            </div>
+        </form>
+
+    </div>
+
+    <br/>
+
+    <table class="">
+        <thead>
+        <tr>
+            <th>취소</th>
+            <th>번호</th>
+            <th>회원명</th>
+            <th>날짜</th>
+            <th>시간</th>
+            <th>예약 인원 수</th>
+            <th>테이블 번호</th>
+            <th>주문 메뉴</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr th:each="reservation : ${reservationList}">
+            <td>
+                <button class="deleteBtn" th:data-reservation-id="${reservation.reservationID}" type="button">
+                    삭제
+                </button>
+            </td>
+            <td th:text="${reservation.reservationID}">번호</td>
+            <td th:text="${reservation.user.name}">회원명</td>
+            <td th:text="${reservation.dateSlot}">날짜</td>
+            <td th:text="${reservation.timeSlot.getDetail()}">시간</td>
+            <td th:text="${reservation.members}">예약 인원 수</td>
+            <td th:text="${reservation.tables.number}">테이블 번호</td>
+            <td>
+                <button class="btn btn-primary" data-target="#orderListModal" data-toggle="modal" type="button">
+                    주문 리스트
+                </button>
+            </td>
+        </tbody>
+
+    </table>
+</div>
+</body>
+</html>
+<script>
+    $(document).ready(function () {
+        $(".deleteBtn").click(function () {
+            let reservationId = $(this).data("reservation-id");
+            if (window.confirm("예약을 삭제하시겠습니까?")) {
+                $.ajax({
+                    url: "/admin/reservation/delete/" + reservationId,
+                    method: "DELETE",
+                }).done(function () {
+                    alert("삭제완료 했습니다.")
+                    window.location.href = '/admin/reservationList';
+                }).fail(function () {
+                    alert("삭제 실패했습니다.")
+                });
+            }
+        });
+    });
+</script>
+
+<script>
+    document.getElementById('currentDate').value = new Date().toISOString().substring(0, 10);
+</script>

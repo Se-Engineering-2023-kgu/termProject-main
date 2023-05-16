@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1> 회원가입</h1>
+<div>
+    <form method="post" required th:action="@{/user/register}" th:object="${user}">
+        <div>
+            <label for="loginId">Login ID:</label>
+            <input id="loginId" required th:field="*{loginId}" type="text"/>
+        </div>
+        <div>
+            <label for="loginPwd">Login Password:</label>
+            <input id="loginPwd" required th:field="*{loginPwd}" type="password"/>
+        </div>
+        <div>
+            <label for="name">Name:</label>
+            <input id="name" required th:field="*{name}" type="text"/>
+        </div>
+
+
+        <div>
+            <label for="phoneNumber">Phone Number:</label>
+            <input id="phoneNumber" th:field="*{phoneNumber}" type="text"/>
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input id="email" th:field="*{email}" type="text"/>
+        </div>
+
+        <div>
+            <select name="choice" th:field="*{userType}">
+                <option th:each="class : ${T(rest.order.reservation.DefineEnum.UserClass).values()}"
+                        th:text="${class.description}"
+                        th:value="${class.name()}">
+                </option>
+            </select>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+</body>
+</html>

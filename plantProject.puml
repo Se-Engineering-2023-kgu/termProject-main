@@ -1,0 +1,138 @@
+@startuml
+class rest.order.reservation.domain.user.Admin {
++ <<Create>> Admin()
+}
+class rest.order.reservation.ReservationApplication {
++ {static} void main(String[])
+}
+class rest.order.reservation.Controller.MailController {
+}
+interface rest.order.reservation.domain.Booking {
+~ LocalTime getArrivalTime()
+~ void setArrivalTime(LocalTime)
+~ LocalDate getDate()
+~ void setDate(LocalDate)
+~ LocalTime getTime()
+~ void setTime(LocalTime)
+~ List<Tables> getTables()
+~ void setTables(List<Tables>)
+}
+class rest.order.reservation.ReservationApplicationTests {
+~ void contextLoads()
+}
+enum rest.order.reservation.domain.enumList.TableStatus {
++  POSSIBLE
++  IMPOSSIBLE
+}
+class rest.order.reservation.domain.user.Customer {
+- String phoneNumber
+- String email
++ <<Create>> Customer()
++ String getEmail()
++ void setEmail(String)
+}
+enum rest.order.reservation.domain.enumList.MenuType {
++  DRINK
++  MAIN
++  SIDE
++  DESERT
+}
+class rest.order.reservation.Service.UserService {
+}
+class rest.order.reservation.domain.menu.Menu {
+- Integer id
+- MenuType type
+- String name
+- String intro
+- int price
++ <<Create>> Menu()
++ Integer getId()
++ MenuType getType()
++ String getName()
++ String getIntro()
++ int getPrice()
+}
+class rest.order.reservation.domain.Dto.ReservationDto {
+- String timeCode
++ String getTimeCode()
+}
+abstract class rest.order.reservation.domain.user.User {
+- Integer id
+- String loginId
+- String loginPwd
+- String name
++ <<Create>> User()
++ Integer getId()
++ String getLoginId()
++ String getLoginPwd()
++ String getName()
+}
+class rest.order.reservation.Controller.WebMainController {
++ String rootPage()
+}
+class rest.order.reservation.domain.Dto.TimeCode {
+- String startTime
+- String timeRange
++ <<Create>> TimeCode(String,String)
++ String getStartTime()
++ String getTimeRange()
+}
+class rest.order.reservation.domain.menu.OrderMenu {
+- Integer id
+- Menu menu
+- Reservation reservation
+- int orderPrice
+- int count
++ {static} OrderMenu createOrderMenu(Menu,int,int)
++ int getTotalPrice()
++ Integer getId()
++ void setId(Integer)
++ Menu getMenu()
++ void setMenu(Menu)
++ Reservation getReservation()
++ void setReservation(Reservation)
++ int getOrderPrice()
++ void setOrderPrice(int)
++ int getCount()
++ void setCount(int)
+}
+class rest.order.reservation.Service.TableService {
+}
+class rest.order.reservation.Controller.ReservationController {
++ List<TimeCode> timeCodes()
++ String reservationForm(Model)
+}
+class rest.order.reservation.domain.Reservation {
+- Integer id
+- User user
+- Tables tables
+- LocalDate date
+- LocalTime time
+- int members
+- List<OrderMenu> orderList
++ void addOrderList(OrderMenu)
++ Integer getId()
++ void setId(Integer)
++ User getUser()
++ void setUser(User)
++ List<OrderMenu> getOrderList()
++ void setOrderList(List<OrderMenu>)
++ int getMembers()
++ void setMembers(int)
++ Tables getTables()
++ void setTables(Tables)
+}
+class rest.order.reservation.domain.Tables {
+- Integer id
+- Integer number
+- int seats
+- TableStatus tableStatus
++ <<Create>> Tables()
+}
+class rest.order.reservation.domain.ReservationHistory {
+}
+
+
+rest.order.reservation.domain.user.User <|-- rest.order.reservation.domain.user.Admin
+rest.order.reservation.domain.user.User <|-- rest.order.reservation.domain.user.Customer
+@enduml
