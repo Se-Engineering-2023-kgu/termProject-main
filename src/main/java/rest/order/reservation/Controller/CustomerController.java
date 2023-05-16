@@ -1,4 +1,4 @@
-package rest.order.reservation.controller;
+package rest.order.reservation.Controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +11,7 @@ import rest.order.reservation.Service.UserService;
 @Controller
 @RequestMapping("/customer")
 public class CustomerController {
-    UserService customerService;
+    private final UserService customerService;
 
     public CustomerController(UserService customerService) {
         this.customerService = customerService;
