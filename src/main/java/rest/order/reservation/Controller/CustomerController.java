@@ -1,4 +1,4 @@
-package rest.order.reservation.controller;
+package rest.order.reservation.Controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
