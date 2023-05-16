@@ -1,25 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
     <title>Title</title>
 </head>
 <body>
-<h1>Login o : Customer mainPage</h1>
-<!--<div>-->
-<!--    <a class="" th:href="@{user/register}">회원 가입</a>-->
-<!--</div>-->
 
-
+<h1 th:text="|안녕하세요! ${user.name}님|">환영문구</h1>
 <div>
     <a class="" th:href="@{/login/logout}">로그아웃</a>
 </div>
 <div>
-    <a class="" th:href="@{reservation/date}">현장 예약</a>
-</div>
-
-<div>
-    <a class="" th:href="@{date}">사전 예약</a>
+    <a class="" th:href="@{/customer/{id}/date(id=${id})}">사전 예약</a>
 </div>
 
 </body>
