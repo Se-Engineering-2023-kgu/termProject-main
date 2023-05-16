@@ -26,7 +26,7 @@ public class ReservationService {
 
     private final ReservationRepo reservationRepository;
 
-    public ReservationService(AppUserRepo appUserRepository, TableRepo tableRepository, MenuRepo menuRepository, OrderMenuRepo orderMenuRepository, ReservationRepo reservationRepository) {
+    public ReservationService(AppUserRepo appUserRepository, TableRepo tableRepository, MenuRepo menuRepository, OrderMenuRepo orderMenuRepository, rest.order.reservation.Repository.ReservationRepo reservationRepository) {
         this.appUserRepository = appUserRepository;
         this.tableRepository = tableRepository;
         this.menuRepository = menuRepository;
