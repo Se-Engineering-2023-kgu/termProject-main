@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import rest.order.reservation.Model.DTO.AppUser.UserRegistForm;
 import rest.order.reservation.Service.UserService;
 
-
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -37,5 +36,7 @@ public class UserController {
         userService.addUser(request);
         return "redirect:/";
     }
+
+
 
 }

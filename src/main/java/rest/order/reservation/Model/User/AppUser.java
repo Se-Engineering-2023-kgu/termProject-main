@@ -1,6 +1,11 @@
 package rest.order.reservation.Model.User;
 
 
+import java.util.List;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import jakarta.persistence.*;
 import rest.order.reservation.DefineEnum.UserClass;
 
@@ -38,6 +43,9 @@ public class AppUser {  // 상속을 이용할 것이면 최소한으로 줄여�
         this.userType = userType;
         this.phoneNumber = phoneNumber;
         this.email = email;
+    }
+
+    public AppUser(String loginId2, String loginPwd2, List<GrantedAuthority> authorities) {
     }
 
     public void chageUserInfo(String loginPwd, String phoneNumber, String email) {
@@ -101,4 +109,5 @@ public class AppUser {  // 상속을 이용할 것이면 최소한으로 줄여�
     public void setEmail(String email) {
         this.email = email;
     }
+
 }
