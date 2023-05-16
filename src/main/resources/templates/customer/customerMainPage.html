@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-
+    <div th:replace="~{fragments/Header :: Header}"> </div>
 <h1 th:text="|안녕하세요! ${user.name}님|">환영문구</h1>
 <div>
     <a class="" th:href="@{/login/logout}">로그아웃</a>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Sing-up site</title>
-    <link rel="stylesheet" href="resgisterPage.css">
+    <link rel="stylesheet" href="/css/resgisterPage.css">
 </head>
 <body>
 <div class="wrap">
@@ -36,9 +36,9 @@
                 <label for="email">Email</label>
                 <br>
                 <input id="email" th:field="*{email}" type="text"/>
-                //enum 파일 만들어서 셀렉트 박스를 사용해야하나?
             </div>
-            <div>
+            <div class="selectType">
+                <label for="type">Type</label>
                 <select name="choice" th:field="*{userType}">
                     <option th:each="class : ${T(rest.order.reservation.DefineEnum.UserClass).values()}"
                             th:text="${class.description}"

@@ -1,22 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" th="http://www.thymeleaf.org">
+    <meta charset="UTF-8" th="http://www.thymeleaf.org">\
+    <link rel="stylesheet" href="/css/mainPage.css">
     <title>Title</title>
 </head>
 <body>
-<div th:replace="~{fragments/Header :: Header}"/>
-<h1>Login x : Guest</h1>
-<div>
-    <a class="" th:href="@{user/register}">회원 가입</a>
-</div>
+    <div class="main_site">
+        <div class="navbar">
+            <div class="navbar_logo">
+                <a href="/"><img src="img/LOGO(1).png" alt="LOGO_img" width="100"></a>
+            </div>
+            <ul class="navbar_menu">
+                <li><a href="#main_About">About</a></li>
+                <li><a href="#main_Menu">Menu</a></li>
+                <li><a href="#main_Reservation">Reservation</a></li>
+                <li><a href="#main_Location">Location</a></li>
 
-<div>
-    <a class="" th:href="@{login/login}">로그인</a>
-</div>
-<!--<div>-->
-<!--    <a class="" th:href="@{reservation/date}">현장 예약</a>-->
-<!--</div>-->
-
+            </ul>
+            <ul class="navbar_member">
+                <li><a th:href="@{login/login}">LOG-IN</a></li>
+                <li><a th:href="@{user/register}">SING-UP</a></li>
+            </ul>
+        </div>
+        <div class="main_img_text">
+            <h1>Welcome to our Restaurant!</h1>
+            <h2></h2>
+        </div>
+    </div>
 </body>
 </html>
