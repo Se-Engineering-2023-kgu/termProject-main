@@ -1,0 +1,132 @@
+html{
+    scroll-behavior: smooth;
+}
+body{
+    margin: 0;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+ .main_site{
+    margin-top: 79px;
+    width: 100vw;
+    height: 80vh;
+    background-image: url("../img/restaurant.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+.navbar{
+    position: absolute;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 8px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: rgb(255, 255, 255);
+}
+
+.navbar_menu{
+    /* margin-left: 180px; */
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    font-size: 20px;
+    font-family: Merriweather Sans;
+    color: rgb(0, 0, 0);
+}
+
+.navbar_menu li{
+    padding: 8px 30px;
+}
+
+.navbar_menu li:hover {
+    background-color:#e0cda2;
+    transition: 0.9s;
+    border-radius: 4px;
+}
+
+.navbar_member{
+    display: flex;
+    justify-content: flex-end;
+    list-style: none;
+    font-size: 13px;
+    font-family: Merriweather Sans;
+}
+
+.navbar_member li:hover {
+    background-color:#e0cda2;
+    transition: 0.9s;
+    border-radius: 4px;
+}
+
+.navbar_member li{
+    padding: 8px 12px;
+}
+
+.main_img_text{
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    z-index: 1;
+}
+
+.content {
+    list-style:none;
+}
+.content li{
+    min-height: 2000px;
+}
+.About_text_center {
+    padding-top: 90px;
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    height: 400px
+    ;
+}
+
+.About_text_center h2{
+    margin: 0;
+}
+
+.Menu_text_center {
+    padding-top: 90px;
+    text-align: center;
+    background-color: white;
+    color: black;
+    height: 400px;
+}
+
+.Menu_text_center h2{
+    margin: 0;
+}
+
+.Reservation_text_center {
+    padding-top: 90px;
+    text-align: center;
+    background-color: white;
+    color: black;
+    height: 400px;
+}
+
+
+.Location_text_center {
+    padding-top: 90px;
+    text-align: center;
+    background-color: white;
+    color: black;
+    height: 400px;
+}
+
+.Location_text_center h2{
+    margin: 0;
+}

@@ -18,13 +18,13 @@ import rest.order.reservation.Service.UserService;
 @RequestMapping("/customer")
 public class CustomerController {
     private final UserService customerService;
-    private final ReservationService reservationService;
-    private final ReservationRepo reservationRepository;
 
-    public CustomerController(UserService customerService ,ReservationService reservationService,ReservationRepo reservationRepository ) {
+    private final ReservationService reservationService;
+
+
+    public CustomerController(UserService customerService ,ReservationService reservationService ) {
         this.customerService = customerService;
         this.reservationService=reservationService;
-        this.reservationRepository=reservationRepository;
     }
 
     @GetMapping("/{id}")
@@ -39,23 +39,29 @@ public class CustomerController {
 
         model.addAttribute("user", appUserDTO);
         List<Reservation> reservationList = reservationService.getReservationsByCustomerId(id) ;
-        // List<Reservation> reservationList = reservationRepository.findByMembers(4);
+        // List<Reservation> reservationList = reservationRepository.findByMembers(4); test code
         model.addAttribute("reservationList" , reservationList);
         return "customer/customerMainPage";
     }
 
-    // 회원 마이페이지에서 사용
-    // @GetMapping("/{customerId}")
-    // public String showReservationByCustomerId(@PathVariable Long customerId , Model model) {
-    
-    // List<Reservation> reservationList = reservationService.getReservationsByCustomerId(customerId) ;
-    
-    // model.addAttribute("reservationList" , reservationList);
-    
-    // return "customer/customerInfo"; 
-    // }
 
 
+        /*
+     * Security login
+     * 
+     */
+    @RequestMapping("/login")
+    public String loginString() {
+        return "/customer/customerlogin";
+    }
+
+    @RequestMapping("/login?error=true")
+    public String loginError(Model model) {
+        model.addAttribute(null, model);
+        return "/customer/customerlogin";
+    }
+
+    
     //    @GetMapping("customer/{id}")
 //    public String viewCustomer(@PathVariable Long id, Model model) {
 //

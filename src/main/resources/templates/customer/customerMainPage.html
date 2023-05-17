@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
     <title>Title</title>
+    <link rel="stylesheet" href="/css/mainPage.css">
 </head>
 <body>
+
 
 <h1 th:text="|안녕하세요! ${user.name}님|">환영문구</h1>
 <div>
@@ -21,6 +23,77 @@
     <span th:text="${reservation.tables.number}"></span>
     <span th:text="${reservation.members}"></span>
     <br/>
+
+    <div class="main_site">
+        <nav>
+            <div class="navbar">
+                <div class="navbar_logo">
+                    <a href="/"><img src="/img/LOGO(1).png" alt="LOGO_img" width="100"></a>
+                </div>
+                <ul class="navbar_menu">
+                    <li><a href="#main_About">About</a></li>
+                    <li><a href="#main_Menu">Menu</a></li>
+                    <li><a href="#main_Reservation">Reservation</a></li>
+                    <li><a href="#main_Location">Location</a></li>
+                    <li><a href="../customer/customerInfo.html">MyPage</a></li>
+    
+                </ul>
+                <ul class="navbar_member" >
+                    <li><a th:text="|안녕하세요! ${user.name}님|" >환영문구</a></li>
+                    <li><a class="" th:href="@{/login/logout}" >LOG-OUT</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div class="main_img_text">
+        <h1>Welcome to our Restaurant!</h1>
+        <h2></h2>
+    </div>
+    <div>
+        <ul class="content">
+            <li>
+                <section class="mainsite_section" id="main_About">
+                    <div class="About_header">
+                        <div class="About_text_center">
+                            <h2>About</h2>
+                            <p>'SWEB' 은 Software-Engineering B팀...</p>
+                        </div>
+                    </div>
+                </section>
+            </li>
+            <li>
+                <section class="mainsite_section" id="main_Menu">
+                    <div class="Menu_header">
+                        <div class="Menu_text_center">
+                            <h2>Menu</h2>
+                            <p>...................</p>
+                        </div>
+                    </div>
+                </section>
+            </li>
+            <li>
+                <section class="mainsite_section" id="main_Reservation">
+                    <div class="Reservation_header">
+                        <div class="Reservation_text_center">
+                            <h2>Reservation</h2>
+                            <p>...................</p>
+                            <button type="button"><a class="" th:href="@{/customer/{id}/date(id=${id})}">사전 예약</a></button>
+                        </div>
+                    </div>
+                </section>
+            </li>
+            <li>
+                <section class="mainsite_section" id="main_Location">
+                    <div class="Location_header">
+                        <div class="Location_text_center">
+                            <h2>Location</h2>
+                            <p>...................</p>
+                        </div>
+                    </div>
+                </section>
+            </li>
+        </ul>
+
     </div>
 </body>
 </html>

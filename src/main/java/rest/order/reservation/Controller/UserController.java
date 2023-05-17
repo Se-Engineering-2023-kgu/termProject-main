@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import rest.order.reservation.Model.DTO.AppUser.UserRegistForm;
 import rest.order.reservation.Repository.ReservationRepo;
 import rest.order.reservation.Service.UserService;
+
 import rest.order.reservation.Service.ReservationService;
 import java.security.Principal;
 import java.util.List;
@@ -43,20 +44,6 @@ public class UserController {
         userService.addUser(request);
         return "redirect:/";
     }
-    //
 
-    
-
-   
-    
-    // @GetMapping("/{customerId}")
-    // public String showReservationByCustomerId(@PathVariable Long customerId , Model model) {
-    
-    // List<Reservation> reservationList = reservationService.getReservationsByCustomerId(customerId) ;
-    
-    // model.addAttribute("reservationList" , reservationList);
-    
-    // return "customer/customerInfo"; 
-    // }  
 }
 

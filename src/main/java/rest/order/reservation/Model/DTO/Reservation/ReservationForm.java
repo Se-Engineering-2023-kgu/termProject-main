@@ -1,6 +1,7 @@
 package rest.order.reservation.Model.DTO.Reservation;
 
 import rest.order.reservation.DefineEnum.TimeSlot;
+import rest.order.reservation.Model.DTO.Menu.OrderMenuDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +28,7 @@ public class ReservationForm {
         this.tid = tid;
         this.orderMenuList = orderMenuList;
     }
+
 
     public int getMembers() {
         return members;
@@ -60,7 +62,6 @@ public class ReservationForm {
 //        this.time = time;
 //    }
 
-
     public List<Long> getOrderMenuList() {
         return orderMenuList;
     }
@@ -87,4 +88,6 @@ public class ReservationForm {
                 ", orderMenuList=" + orderMenuList +
                 '}';
     }
+
+
 }
