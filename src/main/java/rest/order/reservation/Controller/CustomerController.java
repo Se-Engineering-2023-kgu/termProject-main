@@ -1,11 +1,17 @@
 package rest.order.reservation.Controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import rest.order.reservation.Model.Reservation;
 import rest.order.reservation.Model.DTO.AppUser.AppUserDTO;
+import rest.order.reservation.Repository.ReservationRepo;
+import rest.order.reservation.Service.ReservationService;
 import rest.order.reservation.Service.UserService;
 
 @Controller
@@ -13,8 +19,12 @@ import rest.order.reservation.Service.UserService;
 public class CustomerController {
     private final UserService customerService;
 
-    public CustomerController(UserService customerService) {
+    private final ReservationService reservationService;
+
+
+    public CustomerController(UserService customerService ,ReservationService reservationService ) {
         this.customerService = customerService;
+        this.reservationService=reservationService;
     }
 
     @GetMapping("/{id}")
@@ -28,6 +38,9 @@ public class CustomerController {
         AppUserDTO appUserDTO = customerService.findUser(id);
 
         model.addAttribute("user", appUserDTO);
+        List<Reservation> reservationList = reservationService.getReservationsByCustomerId(id) ;
+        // List<Reservation> reservationList = reservationRepository.findByMembers(4); test code
+        model.addAttribute("reservationList" , reservationList);
         return "customer/customerMainPage";
     }
 
