@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
@@ -22,9 +23,15 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+    
 
-    @Autowired
-    private AppUserRepo appUserRepo;
+    // @Autowired
+    // private UserService userService;
+
+    // @Autowired
+    // public SecurityConfig(UserService userService) {
+    //     this.userService = userService;
+    // }
 
     // https://magicmk.tistory.com/m/31
     // 스프링 시큐리티 추가 버전을 사용한 로그인 기본 필터체인
@@ -32,7 +39,14 @@ public class SecurityConfig {
     @Bean
     @Order(SecurityProperties.BASIC_AUTH_ORDER)
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
+        
         http
+                .rememberMe()
+                .key("SpringSecurityKeys_14624") // key used to generate and validate the token
+                .tokenValiditySeconds(86400) // token validity period in seconds
+                .rememberMeCookieName("my-remember-me-cookie") // name of the cookie
+                .rememberMeParameter("remember-me") // parameter name in the login form
+                .and()
                 .authorizeHttpRequests()
                 .requestMatchers("/customer/**").authenticated() // 이 경로로 진입하면 인증을 요구함
                 .requestMatchers("/admin/**").hasRole("ADMIN") // 이 경로로 진입하면 ADMIN 역할을 가진 인증을 요구함
@@ -53,7 +67,7 @@ public class SecurityConfig {
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID")
                 .and()
-                .rememberMe().key("SpringSecurityKeys_4000") // 암호화 키 (이걸로 암호화 함)
+                .rememberMe().key("SpringSecurityKeys_14624") // 암호화 키 (이걸로 암호화 함)
                 .and()
                 .httpBasic()
                 .and()
@@ -84,5 +98,6 @@ public class SecurityConfig {
         auth.setPasswordEncoder(passwordEncoder());
         return auth;
     }
+
 
 }
