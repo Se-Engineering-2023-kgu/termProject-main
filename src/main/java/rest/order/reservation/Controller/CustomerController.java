@@ -38,13 +38,15 @@ public class CustomerController {
         AppUserDTO appUserDTO = customerService.findUser(id);
 
         model.addAttribute("user", appUserDTO);
-        List<Reservation> reservationList = reservationService.getReservationsByCustomerId(id) ;
-        // List<Reservation> reservationList = reservationRepository.findByMembers(4); test code
-        model.addAttribute("reservationList" , reservationList);
         return "customer/customerMainPage";
     }
 
-
+    @GetMapping("/{id}/info")
+    public String customerInfo(@PathVariable Long id, Model model){
+        List<Reservation> reservationList = reservationService.getReservationsByCustomerId(id) ;
+        model.addAttribute("reservationList" , reservationList);
+        return "customer/customerInfo";
+    }
 
         /*
      * Security login

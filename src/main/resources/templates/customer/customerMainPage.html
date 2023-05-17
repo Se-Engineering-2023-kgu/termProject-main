@@ -16,13 +16,8 @@
     <a class="" th:href="@{/customer/{id}/date(id=${id})}">사전 예약</a>
 </div>
 
-<div th:each="reservation : ${reservationList}">
-    <span th:text="${reservation.dateSlot}"></span>
-    <span th:text="${reservation.timeSlot}"></span>
-    <span th:text="${reservation.user.name}"></span>
-    <span th:text="${reservation.tables.number}"></span>
-    <span th:text="${reservation.members}"></span>
-    <br/>
+<div >
+    
 
     <div class="main_site">
         <nav>
@@ -35,7 +30,7 @@
                     <li><a href="#main_Menu">Menu</a></li>
                     <li><a href="#main_Reservation">Reservation</a></li>
                     <li><a href="#main_Location">Location</a></li>
-                    <li><a href="../customer/customerInfo.html">MyPage</a></li>
+                    <li><a  th:href="@{/customer/{id}/info(id=${id})}">MyPage</a></li>
     
                 </ul>
                 <ul class="navbar_member" >

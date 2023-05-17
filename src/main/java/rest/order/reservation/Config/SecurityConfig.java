@@ -49,7 +49,7 @@ public class SecurityConfig {
                 .and()
                 .authorizeHttpRequests()
                 .requestMatchers("/customer/**").authenticated() // 이 경로로 진입하면 인증을 요구함
-                .requestMatchers("/admin/**").hasRole("ADMIN") // 이 경로로 진입하면 ADMIN 역할을 가진 인증을 요구함
+                .requestMatchers("/admin/**").authenticated() // 이 경로로 진입하면 ADMIN 역할을 가진 인증을 요구함
                 .anyRequest().permitAll() // 그 외에는 허용
                 .and()
                 .formLogin() // http form 방식의 로그인 진행
