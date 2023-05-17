@@ -2,45 +2,53 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Sing-up site</title>
+    <link rel="stylesheet" href="/css/resgisterPage.css">
 </head>
 <body>
-<h1> 회원가입</h1>
-<div>
-    <form method="post" required th:action="@{/user/register}" th:object="${user}">
-        <div>
-            <label for="loginId">Login ID:</label>
-            <input id="loginId" required th:field="*{loginId}" type="text"/>
-        </div>
-        <div>
-            <label for="loginPwd">Login Password:</label>
-            <input id="loginPwd" required th:field="*{loginPwd}" type="password"/>
-        </div>
-        <div>
-            <label for="name">Name:</label>
-            <input id="name" required th:field="*{name}" type="text"/>
-        </div>
-
-
-        <div>
-            <label for="phoneNumber">Phone Number:</label>
-            <input id="phoneNumber" th:field="*{phoneNumber}" type="text"/>
-        </div>
-        <div>
-            <label for="email">Email:</label>
-            <input id="email" th:field="*{email}" type="text"/>
-        </div>
-
-        <div>
-            <select name="choice" th:field="*{userType}">
-                <option th:each="class : ${T(rest.order.reservation.DefineEnum.UserClass).values()}"
-                        th:text="${class.description}"
-                        th:value="${class.name()}">
-                </option>
-            </select>
-        </div>
-        <button type="submit">Submit</button>
-    </form>
+<div class="wrap">
+    <div class="Sign-up">
+        <h2>Sign-up</h2>
+        <form method="post" required th:action="@{/user/register}" th:object="${user}">
+            <div class="loginID">
+                <label for="loginId">Login ID</label>
+                <br>
+                <input id="loginId" required th:field="*{loginId}" type="text"/>
+            </div>
+            <div class="loginPwd">
+                <label for="loginPwd">Login Password</label>
+                <br>
+                <input id="loginPwd" required th:field="*{loginPwd}" type="password"/>
+            </div>
+            <div class="name">
+                <label for="name">Name</label>
+                <br>
+                <input id="name" required th:field="*{name}" type="text"/>
+            </div>
+    
+    
+            <div class="phoneNumber">
+                <label for="phoneNumber">Phone Number</label>
+                <br>
+                <input id="phoneNumber" th:field="*{phoneNumber}" type="text"/>
+            </div>
+            <div class="email">
+                <label for="email">Email</label>
+                <br>
+                <input id="email" th:field="*{email}" type="text"/>
+            </div>
+            <div class="selectType">
+                <label for="type">Type</label>
+                <select name="choice" th:field="*{userType}">
+                    <option th:each="class : ${T(rest.order.reservation.DefineEnum.UserClass).values()}"
+                            th:text="${class.description}"
+                            th:value="${class.name()}">
+                    </option>
+                </select>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
 </div>
 </body>
 </html>
