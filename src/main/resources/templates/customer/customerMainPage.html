@@ -14,5 +14,13 @@
     <a class="" th:href="@{/customer/{id}/date(id=${id})}">사전 예약</a>
 </div>
 
+<div th:each="reservation : ${reservationList}">
+    <span th:text="${reservation.dateSlot}"></span>
+    <span th:text="${reservation.timeSlot}"></span>
+    <span th:text="${reservation.user.name}"></span>
+    <span th:text="${reservation.tables.number}"></span>
+    <span th:text="${reservation.members}"></span>
+    <br/>
+    </div>
 </body>
 </html>

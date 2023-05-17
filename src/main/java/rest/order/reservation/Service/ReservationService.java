@@ -15,6 +15,7 @@ import rest.order.reservation.Repository.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ReservationService {
@@ -105,5 +106,12 @@ public class ReservationService {
         }
         reservation.changeReservationInfo(members, tables, date, time, userOrderMenuList);
     }
+
+    // 고객 예약 목록 보여주기
+    public List<Reservation> getReservationsByCustomerId(Long id) {
+        Optional<AppUser> user = appUserRepository.findById(id); // id를 사용하여 AppUser 조회 (appUserRepository는 해당 repository 인터페이스 이름입니다)
+        return reservationRepository.findByUser(user);
+    }
+
 
 }
