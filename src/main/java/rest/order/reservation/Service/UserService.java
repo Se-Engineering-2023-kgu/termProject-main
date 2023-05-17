@@ -3,6 +3,7 @@ package rest.order.reservation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -23,7 +24,6 @@ import rest.order.reservation.Repository.AppUserRepo;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 @Service
 public class UserService implements UserDetailsService {
 
@@ -106,5 +106,6 @@ public class UserService implements UserDetailsService {
                 .authorities(new SimpleGrantedAuthority(appUser.getUserType().toString()))
                 .build();
     }
+
 
 }
