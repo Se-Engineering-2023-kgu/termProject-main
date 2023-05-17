@@ -4,20 +4,24 @@ import rest.order.reservation.DefineEnum.UserClass;
 
 public record UserRegistForm(
 
-        String loginId,
+                String loginId,
 
-        String loginPwd,
+                String loginPwd,
 
-        String name,
+                String name,
 
-        UserClass userType,
+                UserClass userType,
 
-        String phoneNumber,
+                String phoneNumber,
 
-        String email
+                String email
 
-        // UserClass userType
+// UserClass userType
 
 ) {
+
+        public String loginPwd(String encode) {
+                return encode;
+        }
 
 }

@@ -11,7 +11,7 @@ import rest.order.reservation.Service.UserService;
 @Controller
 @RequestMapping("/customer")
 public class CustomerController {
-    UserService customerService;
+    private final UserService customerService;
 
     public CustomerController(UserService customerService) {
         this.customerService = customerService;
@@ -30,6 +30,25 @@ public class CustomerController {
         model.addAttribute("user", appUserDTO);
         return "customer/customerMainPage";
     }
+
+
+
+        /*
+     * Security login
+     * 
+     */
+    @RequestMapping("/login")
+    public String loginString() {
+        return "/customer/customerlogin";
+    }
+
+    @RequestMapping("/login?error=true")
+    public String loginError(Model model) {
+        model.addAttribute(null, model);
+        return "/customer/customerlogin";
+    }
+
+    
     //    @GetMapping("customer/{id}")
 //    public String viewCustomer(@PathVariable Long id, Model model) {
 //

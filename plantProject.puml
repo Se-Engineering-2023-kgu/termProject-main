@@ -5,7 +5,7 @@ class rest.order.reservation.domain.user.Admin {
 class rest.order.reservation.ReservationApplication {
 + {static} void main(String[])
 }
-class rest.order.reservation.controller.MailController {
+class rest.order.reservation.Controller.MailController {
 }
 interface rest.order.reservation.domain.Booking {
 ~ LocalTime getArrivalTime()
@@ -67,7 +67,7 @@ abstract class rest.order.reservation.domain.user.User {
 + String getLoginPwd()
 + String getName()
 }
-class rest.order.reservation.controller.WebMainController {
+class rest.order.reservation.Controller.WebMainController {
 + String rootPage()
 }
 class rest.order.reservation.domain.Dto.TimeCode {
@@ -98,7 +98,7 @@ class rest.order.reservation.domain.menu.OrderMenu {
 }
 class rest.order.reservation.Service.TableService {
 }
-class rest.order.reservation.controller.ReservationController {
+class rest.order.reservation.Controller.ReservationController {
 + List<TimeCode> timeCodes()
 + String reservationForm(Model)
 }
