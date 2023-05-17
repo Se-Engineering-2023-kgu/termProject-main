@@ -6,19 +6,23 @@
     <link rel="stylesheet" href="/css/loginPage.css">
 </head>
 <body>
-<h1> 로그인 페이지</h1>
-<div>
-    <form method="post" th:action="@{/login/login}">
-        <label for="loginId">Id:</label>
-        <input id="loginId" name="loginId" required type="text"/>
-        <br/>
-        <label for="loginPwd">Password:</label>
-        <input id="loginPwd" name="loginPwd" required type="password"/>
-        <br/>
-        <input type="checkbox" name="remember-me"> Remember Me
-        <br />
-        <button type="submit">Submit</button>
-    </form>
+<div class="wrap">
+    <div class="login">
+        <h2>Log-in</h2>
+        <form method="post" th:action="@{/login/login}">
+            <label for="loginId">Id</label>
+            <br>
+            <input id="loginId" name="loginId" required type="text"/>
+            <br/>
+            <label for="loginPwd">Password</label>
+            <br>
+            <input id="loginPwd" name="loginPwd" required type="password"/>
+            <br/>
+            <input type="checkbox" name="remember-me"> Remember Me
+            <br />
+            <button type="submit">Submit</button>
+        </form>
+    </div>
 </div>
 </body>
 </html>
