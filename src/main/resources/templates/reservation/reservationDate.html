@@ -3,49 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <title>Reservation</title>
-    <link rel="stylesheet" type="text/css" href="/css/reservationDate.css">
+    <link href="/css/reservationDate.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <div th:replace="~{fragments/Header :: Header}"> </div>
-    <div class="wrap">
-        <div class="reservation_date">
-            <h3>예약 페이지 1. 인원수 날짜 , 시간 페이지</h3>
-            <form method="post" role="form" th:action="@{/customer/{id}/table(id=${id})}" th:object="${reservation}">
-                <div class="NumberOfPeople">
-                    <label>인원수</label>
-                    <input class="" placeholder="인원수을 입력하세요"
-                        th:field="${reservation.members}"
-                        type="number">
-                </div>
+<div th:replace="~{fragments/Header :: Header}"></div>
+<div class="wrap">
+    <div class="reservation_date">
+        <h3>예약 페이지 1. 인원수 날짜 , 시간 페이지</h3>
+        <form method="post" role="form" th:action="@{/customer/{id}/date(id=${id})}" th:object="${reservation}">
+            <div class="NumberOfPeople">
+                <label>인원수</label>
+                <input class="" placeholder="인원수을 입력하세요"
+                       th:field="${reservation.members}"
+                       type="number">
+            </div>
 
-                <div class="Date">
-                    <label>날짜</label>
-                    <input class="" placeholder="날짜를 입력하세요" th:field="${reservation.date}"
-                        type="date" id="Date">
-                </div>
+            <div class="Date">
+                <label>날짜</label>
+                <input class="" id="Date" placeholder="날짜를 입력하세요"
+                       th:field="${reservation.date}" type="date">
+            </div>
 
-                <div class="Time">
-                    <label>시간</label>
-                    <select th:field="*{time}">
-                        <option value="">예약시간</option>
-                        <option th:each="timeSlot : ${T(rest.order.reservation.DefineEnum.TimeSlot).values()}"
-                                th:text="${timeSlot.detail}" th:value="${timeSlot}"></option>
-                    </select>
+            <div class="Time">
+                <label>시간</label>
+                <select th:field="*{time}">
+                    <option value="">예약시간</option>
+                    <option th:each="timeSlot : ${T(rest.order.reservation.DefineEnum.TimeSlot).values()}"
+                            th:text="${timeSlot.detail}" th:value="${timeSlot}"></option>
+                </select>
 
 
-                    <button class="submit" type="submit">확인</button>
-                </div>
-            </form>
-        </div>
+                <button class="submit" type="submit">확인</button>
+            </div>
+        </form>
     </div>
+</div>
 
 <script>
     var now_utc = Date.now() // 지금 날짜를 밀리초로
     // getTimezoneOffset()은 현재 시간과의 차이를 분 단위로 반환
-    var timeOff = new Date().getTimezoneOffset()*60000; // 분단위를 밀리초로 변환
-    var today = new Date(now_utc-timeOff).toISOString().split("T")[0];
+    var timeOff = new Date().getTimezoneOffset() * 60000; // 분단위를 밀리초로 변환
+    var today = new Date(now_utc - timeOff).toISOString().split("T")[0];
     // 현재 날짜에 오프셋을 적용하고, 7일 후의 날짜를 계산하여 ISO 형식으로 변환하고, 날짜 부분만 가져옴
-    var maxDate = new Date(now_utc - timeOff + 7 * 24 * 60 * 60 * 1000).toISOString().split("T")[0]; 
+    var maxDate = new Date(now_utc - timeOff + 7 * 24 * 60 * 60 * 1000).toISOString().split("T")[0];
     document.getElementById("Date").setAttribute("min", today);
     document.getElementById("Date").setAttribute("max", maxDate);
 </script>

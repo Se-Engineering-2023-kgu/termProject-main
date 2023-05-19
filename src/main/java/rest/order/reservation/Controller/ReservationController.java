@@ -1,14 +1,18 @@
 package rest.order.reservation.Controller;
 
 
-import groovy.util.logging.Slf4j;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import rest.order.reservation.Model.DTO.Reservation.ReservationForm;
+import rest.order.reservation.Model.DTO.Reservation.form.ReservationDateForm;
+import rest.order.reservation.Model.DTO.Reservation.form.ReservationTableForm;
 import rest.order.reservation.Model.Menu;
 import rest.order.reservation.Model.TableList;
 import rest.order.reservation.Service.MenuService;
@@ -32,36 +36,60 @@ public class ReservationController {
         this.reservationService = reservationService;
     }
 
-    //1. 날짜 페이지 접근
+    //0. 날짜 페이지 접근
     @GetMapping("customer/{id}/date")
-    public String reservationDate(@PathVariable Long id, Model model) {
+    public String reservationGet(@PathVariable Long id, Model model) {
+
         model.addAttribute("reservation", new ReservationForm());
         model.addAttribute("id", id);
         return "reservation/reservationDate";
     }
 
-    // 2. 테이블 선택 페이지
-    @PostMapping("customer/{id}/table")
-    public String reservationTable(@PathVariable Long id, @ModelAttribute("reservation") ReservationForm reservation, Model model) {
+    // 1. 날짜 페이지 검증 -> 테이블 선택 페이지
+    @PostMapping("customer/{id}/date")
+    public String reservationDate(@PathVariable Long id, @Validated @ModelAttribute("reservation") ReservationDateForm reservation, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            return "redirect:/customer/{id}/date";
+        }
         List<TableList> tableList = tableService.findAllTable();
-        List<Menu> menuList = menuService.findAllMenu();
         model.addAttribute("tableList", tableList);
-        model.addAttribute("menuList", menuList); // 메뉴리스트 전달
         model.addAttribute("id", id);
+
         return "reservation/reservationTable";
     }
 
-    @PostMapping("customer/{id}/reserInfo")
+    // 2. table 선택 검증 -> 메뉴 선택 페이지
+    @PostMapping("customer/{id}/table")
+    public String reservationTable(@PathVariable Long id, @Validated @ModelAttribute("reservation") ReservationTableForm reservation, BindingResult bindingResult, Model model) {
+
+        log.info("reservation : {}", reservation);
+        List<Menu> menuList = menuService.findAllMenu();
+        model.addAttribute("menuList", menuList);
+        model.addAttribute("id", id);
+
+        return "reservation/reservationMenu";
+    }
+
+    //   3. menu 선택 검증 -> 예약 명세서
+    @PostMapping("customer/{id}/menu")
+    public String reservationMenu(@PathVariable Long id, @Validated @ModelAttribute("reservation") ReservationForm reservation, Model model) {
+
+        log.info("reservation:{}", reservation);
+        model.addAttribute("id", id);
+        log.info("에약화면으로 이동합니다.");
+        return "reservation/reservationInfo";
+    }
+
+    @PostMapping("customer/{id}/reservationInfo")
     public String reservationInfo(@PathVariable Long id, @ModelAttribute("reservation") ReservationForm reservation, Model model) {
         System.out.println("reservation = " + reservation);
         System.out.println("예약하였습니다.");
+        log.info("reservation : {}", reservation);
         reservationService.addReservation(id, reservation);
         model.addAttribute("id", id);
         model.addAttribute("reservationID", model);
 
-        return "reservation/reservationInfo";
-
-
+        return "redirect:/customer/{id}";
         // members , date , time , id , tableID , orderList
     }
 
