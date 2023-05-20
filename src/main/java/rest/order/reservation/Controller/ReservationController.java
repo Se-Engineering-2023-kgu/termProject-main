@@ -66,7 +66,6 @@ public class ReservationController {
         List<Menu> menuList = menuService.findAllMenu();
         model.addAttribute("menuList", menuList);
         model.addAttribute("id", id);
-
         return "reservation/reservationMenu";
     }
 
@@ -77,7 +76,7 @@ public class ReservationController {
         log.info("reservation:{}", reservation);
         model.addAttribute("id", id);
         TableList table = tableService.findTable(reservation.getTid());
-        model.addAttribute("table", table);
+        model.addAttribute("tables", table);
         log.info("에약화면으로 이동합니다.");
         return "reservation/reservationInfo";
     }
