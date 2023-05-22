@@ -10,7 +10,11 @@ import rest.order.reservation.Model.OrderMenu;
 import rest.order.reservation.Model.Reservation;
 import rest.order.reservation.Model.TableList;
 import rest.order.reservation.Model.User.AppUser;
-import rest.order.reservation.Repository.*;
+import rest.order.reservation.Repository.MenuRepo;
+import rest.order.reservation.Repository.OrderMenuRepo;
+import rest.order.reservation.Repository.Reservation.ReservationRepo;
+import rest.order.reservation.Repository.TableRepo;
+import rest.order.reservation.Repository.User.AppUserRepo;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -27,7 +31,7 @@ public class ReservationService {
 
     private final ReservationRepo reservationRepository;
 
-    public ReservationService(AppUserRepo appUserRepository, TableRepo tableRepository, MenuRepo menuRepository, OrderMenuRepo orderMenuRepository, rest.order.reservation.Repository.ReservationRepo reservationRepository) {
+    public ReservationService(AppUserRepo appUserRepository, TableRepo tableRepository, MenuRepo menuRepository, OrderMenuRepo orderMenuRepository, ReservationRepo reservationRepository) {
         this.appUserRepository = appUserRepository;
         this.tableRepository = tableRepository;
         this.menuRepository = menuRepository;

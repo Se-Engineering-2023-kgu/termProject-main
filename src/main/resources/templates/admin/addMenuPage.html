@@ -5,38 +5,49 @@
     <title>Title</title>
 </head>
 <body>
-<h1>메뉴 추가</h1>
-<div class="container">
-    <form method="post" th:action="@{/admin/menu}" th:object="${menu}">
-        <div class="">
-            <label>상품명</label>
-            <input class="" placeholder="상품명을 입력하세요" th:field="${menu.name}"
-                   type="text">
-        </div>
-        <div class="">
-            <label>가격</label>
-            <input class="" placeholder="가격을 입력하세요" th:field="${menu.price}"
-                   type="number">
-        </div>
-
-        <div class="">
-            <label>설명</label>
-            <input class="" placeholder="설명을 입력하세요" th:field="${menu.intro}" type="text">
-        </div>
-
-        <div class="">
-            <div>음식 타입</div>
-            <div class="" th:each="menuType : ${menuTypes}">
-                <input class="" th:field="*{type}" th:value="${menuType.name()}"
-                       type="radio">
-                <label class="" th:for="${#ids.prev('type')}"
-                       th:text="${menuType.description}">
-                </label>
+<div>
+    <div class="">
+        <nav>
+            <div class="navbar">
+                <div class="navbar_logo">
+                    <a th:href="@{/admin}"><img alt="LOGO_img" src="../img/LOGO(1).png" width="100"/></a>
+                </div>
             </div>
-        </div>
-        <button class="" type="submit">Submit</button>
-    </form>
+        </nav>
+    </div>
+    <br/>
+    <div class="container">
+        <form method="post" th:action="@{/admin/menu}" th:object="${menu}">
+            <div class="">
+                <label>상품명</label>
+                <input class="" placeholder="상품명을 입력하세요" th:field="${menu.name}"
+                       type="text">
+            </div>
+            <div class="">
+                <label>가격</label>
+                <input class="" placeholder="가격을 입력하세요" th:field="${menu.price}"
+                       type="number">
+            </div>
+
+            <div class="">
+                <label>설명</label>
+                <input class="" placeholder="설명을 입력하세요" th:field="${menu.intro}" type="text">
+            </div>
+
+            <div class="">
+                <div>음식 타입</div>
+                <div class="" th:each="menuType : ${menuTypes}">
+                    <input class="" th:field="*{type}" th:value="${menuType.name()}"
+                           type="radio">
+                    <label class="" th:for="${#ids.prev('type')}"
+                           th:text="${menuType.description}">
+                    </label>
+                </div>
+            </div>
+            <button class="" type="submit">Submit</button>
+        </form>
+    </div>
+    <!-- /container -->
 </div>
-<!-- /container -->
 </body>
 </html>

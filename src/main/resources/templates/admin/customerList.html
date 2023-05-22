@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="/css/mainPage.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<div>
+    <div class="">
+        <nav>
+            <div class="navbar">
+                <div class="navbar_logo">
+                    <a th:href="@{/admin}"><img alt="LOGO_img" src="../img/LOGO(1).png" width="100"/></a>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <br/>
+    <br/>
+    <br/>
+    <div>
+        <div class="">
+            <form class="" th:object="${appUserSearch}">
+                <div class="">
+                    <input placeholder="회원명" th:field="*{name}" type="text"/>
+                    <button type="submit">검색</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <table class="">
+        <thead>
+        <tr>
+            <th>취소</th>
+            <th>회원명</th>
+            <th>번호</th>
+            <th>이메일</th>
+            <!--        <th>예약 횟수</th>-->
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="user : ${appUserList}">
+            <td>
+                <button class="deleteBtn" th:data-user-id="${user.uid}" type="button">
+                    삭제
+                </button>
+            </td>
+            <td th:text="${user.name}">회원명</td>
+            <td th:text="${user.phoneNumber}">번호</td>
+            <td th:text="${user.email}">이메일</td>
+            <!--        <td th:text="">예약 횟수</td>-->
+
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
+<script>
+    $(document).ready(function () {
+        $(".deleteBtn").click(function () {
+            let uid = $(this).data("user-id");
+            if (window.confirm("※주의 : 가입한 고객을 삭제하면 해당 고객의 예약 기록이 모두 삭제 됩니다!!! ")) {
+                $.ajax({
+                    url: "/admin/customer/delete/" + uid,
+                    method: "DELETE",
+                }).done(function () {
+                    alert("삭제완료 했습니다.")
+                    window.location.href = '/admin/customerList';
+                }).fail(function () {
+                    alert("삭제 실패했습니다.")
+                });
+            }
+        });
+    });
+</script>

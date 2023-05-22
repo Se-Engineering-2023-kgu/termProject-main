@@ -1,18 +1,16 @@
 package rest.order.reservation.Controller;
 
-import java.util.List;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import rest.order.reservation.Model.Reservation;
 import rest.order.reservation.Model.DTO.AppUser.AppUserDTO;
-import rest.order.reservation.Repository.ReservationRepo;
+import rest.order.reservation.Model.Reservation;
 import rest.order.reservation.Service.ReservationService;
 import rest.order.reservation.Service.UserService;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/customer")
@@ -22,9 +20,9 @@ public class CustomerController {
     private final ReservationService reservationService;
 
 
-    public CustomerController(UserService customerService ,ReservationService reservationService ) {
+    public CustomerController(UserService customerService, ReservationService reservationService) {
         this.customerService = customerService;
-        this.reservationService=reservationService;
+        this.reservationService = reservationService;
     }
 
     @GetMapping("/{id}")
@@ -42,15 +40,15 @@ public class CustomerController {
     }
 
     @GetMapping("/{id}/info")
-    public String customerInfo(@PathVariable Long id, Model model){
-        List<Reservation> reservationList = reservationService.getReservationsByCustomerId(id) ;
-        model.addAttribute("reservationList" , reservationList);
+    public String customerInfo(@PathVariable Long id, Model model) {
+        List<Reservation> reservationList = reservationService.getReservationsByCustomerId(id);
+        model.addAttribute("reservationList", reservationList);
         return "customer/customerInfo";
     }
 
-        /*
+    /*
      * Security login
-     * 
+     *
      */
     @RequestMapping("/login")
     public String loginString() {
@@ -63,7 +61,7 @@ public class CustomerController {
         return "/customer/customerlogin";
     }
 
-    
+
     //    @GetMapping("customer/{id}")
 //    public String viewCustomer(@PathVariable Long id, Model model) {
 //

@@ -1,4 +1,4 @@
-package rest.order.reservation.Repository;
+package rest.order.reservation.Repository.Reservation;
 
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;

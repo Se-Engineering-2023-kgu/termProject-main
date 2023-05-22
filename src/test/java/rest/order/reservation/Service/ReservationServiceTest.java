@@ -12,11 +12,15 @@ import rest.order.reservation.Model.Menu;
 import rest.order.reservation.Model.Reservation;
 import rest.order.reservation.Model.TableList;
 import rest.order.reservation.Model.User.AppUser;
-import rest.order.reservation.Repository.*;
-
+import rest.order.reservation.Repository.MenuRepo;
+import rest.order.reservation.Repository.OrderMenuRepo;
+import rest.order.reservation.Repository.Reservation.ReservationRepo;
+import rest.order.reservation.Repository.TableRepo;
+import rest.order.reservation.Repository.User.AppUserRepo;
 
 import java.util.ArrayList;
 import java.util.List;
+
 @SpringBootTest
 class ReservationServiceTest {
 
