@@ -8,7 +8,7 @@
 <body>
 <input id="customerId" th:value="${id}" type="hidden"/>
 <div>
-    <span>이전 예약</span>
+    <span>이전 예약 개수 :</span>
     <table class="">
         <thead>
         <tr>
@@ -29,7 +29,8 @@
         </tbody>
     </table>
 </div>
-
+<br/>
+<br/>
 <div>
     <span>예정된 예약</span>
     <table class="">
@@ -51,9 +52,11 @@
                 </button>
             </td>
             <td>
-                <button class="modifyBtn" th:data-reservation-id="${reservation.reservationID}" type="button">
+                <a class="modifyBtn"
+                   role="button"
+                   th:href="@{/customer/{customerId}/reservation/{reservationId}/edit(customerId=${id},reservationId=${reservation.reservationID})}">
                     수정
-                </button>
+                </a>
             </td>
             <td th:text="${reservation.dateSlot}"></td>
             <td th:text="${reservation.timeSlot.detail}"></td>
@@ -83,6 +86,26 @@
                 });
             }
         });
+    });
+</script>
+
+<script>
+    // $(document).ready(function () {
+    //     $(".modifyBtn").click(function () {
+    //         let reservationId = $(this).data("reservation-id");
+    //         let customerId = $("#customerId").val();
+    //         if (window.confirm("예약을 수정하시겠습니까?")) {
+                // $.ajax({
+                //     url: "/customer/reservation/" + reservationId + "/delete",
+                //     method: "DELETE",
+                // }).done(function () {
+                //     alert("삭제완료 했습니다.")
+                //     window.location.href = '/customer/' + customerId + '/info';
+                // }).fail(function () {
+                //     alert("삭제 실패했습니다.")
+                // });
+        //     }
+        // });
     });
 </script>
 

@@ -28,6 +28,7 @@ public class ReservationForm {
         this.orderMenuList = orderMenuList;
     }
 
+
     public Integer getMembers() {
         return members;
     }

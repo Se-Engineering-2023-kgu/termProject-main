@@ -116,8 +116,11 @@ public class ReservationService {
     public List<Reservation> getReservationsByCustomerId(Long id) {
         Optional<AppUser> user = appUserRepository.findById(id); // id를 사용하여 AppUser 조회 (appUserRepository는 해당 repository 인터페이스 이름입니다)
         return reservationRepository.findByUser(user.orElse(null), Sort.by(Sort.Direction.ASC, "dateSlot"));
-
     }
 
+    public Reservation getReservationById(Long id) {
+        return reservationRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Reservation with id " + id + " not found"));
+    }
 
 }

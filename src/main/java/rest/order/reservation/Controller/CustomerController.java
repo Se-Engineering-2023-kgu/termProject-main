@@ -79,7 +79,16 @@ public class CustomerController {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
     }
-//
+
+    @GetMapping("/{customerId}/reservation/{reservationId}/edit")
+    public String reservationEdit(@PathVariable("customerId") Long customerId, @PathVariable("reservationId") Long reservationId, Model model) {
+
+        Reservation reservation = reservationService.getReservationById(reservationId);
+        model.addAttribute("customerId", customerId);
+        model.addAttribute("reservationId", reservationId);
+        model.addAttribute("reservation", reservation);
+        return "customer/reservationEdit";
+    }
 //    @PutMapping()
 
     /*
