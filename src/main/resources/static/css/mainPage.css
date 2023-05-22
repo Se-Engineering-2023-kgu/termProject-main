@@ -69,7 +69,9 @@ a{
 .navbar_member li{
     padding: 8px 12px;
 }
-
+.himember{
+    font-family: 'Nanum Gothic', sans-serif;
+}
 .main_img_text{
     position: absolute;
     top: 40%;
@@ -102,6 +104,9 @@ a{
 .About_header h4{
     font-size: 20px;
 }
+.About_header p{
+    font-family: 'Nanum Gothic', sans-serif;
+}
 
 .Reservation_header button{
     width: 20%;
@@ -113,6 +118,7 @@ a{
     background: #e0cda2;
     color: white;
     font-size: 1.2em;
+    font-family: 'Nanum Gothic', sans-serif;
 }
 
 footer{
