@@ -1,13 +1,13 @@
 package rest.order.reservation.Repository.Reservation;
 
 
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import rest.order.reservation.Model.Reservation;
 import rest.order.reservation.Model.User.AppUser;
 
 import java.util.List;
-import java.util.Optional;
 
 
 //queryDsl을 사용하기위해서는 새로운 기능을 넣기위한 Custom 인터    페이스와 그걸 구현한 ( 원래이름 : ReservationRepo ) + Impl 형식을 붙인 이름으로 구현후
@@ -15,7 +15,9 @@ import java.util.Optional;
 @Repository
 
 public interface ReservationRepo extends JpaRepository<Reservation, Long>, ReservationRepoCustom {
-    List<Reservation> findByUser(Optional<AppUser> user);
+//    List<Reservation> findByUser(Optional<AppUser> user);
     // List<Reservation> findByMembers(int member);
+
+    List<Reservation> findByUser(AppUser user, Sort sort);
 
 }
