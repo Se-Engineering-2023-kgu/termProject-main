@@ -31,7 +31,7 @@ a{
     top: 0;
     left: 0;
     right: 0;
-    background-color: rgb(255, 255, 255);
+    background-color: white;
 }
 
 .navbar_menu{
@@ -113,4 +113,21 @@ a{
     background: #e0cda2;
     color: white;
     font-size: 1.2em;
+}
+
+footer{
+    height: 120px;
+    background-color: #e0cda2;
+}
+
+footer p {
+    text-align: center;
+    padding-top: 30px;
+    font-size: 12px;
+}
+.footer_icon{
+    text-align: center;
+}
+.footer_icon img{
+    padding: 5px 5px;
 }
