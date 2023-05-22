@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -9,8 +9,42 @@
 <h1>4. 예약 명세서 페이지</h1>
 <div th:replace="~{fragments/Header :: Header}"/>
 <div>
-
+    <form method="post" role="form" th:action="@{/customer/{id}/reservationInfo(id=${id})}" th:object="${reservation}">
+        <div>
+            <label>예약 인원수:</label>
+            <input th:field="*{members}" type="hidden"/>
+            <span th:text="${reservation.members}"></span>
+        </div>
+        <div>
+            <label>날짜:</label>
+            <input th:field="*{date}" type="hidden"/>
+            <span th:text="${reservation.date}"></span>
+        </div>
+        <div>
+            <label>Time:</label>
+            <input th:field="*{time}" type="hidden"/>
+            <span th:text="${reservation.time.detail}"></span>
+        </div>
+        <div>
+            <label>테이블 번호:</label>
+            <input th:field="*{tid}" type="hidden"/>
+            <span th:text="|${tables.number}번|"></span>
+        </div>
+        <!--        <div>-->
+        <!--            <label>선택 메뉴:</label>-->
+        <input th:field="*{orderMenuList}" type="hidden"/>
+        <!--            <ul th:each="menuId : ${reservation.orderMenuList}">-->
+        <!--                <li th:text="${menuId}"></li>-->
+        <!--            </ul>-->
+        <!--        </div>-->
+        <button id="submit" type="submit">예약</button>
+    </form>
 </div>
 
 </body>
 </html>
+<script>
+    document.getElementById("submit").onclick = function () {
+        return confirm('예약을 진행하시겠습니까?');
+    }
+</script>
