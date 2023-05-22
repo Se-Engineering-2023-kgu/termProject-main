@@ -6,6 +6,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
+<input id="customerId" th:value="${id}" type="hidden"/>
 <div>
     <span>이전 예약</span>
     <table class="">
@@ -44,6 +45,16 @@
         </thead>
         <tbody>
         <tr th:each="reservation : ${futureReservations}">
+            <td>
+                <button class="deleteBtn" th:data-reservation-id="${reservation.reservationID}" type="button">
+                    삭제
+                </button>
+            </td>
+            <td>
+                <button class="modifyBtn" th:data-reservation-id="${reservation.reservationID}" type="button">
+                    수정
+                </button>
+            </td>
             <td th:text="${reservation.dateSlot}"></td>
             <td th:text="${reservation.timeSlot.detail}"></td>
             <td th:text="${reservation.tables.number}"></td>
@@ -55,3 +66,23 @@
 </div>
 </body>
 </html>
+<script>
+    $(document).ready(function () {
+        $(".deleteBtn").click(function () {
+            let reservationId = $(this).data("reservation-id");
+            let customerId = $("#customerId").val();
+            if (window.confirm("예약을 삭제하시겠습니까?")) {
+                $.ajax({
+                    url: "/customer/reservation/" + reservationId + "/delete",
+                    method: "DELETE",
+                }).done(function () {
+                    alert("삭제완료 했습니다.")
+                    window.location.href = '/customer/' + customerId + '/info';
+                }).fail(function () {
+                    alert("삭제 실패했습니다.")
+                });
+            }
+        });
+    });
+</script>
+
