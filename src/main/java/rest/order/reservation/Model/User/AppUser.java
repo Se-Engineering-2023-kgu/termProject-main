@@ -1,16 +1,18 @@
 package rest.order.reservation.Model.User;
 
-
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.*;
 import rest.order.reservation.DefineEnum.UserClass;
 
 @Entity
-public class AppUser {  // 상속을 이용할 것이면 최소한으로 줄여야 할듯
+public class AppUser implements UserDetails { // 상속을 이용할 것이면 최소한으로 줄여야 할듯
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,7 +29,7 @@ public class AppUser {  // 상속을 이용할 것이면 최소한으로 줄여�
 
     @Enumerated(EnumType.STRING)
     private UserClass userType;
-    
+
     private String phoneNumber;
 
     private String email;
@@ -35,7 +37,8 @@ public class AppUser {  // 상속을 이용할 것이면 최소한으로 줄여�
     public AppUser() {
     }
 
-    public AppUser(Long uid, String loginId, String loginPwd, String name, UserClass userType, String phoneNumber, String email) {
+    public AppUser(Long uid, String loginId, String loginPwd, String name, UserClass userType, String phoneNumber,
+            String email) {
         this.uid = uid;
         this.loginId = loginId;
         this.loginPwd = loginPwd;
@@ -108,6 +111,57 @@ public class AppUser {  // 상속을 이용할 것이면 최소한으로 줄여�
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        // Add role based on user type
+        if (userType == UserClass.customer) {
+            authorities.add(new SimpleGrantedAuthority("ROLE_CUSTOMER"));
+        } else if (userType == UserClass.admin) {
+            authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        } else {
+            authorities.add(new SimpleGrantedAuthority("ROLE_GUEST"));
+        }
+
+        return authorities;
+    }
+
+    @Override
+    public String getPassword() {
+
+        return this.loginPwd;
+    }
+
+    @Override
+    public String getUsername() {
+
+        return this.name;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+
+        return true;
     }
 
 }
