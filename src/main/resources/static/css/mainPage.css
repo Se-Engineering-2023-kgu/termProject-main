@@ -3,6 +3,8 @@ html{
 }
 body{
     margin: 0;
+    font-family: 'Merriweather', serif;
+
 }
 a{
     text-decoration: none;
@@ -11,7 +13,7 @@ a{
  .main_site{
     margin-top: 79px;
     width: 100vw;
-    height: 80vh;
+    height: 85vh;
     background-image: url("../img/restaurant.jpg");
     background-repeat: no-repeat;
     background-size: cover;
@@ -38,7 +40,6 @@ a{
     justify-content: center;
     list-style: none;
     font-size: 20px;
-    font-family: Merriweather Sans;
     color: rgb(0, 0, 0);
 }
 
@@ -57,7 +58,6 @@ a{
     justify-content: flex-end;
     list-style: none;
     font-size: 13px;
-    font-family: Merriweather Sans;
 }
 
 .navbar_member li:hover {
@@ -83,50 +83,34 @@ a{
     list-style:none;
 }
 .content li{
-    min-height: 2000px;
+    min-height: 1500px;
 }
-.About_text_center {
-    padding-top: 90px;
-    text-align: center;
-    background-color: rgb(255, 255, 255);
-    color: rgb(0, 0, 0);
-    height: 400px
-    ;
-}
-
-.About_text_center h2{
-    margin: 0;
-}
-
-.Menu_text_center {
+.content section{
     padding-top: 90px;
     text-align: center;
     background-color: white;
     color: black;
-    height: 400px;
+    height: 400px;    
+}
+.About_text_center{
+    font-size: 30px;
+}
+.About_header img {
+    padding: 30px 0;
 }
 
-.Menu_text_center h2{
-    margin: 0;
+.About_header h4{
+    font-size: 20px;
 }
 
-.Reservation_text_center {
-    padding-top: 90px;
-    text-align: center;
-    background-color: white;
-    color: black;
-    height: 400px;
-}
-
-
-.Location_text_center {
-    padding-top: 90px;
-    text-align: center;
-    background-color: white;
-    color: black;
-    height: 400px;
-}
-
-.Location_text_center h2{
-    margin: 0;
+.Reservation_header button{
+    width: 20%;
+    height: 50px;
+    border: 0;
+    outline: none;
+    margin-top: 30px;
+    border-radius: 10px;
+    background: #e0cda2;
+    color: white;
+    font-size: 1.2em;
 }
