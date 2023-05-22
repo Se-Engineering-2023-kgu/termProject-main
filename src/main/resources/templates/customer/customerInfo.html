@@ -3,19 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-<h1>customer Info</h1>
-<!-- <div th:replace="~{fragments/Header :: header}"/> -->
+<div>
+    <span>이전 예약</span>
+    <table class="">
+        <thead>
+        <tr>
+            <th>날짜</th>
+            <th>시간</th>
+            <th>예약 인원 수</th>
+            <th>테이블 번호</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="reservation : ${pastReservations}">
+            <td th:text="${reservation.dateSlot}"></td>
+            <td th:text="${reservation.timeSlot.detail}"></td>
+            <td th:text="${reservation.tables.number}"></td>
+            <td th:text="${reservation.members}"></td>
+            <br/>
+        </tr>
+        </tbody>
+    </table>
+</div>
 
-    <div th:each="reservation : ${reservationList}">
-        <span th:text="${reservation.dateSlot}"></span>
-        <span th:text="${reservation.timeSlot.detail}"></span>
-        <span th:text="${reservation.user.name}"></span>
-        <span th:text="${reservation.tables.number}"></span>
-        <span th:text="${reservation.members}"></span>
-        <br/>
-    </div>
+<div>
+    <span>예정된 예약</span>
+    <table class="">
+        <thead>
+        <tr>
+            <th>예약 삭제</th>
+            <th>예약 수정</th>
+            <th>날짜</th>
+            <th>시간</th>
+            <th>예약 인원 수</th>
+            <th>테이블 번호</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="reservation : ${futureReservations}">
+            <td th:text="${reservation.dateSlot}"></td>
+            <td th:text="${reservation.timeSlot.detail}"></td>
+            <td th:text="${reservation.tables.number}"></td>
+            <td th:text="${reservation.members}"></td>
+            <br/>
+        </tr>
+        </tbody>
+    </table>
+</div>
 </body>
-
 </html>

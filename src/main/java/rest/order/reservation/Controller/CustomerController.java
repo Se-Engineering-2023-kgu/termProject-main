@@ -10,7 +10,9 @@ import rest.order.reservation.Model.Reservation;
 import rest.order.reservation.Service.ReservationService;
 import rest.order.reservation.Service.UserService;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/customer")
@@ -39,10 +41,27 @@ public class CustomerController {
         return "customer/customerMainPage";
     }
 
+    //    @GetMapping("/{id}/info")
+//    public String customerInfo(@PathVariable Long id, Model model) {
+//        List<Reservation> reservationList = reservationService.getReservationsByCustomerId(id);
+//        model.addAttribute("reservationList", reservationList);
+//        return "customer/customerInfo";
+//    }
     @GetMapping("/{id}/info")
     public String customerInfo(@PathVariable Long id, Model model) {
         List<Reservation> reservationList = reservationService.getReservationsByCustomerId(id);
-        model.addAttribute("reservationList", reservationList);
+
+        List<Reservation> pastReservations = reservationList.stream()
+                .filter(reservation -> reservation.getDateSlot().isBefore(LocalDate.now()))
+                .collect(Collectors.toList());
+
+        List<Reservation> futureReservations = reservationList.stream()
+                .filter(reservation -> !reservation.getDateSlot().isBefore(LocalDate.now()))
+                .collect(Collectors.toList());
+
+        model.addAttribute("pastReservations", pastReservations);
+        model.addAttribute("futureReservations", futureReservations);
+
         return "customer/customerInfo";
     }
 

@@ -31,6 +31,7 @@ public class ReservationRepoImpl implements ReservationRepoCustom {
                         eqName(search.getName()),
                         eqDate(search.getDate()),
                         eqTime(search.getTime()))
+                .orderBy(reservation.dateSlot.asc(), reservation.timeSlot.asc())
                 .fetch();
     }
 
