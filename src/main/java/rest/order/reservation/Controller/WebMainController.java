@@ -22,8 +22,14 @@ public class WebMainController {
 
     @GetMapping("/")
     public String rootPage(Model model) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
+        System.out.println("get auth");
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.isAuthenticated()){
+            System.out.println("get userDTO");
+        AppUserDTO userDTO = userService.getPrincipalToUserDTO(authentication);
+        }
+        /*
         if (authentication != null && authentication.isAuthenticated()
                 && authentication.getPrincipal() instanceof AppUser) {
             {
@@ -50,6 +56,7 @@ public class WebMainController {
                 }
             }
         }
+         */
         return "mainPage";
 
         // 로그인 o 세션 o redirect:/ --> customer , admin 페이지

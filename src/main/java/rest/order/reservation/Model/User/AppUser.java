@@ -113,19 +113,28 @@ public class AppUser implements UserDetails { // 상속을 이용할 것이면 �
         this.email = email;
     }
 
+    // @Override
+    // public Collection<? extends GrantedAuthority> getAuthorities() {
+
+    //     List<GrantedAuthority> authorities = new ArrayList<>();
+    //     // Add role based on user type
+    //     if (userType == UserClass.customer) {
+    //         authorities.add(new SimpleGrantedAuthority("ROLE_CUSTOMER"));
+    //     } else if (userType == UserClass.admin) {
+    //         authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+    //     } else {
+    //         authorities.add(new SimpleGrantedAuthority("ROLE_GUEST"));
+    //     }
+
+    //     return authorities;
+    // }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-
+        // Define and return the user's authorities
         List<GrantedAuthority> authorities = new ArrayList<>();
-        // Add role based on user type
-        if (userType == UserClass.customer) {
-            authorities.add(new SimpleGrantedAuthority("ROLE_CUSTOMER"));
-        } else if (userType == UserClass.admin) {
-            authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-        } else {
-            authorities.add(new SimpleGrantedAuthority("ROLE_GUEST"));
-        }
-
+        authorities.add(new SimpleGrantedAuthority(userType.name()));
+        // Add any additional authorities as needed
         return authorities;
     }
 
@@ -143,25 +152,26 @@ public class AppUser implements UserDetails { // 상속을 이용할 것이면 �
 
     @Override
     public boolean isAccountNonExpired() {
-        return true;
-    }
+        return true; // Account never expires
+    } 
+
 
     @Override
     public boolean isAccountNonLocked() {
 
-        return true;
+        return true; // 잠기지도 않아요 
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
 
-        return true;
+        return true; // 인증도 만료 안돼요 
     }
 
     @Override
     public boolean isEnabled() {
 
-        return true;
+        return true; // 항상 활성화된 계정이에요 
     }
 
 }

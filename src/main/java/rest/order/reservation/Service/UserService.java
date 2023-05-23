@@ -92,14 +92,14 @@ public class UserService implements UserDetailsService {
     // user load 서비스 부분
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public AppUser loadUserByUsername(String username) throws UsernameNotFoundException {
         AppUser appUser = AppUserRepository.findByLoginId(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + username));
 
         List<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority(appUser.getUserType().name()));
 
-        return toUserDetails(appUser);
+        return appUser;
     }
 
     private UserDetails toUserDetails(AppUser appUser) {
@@ -140,6 +140,18 @@ public class UserService implements UserDetailsService {
 
         return authentication.getAuthorities().stream()
                 .anyMatch(authority -> authority.getAuthority().equals("ROLE_ADMIN"));
+    }
+
+    public AppUserDTO getPrincipalToUserDTO(Authentication authentication) {
+        AppUser appUser = (AppUser) authentication.getPrincipal();
+        System.out.println(appUser);
+        AppUserDTO appUserDTO =  AppUserDTO.form(appUser);
+
+        //user appUserDTO printing
+        System.out.println("working Appuser DTO");
+        System.out.println(appUserDTO);
+
+        return appUserDTO;
     }
 
 }
