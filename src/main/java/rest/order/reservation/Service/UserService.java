@@ -67,11 +67,16 @@ public class UserService implements UserDetailsService {
         AppUser customer = AppUserRepository.findById(id).get();
         AppUserRepository.delete(customer);
     }
-
+/*
+ * 찾았다 
+ */
     @Transactional
-    public void modify(Long id, AppUserDTO update) { // 이거 바꿔야 할 수도
+    public void modify(Long id, AppUserDTO update, String encodedPW) { // 이거 바꿔야 할 수도
         AppUser user = AppUserRepository.findById(id).get();
-        user.chageUserInfo(update.loginPwd(), update.phonNumber(), update.email());
+        // PW는 컨트롤러에서 PW encoder 바로 써서 암호화된 값으로 집어넣어 주세요. 
+        // 근데 이 메소드 쓰는데 없는거 같더라 
+        // 맞나? 
+        user.chageUserInfo(encodedPW, update.phonNumber(), update.email());
     }
 
     // login Check
@@ -102,6 +107,7 @@ public class UserService implements UserDetailsService {
         return appUser;
     }
 
+    // loadUserByUsername 이 UserDetails 리턴하던 시절의 코드, 혹시 모르니 남김 
     private UserDetails toUserDetails(AppUser appUser) {
         return User.builder()
                 .username(appUser.getLoginId())
@@ -110,6 +116,7 @@ public class UserService implements UserDetailsService {
                 .build();
     }
 
+    
     // additional information to get userinfo and role
 
     public AppUserDTO getCurrentUser() {

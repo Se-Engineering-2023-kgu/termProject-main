@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import rest.order.reservation.DefineEnum.UserClass;
 import rest.order.reservation.Model.DTO.AppUser.AppUserDTO;
 import rest.order.reservation.Model.User.AppUser;
 import rest.order.reservation.Service.UserService;
@@ -25,46 +26,41 @@ public class WebMainController {
 
         System.out.println("get auth");
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        System.out.println(authentication);
+
+        if (authentication.getPrincipal().equals("anonymousUser") ) {
+            return "mainPage";
+        }
+
         if (authentication != null && authentication.isAuthenticated()){
             System.out.println("get userDTO");
         AppUserDTO userDTO = userService.getPrincipalToUserDTO(authentication);
-        }
-        /*
-        if (authentication != null && authentication.isAuthenticated()
-                && authentication.getPrincipal() instanceof AppUser) {
-            {
-                AppUser userDetails = (AppUser) authentication.getPrincipal();
-                // userDetails.findById
-                // AppUserDTO appUserDTO = userDetails.getLoginId();
-
-                AppUserDTO appUserDTO = userService.getCurrentUser();
-
-                if (appUserDTO != null) {
-                    model.addAttribute("user", appUserDTO);
-                }
+            if (userDTO != null) {
+                model.addAttribute("user", userDTO);
             }
-            if (userService.getCurrentUser() == null) {
-                // User not logged in, redirect to guest page
+            else{
                 return "mainPage";
+            }
+
+            // 유저 정보를 가져와서 리턴
+            if (userDTO.userType().equals(UserClass.admin)) {
+                // Admin user, redirect to admin page
+                return "admin/adminMainPage";
             } else {
-                if (userService.isAdminUser()) {
-                    // Admin user, redirect to admin page
-                    return "admin/adminMainPage";
-                } else {
-                    // Customer user, redirect to customer page
+                if (userDTO.userType().equals(UserClass.customer)) {
+                     // Customer user, redirect to customer page
                     return "customer/customerMainPage";
+                } else {
+                    // may be somthing else, default page
+                    // 게스트 인지를 구별해 줘야 하나? 
+                    return "mainPage";
+                    
                 }
             }
         }
-         */
-        return "mainPage";
-
-        // 로그인 o 세션 o redirect:/ --> customer , admin 페이지
-
-        // user 타입 customer
-        // return "customer/customerMainPage"
-        // user 타입 admin
-        // return "admin/adminMainPage";
-
+        
+        return "mainPage"; 
+    
     }
 }
