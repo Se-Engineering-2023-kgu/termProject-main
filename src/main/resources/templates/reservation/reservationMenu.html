@@ -2,44 +2,49 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="/css/reservationMenu.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+    <title>Menu</title>
 </head>
 <body>
-<h1>3. 메뉴 선택 페이지</h1>
-<div>
-    <form method="post" role="form" th:action="@{/customer/{id}/menu(id=${id})}" th:object="${reservation}">
-        <div class="">
-            <!--            <label>인원수 - hidden</label>-->
-            <input th:field="*{members}" type="hidden"/>
-        </div>
-        <div class="">
-            <!--            <label>날짜 -hidden</label>-->
-            <input th:field="*{date}" type="hidden"/>
-        </div>
-
-        <div class="">
-            <!--            <label>시간 -hidden</label>-->
-            <input th:field="*{time}" type="hidden"/>
-        </div>
-
-        <div class="">
-            <!--            <label>선택 table 번호 -hidden</label>-->
-            <input th:field="*{tid}" type="hidden"/>
-        </div>
-
-        <div>
-            <!--            <label>메뉴 선택</label>-->
-            <div th:each="menu : ${menuList}">
-                <label>
-                    <input class="menu" th:id="'menu' + ${menu.mid}" th:name="orderMenuList" th:text="${menu.name}"
-                           th:value="${menu.mid}"
-                           type="checkbox"/>
-                    <span th:text="${menu.price}"></span>
-                </label>
+<h3>3. 메뉴 선택 페이지</h3>
+<div class="wrap">
+    <div class="Select">
+        <form method="post" role="form" th:action="@{/customer/{id}/menu(id=${id})}" th:object="${reservation}">
+            <div class="">
+                <!--            <label>인원수 - hidden</label>-->
+                <input th:field="*{members}" type="hidden"/>
             </div>
-        </div>
-        <button class="" type="submit">확인</button>
-    </form>
+            <div class="">
+                <!--            <label>날짜 -hidden</label>-->
+                <input th:field="*{date}" type="hidden"/>
+            </div>
+    
+            <div class="">
+                <!--            <label>시간 -hidden</label>-->
+                <input th:field="*{time}" type="hidden"/>
+            </div>
+    
+            <div class="">
+                <!--            <label>선택 table 번호 -hidden</label>-->
+                <input th:field="*{tid}" type="hidden"/>
+            </div>
+    
+            <div class="SelectMenu">
+                <!--            <label>메뉴 선택</label>-->
+                <h2>메뉴 선택</h2>
+                <div th:each="menu : ${menuList}">
+                    <label>
+                        <input class="menu" th:id="'menu' + ${menu.mid}" th:name="orderMenuList" th:text="${menu.name}"
+                               th:value="${menu.mid}"
+                               type="checkbox"/>
+                        <span th:text="${menu.price}"></span>
+                    </label>
+                </div>
+            </div>
+            <button class="" type="submit">확인</button>
+        </form>
+    </div>
 </div>
 </body>
 </html>

@@ -27,10 +27,8 @@
     align-items: center;
     flex-direction: column;
 }
-.Select h4{
-    margin-bottom: 15px;
-}
-.SelectTable{
+
+.SelectMenu{
     margin: 10px 10px;
 }
 
