@@ -1,6 +1,7 @@
 package rest.order.reservation.Model;
 
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 import rest.order.reservation.DefineEnum.TimeSlot;
 import rest.order.reservation.Model.User.AppUser;
 
@@ -20,6 +21,7 @@ public class Reservation implements TimeTable {
     private Long reservationID;
 
     @Column(name = "date")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateSlot;  // date 이름이 겹칩니다!
     @Column(name = "timeslot")
     @Enumerated(EnumType.STRING)
