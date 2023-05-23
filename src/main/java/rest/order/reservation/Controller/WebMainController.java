@@ -38,11 +38,12 @@ public class WebMainController {
         AppUserDTO userDTO = userService.getPrincipalToUserDTO(authentication);
             if (userDTO != null) {
                 model.addAttribute("user", userDTO);
+                model.addAttribute("id", userDTO.uid());
             }
             else{
                 return "mainPage";
             }
-
+            
             // 유저 정보를 가져와서 리턴
             if (userDTO.userType().equals(UserClass.admin)) {
                 // Admin user, redirect to admin page
@@ -50,7 +51,7 @@ public class WebMainController {
             } else {
                 if (userDTO.userType().equals(UserClass.customer)) {
                      // Customer user, redirect to customer page
-                    return "customer/customerMainPage";
+                    return "redirect:/customer/" + userDTO.uid();
                 } else {
                     // may be somthing else, default page
                     // 게스트 인지를 구별해 줘야 하나? 
