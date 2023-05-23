@@ -48,13 +48,13 @@ public class SecurityConfig {
                 .loginProcessingUrl("/login/login") // form submit해서 제출하는 로그인 페이지
                 .usernameParameter("loginId") // 타임리프 페이지에서 받을 http form 파라미터 (기본값 : username)
                 .passwordParameter("loginPwd") // pw 파라미터를 제출받음
-                .defaultSuccessUrl("/customer/", true) // 로그인 하면 id 페이지로 이동 >> 파라미터 만들어야 함
+                .defaultSuccessUrl("/", true) // 로그인 하면 id 페이지로 이동 >> 파라미터 만들어야 함
                 .failureUrl("/login/login?error=true") // 로그인 실패하면 error=true 파라미터 페이지로 나오게 하기 (다른 경로 가능)
                 .permitAll()
                 .and()
                 .logout()
                 .permitAll()
-                .logoutSuccessUrl("/customer/logout") // 로그아웃 경로 들어가면 세션 날리고 쿠키도 나림
+                .logoutSuccessUrl("/") // 로그아웃 성공한 경우의 경로 
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID")
                 .and()
