@@ -7,9 +7,10 @@
     <title>Menu</title>
 </head>
 <body>
-<h3>3. 메뉴 선택 페이지</h3>
+    <div th:replace="~{fragments/Header :: Header}"></div>
 <div class="wrap">
     <div class="Select">
+        <h3>예약 페이지 3. 메뉴 선택 페이지</h3>
         <form method="post" role="form" th:action="@{/customer/{id}/menu(id=${id})}" th:object="${reservation}">
             <div class="">
                 <!--            <label>인원수 - hidden</label>-->
@@ -32,7 +33,6 @@
     
             <div class="SelectMenu">
                 <!--            <label>메뉴 선택</label>-->
-                <h2>메뉴 선택</h2>
                 <div th:each="menu : ${menuList}">
                     <label>
                         <input class="menu" th:id="'menu' + ${menu.mid}" th:name="orderMenuList" th:text="${menu.name}"
@@ -42,7 +42,7 @@
                     </label>
                 </div>
             </div>
-            <button class="" type="submit">확인</button>
+            <button class="submit" type="submit">확인</button>
         </form>
     </div>
 </div>

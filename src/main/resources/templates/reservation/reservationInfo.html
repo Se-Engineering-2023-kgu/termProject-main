@@ -9,7 +9,7 @@
 <div th:replace="~{fragments/Header :: Header}"/>
 <div class="wrap">
     <div class="reserInfo">
-        <h1>4. 예약 명세서 페이지</h1>
+        <h3>4. 예약 명세서 페이지</h3>
     <form method="post" role="form" th:action="@{/customer/{id}/reservationInfo(id=${id})}" th:object="${reservation}">
         <div>
             <label>예약 인원수:</label>
@@ -38,7 +38,7 @@
         <!--                <li th:text="${menuId}"></li>-->
         <!--            </ul>-->
         <!--        </div>-->
-        <button id="submit" type="submit">예약</button>
+        <button class="submit" id="submit" type="submit">예약</button>
     </form>
     </div>
 </div>
