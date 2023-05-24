@@ -1,4 +1,4 @@
-package rest.order.reservation.config;
+package rest.order.reservation.Config;
 
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;

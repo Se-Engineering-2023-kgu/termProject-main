@@ -31,12 +31,12 @@ import java.util.Optional;
 @Service
 public class UserService implements UserDetailsService {
 
-    private final AppUserRepo appUserRepository;
+    private final AppUserRepo AppUserRepository;
 
     private final BCryptPasswordEncoder passwordEncoder;
 
     public UserService(AppUserRepo appUserRepository, BCryptPasswordEncoder passwordEncoder) {
-        this.appUserRepository = appUserRepository;
+        this.AppUserRepository = appUserRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -50,12 +50,12 @@ public class UserService implements UserDetailsService {
                 request.userType(),
                 request.phoneNumber(),
                 request.email());
-        appUserRepository.save(user);
+                AppUserRepository.save(user);
         return user.getUid();
     }
 
     public AppUserDTO findUser(Long id) {
-        AppUser appUser = appUserRepository.findById(id).get();
+        AppUser appUser = AppUserRepository.findById(id).get();
 
         AppUserDTO appUserDTO = AppUserDTO.form(appUser);
 
@@ -64,13 +64,13 @@ public class UserService implements UserDetailsService {
     }
 
     public List<AppUser> findAllUser(AppUserSearch search) {
-        return appUserRepository.findAll(search);
+        return AppUserRepository.findAll(search);
     }
 
     @Transactional
     public void deleteUser(Long id) {
-        AppUser customer = appUserRepository.findById(id).get();
-        appUserRepository.delete(customer);
+        AppUser customer = AppUserRepository.findById(id).get();
+        AppUserRepository.delete(customer);
     }
 /*
  * 찾았다 
@@ -88,7 +88,7 @@ public class UserService implements UserDetailsService {
     // login Check
     // 아무래도 이 부분은 springSecurity에 의해 덮어씌워진 듯 함
     public AppUserDTO loginCheck(String loginId, String loginPwd) {
-        Optional<AppUser> appUser = appUserRepository.findByLoginId(loginId);
+        Optional<AppUser> appUser = AppUserRepository.findByLoginId(loginId);
 
         if (appUser.isPresent())
             if (appUser.get().getLoginPwd().equals(passwordEncoder.encode(loginPwd))) {
