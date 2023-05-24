@@ -1,3 +1,67 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" th="http://www.thymeleaf.org">
+    <link rel="stylesheet" href="/css/mainPage.css">
+    <title>Title</title>
+</head>
+
+<body>
+
+    <div class="main_site">
+        <nav>
+            <div class="navbar">
+                <div class="navbar_logo">
+                    <a href="/"><img src="img/LOGO(1).png" alt="LOGO_img" width="100"></a>
+                </div>
+                <ul class="navbar_menu">
+                    <li><a href="#main_About">테이블 추가</a></li>
+                    <li><a href="#main_Menu">메뉴 추가</a></li>
+                    <li><a href="#main_Reservation">예약 관리</a></li>
+                    <li><a href="#main_Location">고객 관리</a></li>
+                </ul>
+                <ul class="navbar_member" >
+                    <li><a th:text="|안녕하세요! 관리자님|" >환영문구</a></li>
+                    <li><a class="" th:href="@{/login/logout}" >LOG-OUT</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+
+
+    <h1>관리자 페이지</h1>
+
+    <div>
+        <a class="" th:href="@{/admin/table}">테이블 추가</a>
+    </div>
+    <div>
+        <a class="" th:href="@{/admin/menu}">메뉴 추가</a>
+    </div>
+
+    <div>
+        <a class="" th:href="@{/admin/reservationList}">예약 현황</a>
+    </div>
+
+    <div>
+        <a class="" th:href="@{/admin/customer}">고객 관리</a>
+    </div> -->
+
+<!-- </body> -->
+
+<!-- </html> -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -49,30 +113,78 @@
             </nav>
         </div>
         <div id="layoutSidenav_content">
+
             <main>
-                <div class="container-fluid px-4 mt-3">
+
+                <!-- <div class="container-fluid px-4">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-table me-1"></i>
+                            메뉴 관리
+                        </div>
+                        <div class="card-body">
+                            <table id="datatablesSimple">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Position</th>
+                                        <th>Office</th>
+                                        <th>Age</th>
+                                        <th>Start date</th>
+                                        <th>Salary</th>
+                                    </tr>
+                                </thead>
+                               
+                                <tbody>
+
+                                    <tr>
+                                        <td>Ashton Cox</td>
+                                        <td>Junior Technical Author</td>
+                                        <td>San Francisco</td>
+                                        <td>66</td>
+                                        <td>2009/01/12</td>
+                                        <td>$86,000</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div> -->
+
+                <!-- <div class="container-fluid px-4">
+                    
+                    <h1>예약 현황</h1>
+
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-table me-1"></i>
                             예약 관리
                         </div>
 
-                        <form class="" th:object="${researvationSearch}" >
-                            <div id="display_flex_center">
-                                    <input class="mx-5" placeholder="회원명" th:field="*{name}" type="text"/>
-                                    <input class="mx-5" id="currentDate" placeholder="날짜" th:field="${researvationSearch.date}"
+                        <form class="" th:object="${researvationSearch}">
+                            <div>
+                                <div class="">
+                                    <input class="" placeholder="회원명" th:field="*{name}" type="text"/>
+                                </div>
+                                <div class="">
+                                    <label></label>
+                                    <input class="" id="currentDate" placeholder="날짜" th:field="${researvationSearch.date}"
                                            type="date">
-                                    <select class="mx-5"th:field="*{time}">
+                                </div>
+                                <div>
+                                    <select th:field="*{time}">
                                         <option value="">예약 시간</option>
                                         <option th:each="timeSlot : ${T(rest.order.reservation.DefineEnum.TimeSlot).values()}"
                                                 th:text="${timeSlot.detail}" th:value="${timeSlot}"></option>
                                     </select>
-                                <button class="mx-5" type="submit">검색</button>
+                                </div>
+                                <button class="" type="submit">검색</button>
                             </div>
                         </form>
 
 
-                        <div class="card-body" id = "display_flex_center">
+                        <div class="card-body">
                             <table id="datatablesSimple">
                                 <thead>
                                     <tr>
@@ -113,7 +225,44 @@
                             </table>
                         </div>
                     </div>
+                </div> -->
+
+                <div class="container-fluid px-4 mt-3">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-table me-1"></i>
+                            고객 관리
+                        </div>
+                        <div class="card-body">
+                            <table id="datatablesSimple">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Position</th>
+                                        <th>Office</th>
+                                        <th>Age</th>
+                                        <th>Start date</th>
+                                        <th>Salary</th>
+                                    </tr>
+                                </thead>
+                                
+                                <tbody>
+
+                                    <tr>
+                                        <td>Garrett Winters</td>
+                                        <td>Accountant</td>
+                                        <td>Tokyo</td>
+                                        <td>63</td>
+                                        <td>2011/07/25</td>
+                                        <td>$170,750</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
+
             </main>
             <footer class="py-4 bg-light mt-auto">
                 <div class="container-fluid px-4">
@@ -140,7 +289,7 @@
 
 </html>
 
-<script>
+<!-- <script>
     $(document).ready(function () {
         $(".deleteBtn").click(function () {
             let reservationId = $(this).data("reservation-id");
@@ -161,4 +310,4 @@
 
 <script>
     document.getElementById('currentDate').value = new Date().toISOString().substring(0, 10);
-</script>
+</script> -->
