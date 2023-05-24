@@ -1,11 +1,19 @@
 package rest.order.reservation.Controller;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import rest.order.reservation.DefineEnum.UserClass;
 import rest.order.reservation.Model.DTO.AppUser.AppUserDTO;
 import rest.order.reservation.Service.UserService;
@@ -60,8 +68,16 @@ public class LoginController {
     // }
 
     @GetMapping("/logout")
-    public String logout() {
-        return "redirect:/";
+    public String logout(HttpServletRequest request, HttpServletResponse response, Model model) throws ServletException {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null) {
+            new SecurityContextLogoutHandler().logout(request, response, authentication);
+        }
+
+        model.addAttribute("logout", true); // Add a logout parameter to indicate successful logout
+
+        
+        return "redirect:/"; // Redirect to the login page with a logout parameter
     }
 
 }

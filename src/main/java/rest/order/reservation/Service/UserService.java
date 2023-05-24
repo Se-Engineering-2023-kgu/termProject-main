@@ -1,7 +1,16 @@
 package rest.order.reservation.Service;
 
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.core.Authentication;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -63,11 +72,17 @@ public class UserService implements UserDetailsService {
         AppUser customer = appUserRepository.findById(id).get();
         appUserRepository.delete(customer);
     }
-
+/*
+ * 찾았다 
+ */
     @Transactional
-    public void modify(Long id, AppUserDTO update) { // 이거 바꿔야 할 수도
-        AppUser user = appUserRepository.findById(id).get();
-        user.chageUserInfo(update.loginPwd(), update.phonNumber(), update.email());
+    public void modify(Long id, AppUserDTO update, String encodedPW) { // 이거 바꿔야 할 수도
+        AppUser user = AppUserRepository.findById(id).get();
+        // PW는 컨트롤러에서 PW encoder 바로 써서 암호화된 값으로 집어넣어 주세요. 
+        // 근데 이 메소드 쓰는데 없는거 같더라 
+        // 맞나? 
+        user.chageUserInfo(encodedPW, update.phonNumber(), update.email());
+
     }
 
     // login Check
@@ -88,16 +103,17 @@ public class UserService implements UserDetailsService {
     // user load 서비스 부분
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        AppUser appUser = appUserRepository.findByLoginId(username)
+    public AppUser loadUserByUsername(String username) throws UsernameNotFoundException {
+        AppUser appUser = AppUserRepository.findByLoginId(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + username));
 
         List<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority(appUser.getUserType().name()));
 
-        return toUserDetails(appUser);
+        return appUser;
     }
 
+    // loadUserByUsername 이 UserDetails 리턴하던 시절의 코드, 혹시 모르니 남김 
     private UserDetails toUserDetails(AppUser appUser) {
         return User.builder()
                 .username(appUser.getLoginId())
@@ -106,5 +122,49 @@ public class UserService implements UserDetailsService {
                 .build();
     }
 
+    
+    // additional information to get userinfo and role
+
+    public AppUserDTO getCurrentUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || !authentication.isAuthenticated()
+                || !(authentication.getPrincipal() instanceof UserDetails)) {
+            return null;
+        }
+
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        String username = userDetails.getUsername();
+
+        // Fetch the user from the repository based on the username
+        Optional<AppUser> optionalUser = AppUserRepository.findByLoginId(username);
+        if (optionalUser.isPresent()) {
+            AppUser appUser = optionalUser.get();
+            return AppUserDTO.form(appUser);
+        }
+
+        return null;
+    }
+
+    public boolean isAdminUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || !authentication.isAuthenticated()) {
+            return false;
+        }
+
+        return authentication.getAuthorities().stream()
+                .anyMatch(authority -> authority.getAuthority().equals("ROLE_ADMIN"));
+    }
+
+    public AppUserDTO getPrincipalToUserDTO(Authentication authentication) {
+        AppUser appUser = (AppUser) authentication.getPrincipal();
+        System.out.println(appUser);
+        AppUserDTO appUserDTO =  AppUserDTO.form(appUser);
+
+        //user appUserDTO printing
+        System.out.println("working Appuser DTO");
+        System.out.println(appUserDTO);
+
+        return appUserDTO;
+    }
 
 }
