@@ -98,7 +98,7 @@ public class Reservation implements TimeTable {
 //    }
     public OrderMenu removeOrderMenu(OrderMenu orderMenu) {
         this.orderList.remove(orderMenu);
-        orderMenu.setReservationID(null);
+        orderMenu.setReservationID(null); // ordermenu reservation과의 연관관계 끊기
         return orderMenu;
     }
 

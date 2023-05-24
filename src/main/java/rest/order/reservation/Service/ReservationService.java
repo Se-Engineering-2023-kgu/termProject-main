@@ -108,11 +108,11 @@ public class ReservationService {
 
 
         log.info("삭제 시작할게요");
-        List<OrderMenu> existingOrderMenus = new ArrayList<>(reservation.getOrderList());
-        for (OrderMenu existingOrderMenu : existingOrderMenus) {
-            OrderMenu removeMenu = reservation.removeOrderMenu(existingOrderMenu);
+        List<OrderMenu> changeOrderMenus = new ArrayList<>(reservation.getOrderList());
+        for (OrderMenu changeOrderMenu : changeOrderMenus) {
+            OrderMenu removeOrderMenu = reservation.removeOrderMenu(changeOrderMenu);
             // 여기서 삭제
-            orderMenuRepository.delete(removeMenu);
+            orderMenuRepository.delete(removeOrderMenu);
         }
 
         List<OrderMenu> userOrderMenuList = new ArrayList<>();

@@ -53,12 +53,6 @@ public class CustomerController {
         return "customer/customerMainPage";
     }
 
-    //    @GetMapping("/{id}/info")
-//    public String customerInfo(@PathVariable Long id, Model model) {
-//        List<Reservation> reservationList = reservationService.getReservationsByCustomerId(id);
-//        model.addAttribute("reservationList", reservationList);
-//        return "customer/customerInfo";
-//    }
     @GetMapping("/{id}/info")
     public String customerInfo(@PathVariable Long id, Model model) {
         List<Reservation> reservationList = reservationService.getReservationsByCustomerId(id);
