@@ -6,38 +6,77 @@
 </head>
 <body>
 <h1>수정 Page</h1>
-</body>
 
 <h1>고객</h1>
-<span th:text="${customerId}"></span>
+<!--<input class="" th:value="${customerId}" -->
+<span th:text="|고객 : ${customerId}|"></span>
 <h1>예약정보</h1>
-<span th:text="${reservationId}"></span>
-<span th:text="${reservation.orderList}"></span>
+<span th:text="|예약 번호 : ${reservationId}|"></span>
 
-<div class="NumberOfPeople">
-    <label>인원수</label>
-    <input class="" placeholder="인원수을 입력하세요"
-           th:field="${reservation.members}"
-           type="number">
+<div>
+    <form method="post" role="form"
+          th:action="@{/customer/{customerId}/reservation/{reservationId}/edit(customerId=${customerId} ,reservationId=${reservationId})}"
+          th:object="${reservationForm}">
+        <!--        <input th:value="${customerId}" type="hidden"/>-->
+        <!--        <input th:value="${reservationId}" type="hidden"/>-->
+
+
+        <div class="NumberOfPeople">
+            <label>인원수</label>
+            <input class="" placeholder="인원수을 입력하세요"
+                   th:field="${reservationForm.members}"
+                   type="number">
+        </div>
+
+        <div class="Date">
+            <label>날짜</label>
+            <input class="" id="Date" placeholder="날짜를 입력하세요"
+                   th:field="${reservationForm.date}" type="date">
+        </div>
+
+        <div class="Time">
+            <label>시간</label>
+            <select th:field="${reservationForm.time}">
+                <option value="">예약시간</option>
+                <option th:each="timeSlot : ${T(rest.order.reservation.DefineEnum.TimeSlot).values()}"
+                        th:text="${timeSlot.detail}" th:value="${timeSlot}"></option>
+            </select>
+        </div>
+
+
+        <div class="SelectTable">
+            <h3>테이블 수정</h3>
+            <div th:each="table : ${tableList}">
+                <label>
+                    <input class="radio"
+                           th:checked="${table.tid == reservationForm.tid}"
+                           th:field="*{tid}"
+                           th:id="'radio' + ${table.tid}"
+                           th:value="${table.tid}"
+                           type="radio"/>
+                    <span th:text="|${table.number}번|"></span>
+                </label>
+            </div>
+        </div>
+
+
+        <!--        &lt;!&ndash;<form method="post" role="form" th:action="" th:object="${reservation}">&ndash;&gt;-->
+        <div>
+            <h3>메뉴 수정</h3>
+            <div th:each="menu : ${menuList}">
+                <label>
+                    <input class="menu" th:checked="${reservationForm.orderMenuList.contains(menu.mid)}"
+                           th:field="*{orderMenuList}"
+                           th:id="'menu' + ${menu.mid}"
+                           th:text="${menu.name}"
+                           th:value="${menu.mid}"
+                           type="checkbox"/>
+                </label>
+
+            </div>
+        </div>
+        <button id="submit" type="submit">제출</button>
+    </form>
 </div>
-
-<div class="Date">
-    <label>날짜</label>
-    <input class="" id="Date" placeholder="날짜를 입력하세요"
-           th:field="${reservation.dateSlot}" type="date">
-</div>
-
-<div class="Time">
-    <label>시간</label>
-    <select th:field="${reservation.timeSlot}">
-        <option value="">예약시간</option>
-        <option th:each="timeSlot : ${T(rest.order.reservation.DefineEnum.TimeSlot).values()}"
-                th:text="${timeSlot.detail}" th:value="${timeSlot.detail}"></option>
-    </select>
-</div>
-<!--<form method="post" role="form" th:action="" th:object="${reservation}">-->
-
-
-<!--</form>-->
-
+</body>
 </html>

@@ -40,8 +40,9 @@
             <th>예약 수정</th>
             <th>날짜</th>
             <th>시간</th>
-            <th>예약 인원 수</th>
             <th>테이블 번호</th>
+            <th>예약 인원 수</th>
+
         </tr>
         </thead>
         <tbody>
@@ -60,8 +61,8 @@
             </td>
             <td th:text="${reservation.dateSlot}"></td>
             <td th:text="${reservation.timeSlot.detail}"></td>
-            <td th:text="${reservation.tables.number}"></td>
-            <td th:text="${reservation.members}"></td>
+            <td th:text="|${reservation.tables.number}번|"></td>
+            <td th:text="|${reservation.members}명|"></td>
             <br/>
         </tr>
         </tbody>

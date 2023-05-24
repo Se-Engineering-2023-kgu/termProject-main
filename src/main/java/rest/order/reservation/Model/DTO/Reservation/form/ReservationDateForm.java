@@ -12,6 +12,7 @@ public class ReservationDateForm {
     @NotNull
     private String date;
     @NotNull
+//    private TimeSlot time;
     private TimeSlot time;
 
     public ReservationDateForm(Integer members, String date, TimeSlot time) {
