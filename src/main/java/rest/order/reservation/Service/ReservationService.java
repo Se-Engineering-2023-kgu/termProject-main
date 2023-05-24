@@ -1,5 +1,6 @@
 package rest.order.reservation.Service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Service
 public class ReservationService {
 
@@ -104,6 +106,8 @@ public class ReservationService {
         LocalDate date = LocalDate.parse(form.getDate());
         TimeSlot time = form.getTime();
 
+
+        log.info("삭제 시작할게요");
         List<OrderMenu> existingOrderMenus = new ArrayList<>(reservation.getOrderList());
         for (OrderMenu existingOrderMenu : existingOrderMenus) {
             OrderMenu removeMenu = reservation.removeOrderMenu(existingOrderMenu);
@@ -117,6 +121,7 @@ public class ReservationService {
             OrderMenu orderMenu = OrderMenu.createOrderMenu(menu, 1);
             userOrderMenuList.add(orderMenu);
         }
+        log.info("업데이트 시작할게요");
         reservation.changeReservationInfo(members, tables, date, time, userOrderMenuList);
     }
 
