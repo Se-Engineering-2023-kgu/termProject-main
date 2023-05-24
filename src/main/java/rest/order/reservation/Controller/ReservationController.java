@@ -1,7 +1,7 @@
 package rest.order.reservation.Controller;
 
 
-import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,7 +22,6 @@ import rest.order.reservation.Service.TableService;
 import java.util.List;
 //import rest.order.Repository.BookRepo;
 
-@Slf4j
 @Controller
 //@RequestMapping("")
 public class ReservationController {
@@ -62,7 +61,6 @@ public class ReservationController {
     @PostMapping("customer/{id}/table")
     public String reservationTable(@PathVariable Long id, @Validated @ModelAttribute("reservation") ReservationTableForm reservation, BindingResult bindingResult, Model model) {
 
-        log.info("reservation : {}", reservation);
         List<Menu> menuList = menuService.findAllMenu();
         model.addAttribute("menuList", menuList);
         model.addAttribute("id", id);
@@ -73,11 +71,9 @@ public class ReservationController {
     @PostMapping("customer/{id}/menu")
     public String reservationMenu(@PathVariable Long id, @Validated @ModelAttribute("reservation") ReservationForm reservation, Model model) {
 
-        log.info("reservation:{}", reservation);
         model.addAttribute("id", id);
         TableList table = tableService.findTable(reservation.getTid());
         model.addAttribute("tables", table);
-        log.info("에약화면으로 이동합니다.");
         return "reservation/reservationInfo";
     }
 
@@ -85,7 +81,6 @@ public class ReservationController {
     public String reservationInfo(@PathVariable Long id, @ModelAttribute("reservation") ReservationForm reservation, Model model) {
         System.out.println("reservation = " + reservation);
         System.out.println("예약하였습니다.");
-        log.info("reservation : {}", reservation);
         reservationService.addReservation(id, reservation);
         model.addAttribute("id", id);
         model.addAttribute("reservationID", model);
