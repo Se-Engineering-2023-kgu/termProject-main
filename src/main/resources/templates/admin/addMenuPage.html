@@ -196,6 +196,12 @@
                     </div>
                 </div>
 
+<!-- for 문-->
+                <div class="" th:each="menu : ${menuList}">
+                    <span th:text="|메뉴 이름 : ${menu.name}|"></span>
+                    <span th:text="|메뉴 설명: ${menu.intro}|"></span>
+                    <div></div>
+                </div>
                 <!-- <div class="container-fluid px-4">
                     
                     <h1>예약 현황</h1>

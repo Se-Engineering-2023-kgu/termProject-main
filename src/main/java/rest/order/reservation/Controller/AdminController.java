@@ -11,6 +11,7 @@ import rest.order.reservation.DefineEnum.MenuType;
 import rest.order.reservation.Model.DTO.Menu.MenuRegistForm;
 import rest.order.reservation.Model.DTO.Reservation.ReservationSearch;
 import rest.order.reservation.Model.DTO.TableDTO;
+import rest.order.reservation.Model.Menu;
 import rest.order.reservation.Model.Reservation;
 import rest.order.reservation.Model.User.AppUser;
 import rest.order.reservation.Model.User.AppUserSearch;
@@ -53,7 +54,7 @@ public class AdminController {
     @GetMapping("/main")
     public String adminMain() {
 
-        
+
         return "admin/adminMainPage";
     }
 
@@ -107,7 +108,8 @@ public class AdminController {
     @GetMapping("/menu")
     public String addMenuForm(Model model) {
         model.addAttribute("menu", new MenuRegistForm(null, null, null, null));
-
+        List<Menu> menuList = menuService.findAllMenu();
+        model.addAttribute("menuList", menuList);
         return "admin/addMenuPage";
     }
 
