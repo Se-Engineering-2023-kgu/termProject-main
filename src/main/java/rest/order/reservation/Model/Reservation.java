@@ -40,7 +40,8 @@ public class Reservation implements TimeTable {
     private TableList tables;
     @Column(name = "members")
     private int members; // 인원수
-    private Long customerId; // customerId 프로퍼티 추가
+
+//    private Long customerId; // customerId 프로퍼티 추가 -> 삭제
 
 
     public Reservation() {

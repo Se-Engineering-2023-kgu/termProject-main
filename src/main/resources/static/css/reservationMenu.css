@@ -28,6 +28,11 @@
     align-items: center;
     flex-direction: column;
 }
+
+.SelectMenu{
+    margin: 10px 10px;
+}
+
 .Select h3{
     margin-bottom: 15px;
 }

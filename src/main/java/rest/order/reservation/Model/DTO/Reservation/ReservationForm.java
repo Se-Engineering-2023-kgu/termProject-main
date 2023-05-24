@@ -1,14 +1,13 @@
 package rest.order.reservation.Model.DTO.Reservation;
 
 import rest.order.reservation.DefineEnum.TimeSlot;
-import rest.order.reservation.Model.DTO.Menu.OrderMenuDTO;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ReservationForm {
 
-    private int members; // view 에서 가져오는 예약 인원
+    private Integer members; // view 에서 가져오는 예약 인원
     private String date; // view 에서 가져오는 date
     private TimeSlot time; // view에서 가져오는 time 문자열 형태
 
@@ -21,7 +20,7 @@ public class ReservationForm {
     public ReservationForm() {
     }
 
-    public ReservationForm(int members, String date, TimeSlot time, Long tid, List<Long> orderMenuList) {
+    public ReservationForm(Integer members, String date, TimeSlot time, Long tid, List<Long> orderMenuList) {
         this.members = members;
         this.date = date;
         this.time = time;
@@ -29,8 +28,7 @@ public class ReservationForm {
         this.orderMenuList = orderMenuList;
     }
 
-
-    public int getMembers() {
+    public Integer getMembers() {
         return members;
     }
 
