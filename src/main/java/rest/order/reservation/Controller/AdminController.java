@@ -12,9 +12,12 @@ import rest.order.reservation.Model.DTO.Menu.MenuRegistForm;
 import rest.order.reservation.Model.DTO.Reservation.ReservationSearch;
 import rest.order.reservation.Model.DTO.TableDTO;
 import rest.order.reservation.Model.Reservation;
+import rest.order.reservation.Model.User.AppUser;
+import rest.order.reservation.Model.User.AppUserSearch;
 import rest.order.reservation.Service.MenuService;
 import rest.order.reservation.Service.ReservationService;
 import rest.order.reservation.Service.TableService;
+import rest.order.reservation.Service.UserService;
 
 import java.util.List;
 
@@ -27,12 +30,14 @@ public class AdminController {
     private final TableService tableService;
     private final MenuService menuService;
     private final ReservationService reservationService;
+    private final UserService userService;
 
 
-    public AdminController(TableService tableService, MenuService menuService, ReservationService reservationService) {
+    public AdminController(TableService tableService, MenuService menuService, ReservationService reservationService, UserService userService) {
         this.tableService = tableService;
         this.menuService = menuService;
         this.reservationService = reservationService;
+        this.userService = userService;
     }
 
     @ModelAttribute("menuTypes")
@@ -80,6 +85,19 @@ public class AdminController {
         return "admin/reservationList";
     }
 
+    @GetMapping("/customerList")
+    public String CustomerSearch(@ModelAttribute("appUserSearch") AppUserSearch appUserSearch, Model model) {
+
+        List<AppUser> appUserList = userService.findAllUser(appUserSearch);
+        model.addAttribute("appUserList", appUserList);
+        return "admin/customerList";
+    }
+    //    @GetMapping("/customer")
+//    public String manageUser(Model model) {
+//
+//        return "customerList";
+//    }
+
 
     // 메뉴 등록 부분은, 메뉴 컨트롤러가 진행하고, 메뉴 컨트롤러에서 인증 절차를 통해 접근을 진행해야 합니다.
     // 이와 관련해선 spring Security를 참고
@@ -97,11 +115,6 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @GetMapping("/customer")
-    public String manageUser(Model model) {
-
-        return "admin/manageCustomerPage";
-    }
 
     @DeleteMapping("reservation/delete/{reservationId}")
     @ResponseBody
@@ -115,5 +128,16 @@ public class AdminController {
         }
 
     }
+
+    @DeleteMapping("customer/delete/{uid}")
+    public ResponseEntity<?> customerDelete(@PathVariable("uid") Long id) {
+        try {
+            userService.deleteUser(id);
+            return new ResponseEntity(HttpStatus.OK);
+        } catch (RuntimeException e) {
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
+    }
+
 
 }

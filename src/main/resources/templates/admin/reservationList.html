@@ -7,71 +7,81 @@
 </head>
 
 <body>
-<h1>예약 현황</h1>
 <div>
-    <div>
-
-        <form class="" th:object="${researvationSearch}">
-            <div>
-                <div class="">
-                    <input class="" placeholder="회원명" th:field="*{name}" type="text"/>
+    <div class="">
+        <nav>
+            <div class="navbar">
+                <div class="navbar_logo">
+                    <a th:href="@{/admin}"><img alt="LOGO_img" src="../img/LOGO(1).png" width="100"/></a>
                 </div>
-
-                <div class="">
-                    <label></label>
-                    <input class="" id="currentDate" placeholder="날짜" th:field="${researvationSearch.date}"
-                           type="date">
-                </div>
-                <div>
-                    <select th:field="*{time}">
-                        <option value="">예약 시간</option>
-                        <option th:each="timeSlot : ${T(rest.order.reservation.DefineEnum.TimeSlot).values()}"
-                                th:text="${timeSlot.detail}" th:value="${timeSlot}"></option>
-                    </select>
-                </div>
-                <button class="" type="submit">검색</button>
             </div>
-        </form>
-
+        </nav>
     </div>
-
     <br/>
+    <div>
+        <div>
+            <form class="" th:object="${researvationSearch}">
+                <div>
+                    <div class="">
+                        <input class="" placeholder="회원명" th:field="*{name}" type="text"/>
+                    </div>
 
-    <table class="">
-        <thead>
-        <tr>
-            <th>취소</th>
-            <th>번호</th>
-            <th>회원명</th>
-            <th>날짜</th>
-            <th>시간</th>
-            <th>예약 인원 수</th>
-            <th>테이블 번호</th>
-            <th>주문 메뉴</th>
-        </tr>
-        </thead>
-        <tbody>
+                    <div class="">
+                        <label></label>
+                        <input class="" id="currentDate" placeholder="날짜" th:field="${researvationSearch.date}"
+                               type="date">
+                    </div>
+                    <div class="">
+                        <select th:field="*{time}">
+                            <option value="">전체 확인</option>
+                            <option th:each="timeSlot : ${T(rest.order.reservation.DefineEnum.TimeSlot).values()}"
+                                    th:text="${timeSlot.detail}" th:value="${timeSlot}"></option>
+                        </select>
+                    </div>
+                    <button class="" type="submit">검색</button>
+                </div>
+            </form>
 
-        <tr th:each="reservation : ${reservationList}">
-            <td>
-                <button class="deleteBtn" th:data-reservation-id="${reservation.reservationID}" type="button">
-                    삭제
-                </button>
-            </td>
-            <td th:text="${reservation.reservationID}">번호</td>
-            <td th:text="${reservation.user.name}">회원명</td>
-            <td th:text="${reservation.dateSlot}">날짜</td>
-            <td th:text="${reservation.timeSlot.getDetail()}">시간</td>
-            <td th:text="${reservation.members}">예약 인원 수</td>
-            <td th:text="${reservation.tables.number}">테이블 번호</td>
-            <td>
-                <button class="btn btn-primary" data-target="#orderListModal" data-toggle="modal" type="button">
-                    주문 리스트
-                </button>
-            </td>
-        </tbody>
+        </div>
 
-    </table>
+        <br/>
+
+        <table class="">
+            <thead>
+            <tr>
+                <th>취소</th>
+                <th>번호</th>
+                <th>회원명</th>
+                <th>날짜</th>
+                <th>시간</th>
+                <th>예약 인원 수</th>
+                <th>테이블 번호</th>
+                <th>주문 메뉴</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr th:each="reservation : ${reservationList}">
+                <td>
+                    <button class="deleteBtn" th:data-reservation-id="${reservation.reservationID}" type="button">
+                        삭제
+                    </button>
+                </td>
+                <td th:text="${reservation.reservationID}">번호</td>
+                <td th:text="${reservation.user.name}">회원명</td>
+                <td th:text="${reservation.dateSlot}">날짜</td>
+                <td th:text="${reservation.timeSlot.getDetail()}">시간</td>
+                <td th:text="${reservation.members}">예약 인원 수</td>
+                <td th:text="${reservation.tables.number}">테이블 번호</td>
+                <td>
+                    <button class="btn btn-primary" data-target="#orderListModal" data-toggle="modal" type="button">
+                        주문 리스트
+                    </button>
+                </td>
+            </tbody>
+
+        </table>
+    </div>
 </div>
 </body>
 </html>

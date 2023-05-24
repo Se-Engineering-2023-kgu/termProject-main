@@ -7,11 +7,23 @@ public enum TimeSlot {
     FIFTHTTEN("15:00"), SIXTEEN("16:00"), SEVENTEEN("17:00"), EIGHTTEEN("18:00"),
     NINETEEN("19:00"), TWENTY("20:00");
     //    , TWENTYONE("21:00");
+
+
     private String detail;
 
     TimeSlot(String detail) {
         this.detail = detail;
     }
+
+//    @JsonCreator
+//    public static TimeSlot forValue(String value) {
+//        for (TimeSlot timeSlot : TimeSlot.values()) {
+//            if (timeSlot.detail.equals(value)) {
+//                return timeSlot;
+//            }
+//        }
+//        throw new IllegalArgumentException("Invalid value for TimeSlot: " + value);
+//    }
 
     public String getDetail() {
         return detail;

@@ -1,4 +1,4 @@
-package rest.order.reservation.Repository;
+package rest.order.reservation.Repository.Reservation;
 
 import rest.order.reservation.Model.DTO.Reservation.ReservationSearch;
 import rest.order.reservation.Model.Reservation;

@@ -1,4 +1,4 @@
-package rest.order.reservation.Config;
+package rest.order.reservation.config;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;

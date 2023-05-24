@@ -5,6 +5,7 @@
     <title>Reservation</title>
     <link href="/css/reservationDate.css" rel="stylesheet" type="text/css">
 </head>
+
 <body>
 <div th:replace="~{fragments/Header :: Header}"></div>
 <div class="wrap">
@@ -29,7 +30,7 @@
                 <select th:field="*{time}">
                     <option value="">예약시간</option>
                     <option th:each="timeSlot : ${T(rest.order.reservation.DefineEnum.TimeSlot).values()}"
-                            th:text="${timeSlot.detail}" th:value="${timeSlot}"></option>
+                            th:text="${timeSlot.detail}" th:value="${timeSlot.detail}"></option>
                 </select>
 
 
