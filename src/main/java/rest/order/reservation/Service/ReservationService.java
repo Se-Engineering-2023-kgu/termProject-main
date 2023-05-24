@@ -1,5 +1,7 @@
 package rest.order.reservation.Service;
 
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import rest.order.reservation.DefineEnum.TimeSlot;
@@ -10,13 +12,18 @@ import rest.order.reservation.Model.OrderMenu;
 import rest.order.reservation.Model.Reservation;
 import rest.order.reservation.Model.TableList;
 import rest.order.reservation.Model.User.AppUser;
-import rest.order.reservation.Repository.*;
+import rest.order.reservation.Repository.MenuRepo;
+import rest.order.reservation.Repository.OrderMenuRepo;
+import rest.order.reservation.Repository.Reservation.ReservationRepo;
+import rest.order.reservation.Repository.TableRepo;
+import rest.order.reservation.Repository.User.AppUserRepo;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Service
 public class ReservationService {
 
@@ -27,7 +34,8 @@ public class ReservationService {
 
     private final ReservationRepo reservationRepository;
 
-    public ReservationService(AppUserRepo appUserRepository, TableRepo tableRepository, MenuRepo menuRepository, OrderMenuRepo orderMenuRepository, rest.order.reservation.Repository.ReservationRepo reservationRepository) {
+
+    public ReservationService(AppUserRepo appUserRepository, TableRepo tableRepository, MenuRepo menuRepository, OrderMenuRepo orderMenuRepository, ReservationRepo reservationRepository) {
         this.appUserRepository = appUserRepository;
         this.tableRepository = tableRepository;
         this.menuRepository = menuRepository;
@@ -98,20 +106,34 @@ public class ReservationService {
         LocalDate date = LocalDate.parse(form.getDate());
         TimeSlot time = form.getTime();
 
+
+        log.info("삭제 시작할게요");
+        List<OrderMenu> changeOrderMenus = new ArrayList<>(reservation.getOrderList());
+        for (OrderMenu changeOrderMenu : changeOrderMenus) {
+            OrderMenu removeOrderMenu = reservation.removeOrderMenu(changeOrderMenu);
+            // 여기서 삭제
+            orderMenuRepository.delete(removeOrderMenu);
+        }
+
         List<OrderMenu> userOrderMenuList = new ArrayList<>();
         for (Long mid : form.getOrderMenuList()) {
             Menu menu = menuRepository.findById(mid).orElseThrow(() -> new RuntimeException("reservation update menu : " + mid));
             OrderMenu orderMenu = OrderMenu.createOrderMenu(menu, 1);
             userOrderMenuList.add(orderMenu);
         }
+        log.info("업데이트 시작할게요");
         reservation.changeReservationInfo(members, tables, date, time, userOrderMenuList);
     }
 
     // 고객 예약 목록 보여주기
     public List<Reservation> getReservationsByCustomerId(Long id) {
         Optional<AppUser> user = appUserRepository.findById(id); // id를 사용하여 AppUser 조회 (appUserRepository는 해당 repository 인터페이스 이름입니다)
-        return reservationRepository.findByUser(user);
+        return reservationRepository.findByUser(user.orElse(null), Sort.by(Sort.Direction.ASC, "dateSlot"));
     }
 
+    public Reservation getReservationById(Long id) {
+        return reservationRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Reservation with id " + id + " not found"));
+    }
 
 }

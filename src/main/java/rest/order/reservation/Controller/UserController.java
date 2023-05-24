@@ -6,17 +6,11 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import rest.order.reservation.Model.DTO.AppUser.UserRegistForm;
-import rest.order.reservation.Repository.ReservationRepo;
-import rest.order.reservation.Service.UserService;
-
 import rest.order.reservation.Service.ReservationService;
-import java.security.Principal;
-import java.util.List;
-import rest.order.reservation.Model.Reservation;
+import rest.order.reservation.Service.UserService;
 
 @Controller
 @RequestMapping("/user")

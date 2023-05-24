@@ -1,4 +1,4 @@
-package rest.order.reservation.Repository;
+package rest.order.reservation.Repository.Reservation;
 
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -31,6 +31,7 @@ public class ReservationRepoImpl implements ReservationRepoCustom {
                         eqName(search.getName()),
                         eqDate(search.getDate()),
                         eqTime(search.getTime()))
+                .orderBy(reservation.dateSlot.asc(), reservation.timeSlot.asc())
                 .fetch();
     }
 

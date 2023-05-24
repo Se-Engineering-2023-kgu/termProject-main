@@ -12,6 +12,7 @@
             <!--            <label>인원수 - hidden</label>-->
             <input th:field="*{members}" type="hidden"/>
         </div>
+
         <div class="">
             <!--            <label>날짜 -hidden</label>-->
             <input th:field="*{date}" type="hidden"/>
@@ -34,10 +35,11 @@
                     <input class="menu" th:id="'menu' + ${menu.mid}" th:name="orderMenuList" th:text="${menu.name}"
                            th:value="${menu.mid}"
                            type="checkbox"/>
-                    <span th:text="${menu.price}"></span>
+                    <!--                    <span th:text="${menu.price}"></span>-->
                 </label>
             </div>
         </div>
+
         <button class="" type="submit">확인</button>
     </form>
 </div>

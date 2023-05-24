@@ -1,11 +1,13 @@
 package rest.order.reservation.Service;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.core.Authentication;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -14,14 +16,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import rest.order.reservation.Model.DTO.AppUser.AppUserDTO;
 import rest.order.reservation.Model.DTO.AppUser.UserRegistForm;
 import rest.order.reservation.Model.User.AppUser;
-import rest.order.reservation.Repository.AppUserRepo;
+import rest.order.reservation.Model.User.AppUserSearch;
+import rest.order.reservation.Repository.User.AppUserRepo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,12 +31,12 @@ import java.util.Optional;
 @Service
 public class UserService implements UserDetailsService {
 
-    private final AppUserRepo AppUserRepository;
+    private final AppUserRepo appUserRepository;
 
     private final BCryptPasswordEncoder passwordEncoder;
 
     public UserService(AppUserRepo appUserRepository, BCryptPasswordEncoder passwordEncoder) {
-        this.AppUserRepository = appUserRepository;
+        this.appUserRepository = appUserRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -49,12 +50,12 @@ public class UserService implements UserDetailsService {
                 request.userType(),
                 request.phoneNumber(),
                 request.email());
-        AppUserRepository.save(user);
+        appUserRepository.save(user);
         return user.getUid();
     }
 
     public AppUserDTO findUser(Long id) {
-        AppUser appUser = AppUserRepository.findById(id).get();
+        AppUser appUser = appUserRepository.findById(id).get();
 
         AppUserDTO appUserDTO = AppUserDTO.form(appUser);
 
@@ -62,10 +63,14 @@ public class UserService implements UserDetailsService {
 
     }
 
+    public List<AppUser> findAllUser(AppUserSearch search) {
+        return appUserRepository.findAll(search);
+    }
+
     @Transactional
     public void deleteUser(Long id) {
-        AppUser customer = AppUserRepository.findById(id).get();
-        AppUserRepository.delete(customer);
+        AppUser customer = appUserRepository.findById(id).get();
+        appUserRepository.delete(customer);
     }
 /*
  * 찾았다 
@@ -77,12 +82,13 @@ public class UserService implements UserDetailsService {
         // 근데 이 메소드 쓰는데 없는거 같더라 
         // 맞나? 
         user.chageUserInfo(encodedPW, update.phonNumber(), update.email());
+
     }
 
     // login Check
     // 아무래도 이 부분은 springSecurity에 의해 덮어씌워진 듯 함
     public AppUserDTO loginCheck(String loginId, String loginPwd) {
-        Optional<AppUser> appUser = AppUserRepository.findByLoginId(loginId);
+        Optional<AppUser> appUser = appUserRepository.findByLoginId(loginId);
 
         if (appUser.isPresent())
             if (appUser.get().getLoginPwd().equals(passwordEncoder.encode(loginPwd))) {
