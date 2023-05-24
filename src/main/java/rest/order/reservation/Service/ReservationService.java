@@ -32,6 +32,7 @@ public class ReservationService {
 
     private final ReservationRepo reservationRepository;
 
+
     public ReservationService(AppUserRepo appUserRepository, TableRepo tableRepository, MenuRepo menuRepository, OrderMenuRepo orderMenuRepository, ReservationRepo reservationRepository) {
         this.appUserRepository = appUserRepository;
         this.tableRepository = tableRepository;
@@ -102,6 +103,13 @@ public class ReservationService {
         int members = form.getMembers();
         LocalDate date = LocalDate.parse(form.getDate());
         TimeSlot time = form.getTime();
+
+        List<OrderMenu> existingOrderMenus = new ArrayList<>(reservation.getOrderList());
+        for (OrderMenu existingOrderMenu : existingOrderMenus) {
+            OrderMenu removeMenu = reservation.removeOrderMenu(existingOrderMenu);
+            // 여기서 삭제
+            orderMenuRepository.delete(removeMenu);
+        }
 
         List<OrderMenu> userOrderMenuList = new ArrayList<>();
         for (Long mid : form.getOrderMenuList()) {

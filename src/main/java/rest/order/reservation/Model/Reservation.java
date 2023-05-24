@@ -79,12 +79,27 @@ public class Reservation implements TimeTable {
         orderMenu.setReservationID(this);   // 추가한 orderMenu 에 맵핑된 reservationId를 지정해줌   --> 걱정 2번 이부분(외래키 지정) 때문에 Reservation의 orderList를 지울까 고민중입니다...
     }
 
-    public void changeReservationInfo(int members, TableList tables, LocalDate date, TimeSlot time, List<OrderMenu> userOrderMenuList) {
+    public void changeReservationInfo(int members, TableList tables, LocalDate date, TimeSlot time, List<OrderMenu> newOrderMenuList) {
         setMembers(members);
         setTables(tables);
         setDateSlot(date);
         setTimeSlot(time);
-        setOrderList(userOrderMenuList);
+
+        for (OrderMenu orderMenu : newOrderMenuList) {
+            addOrderMenu(orderMenu);
+        }
+    }
+
+
+    //    public void removeOrderMenu(OrderMenu orderMenu) {
+//        this.orderList.remove(orderMenu);
+//        orderMenu.setReservationID(null);
+//
+//    }
+    public OrderMenu removeOrderMenu(OrderMenu orderMenu) {
+        this.orderList.remove(orderMenu);
+        orderMenu.setReservationID(null);
+        return orderMenu;
     }
 
     public Long getReservationID() {
