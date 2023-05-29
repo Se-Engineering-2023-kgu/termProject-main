@@ -9,6 +9,11 @@ public class ReservationSearch {
     private LocalDate date;
     private TimeSlot time;
 
+    public ReservationSearch(LocalDate date, TimeSlot time) {
+        this.date = date;
+        this.time = time;
+    }
+
     public String getName() {
         return name;
     }

@@ -1,17 +1,18 @@
 package rest.order.reservation.Model.User;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import rest.order.reservation.DefineEnum.UserClass;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
-import jakarta.persistence.*;
-import rest.order.reservation.DefineEnum.UserClass;
-
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class AppUser implements UserDetails { // 상속을 이용할 것이면 최소한으로 줄여야 할듯
 
     @Id
@@ -38,7 +39,7 @@ public class AppUser implements UserDetails { // 상속을 이용할 것이면 �
     }
 
     public AppUser(Long uid, String loginId, String loginPwd, String name, UserClass userType, String phoneNumber,
-            String email) {
+                   String email) {
         this.uid = uid;
         this.loginId = loginId;
         this.loginPwd = loginPwd;
@@ -153,7 +154,7 @@ public class AppUser implements UserDetails { // 상속을 이용할 것이면 �
     @Override
     public boolean isAccountNonExpired() {
         return true; // Account never expires
-    } 
+    }
 
 
     @Override

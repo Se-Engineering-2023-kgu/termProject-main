@@ -84,6 +84,7 @@ public class AdminController {
     public String reservationSearch(@ModelAttribute("researvationSearch") ReservationSearch reservationSearch, Model model) {
 //        List<Reservation> reservationList = reservationService.findAllReservation();
         List<Reservation> reservationList = reservationService.findAllReservation(reservationSearch);
+
         model.addAttribute("reservationList", reservationList);
         return "admin/reservationList";
     }
@@ -137,6 +138,7 @@ public class AdminController {
     public ResponseEntity<?> customerDelete(@PathVariable("uid") Long id) {
         try {
             userService.deleteUser(id);
+
             return new ResponseEntity(HttpStatus.OK);
         } catch (RuntimeException e) {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);

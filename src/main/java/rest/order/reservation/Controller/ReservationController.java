@@ -2,26 +2,31 @@ package rest.order.reservation.Controller;
 
 
 // import lombok.extern.slf4j.Slf4j;
+
+import groovy.util.logging.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-
-import groovy.util.logging.Slf4j;
+import org.springframework.web.bind.annotation.*;
 import rest.order.reservation.Model.DTO.Reservation.ReservationForm;
+import rest.order.reservation.Model.DTO.Reservation.ReservationSearch;
 import rest.order.reservation.Model.DTO.Reservation.form.ReservationDateForm;
 import rest.order.reservation.Model.DTO.Reservation.form.ReservationTableForm;
 import rest.order.reservation.Model.Menu;
+import rest.order.reservation.Model.OrderMenu;
+import rest.order.reservation.Model.Reservation;
 import rest.order.reservation.Model.TableList;
 import rest.order.reservation.Service.MenuService;
 import rest.order.reservation.Service.ReservationService;
 import rest.order.reservation.Service.TableService;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 //import rest.order.Repository.BookRepo;
 
 @Slf4j
@@ -54,6 +59,13 @@ public class ReservationController {
             return "redirect:/customer/{id}/date";
         }
         List<TableList> tableList = tableService.findAllTable();
+
+        List<Reservation> reservationList = reservationService.findAllReservation(new ReservationSearch(LocalDate.parse(reservation.getDate()), reservation.getTime()));
+        List<Long> reservedTabelId = reservationList.stream()
+                .map(Reservation::getTables)
+                .map(TableList::getTid)
+                .collect(Collectors.toList());
+        model.addAttribute("reservedTableIds", reservedTabelId);
         model.addAttribute("tableList", tableList);
         model.addAttribute("id", id);
 
@@ -79,6 +91,12 @@ public class ReservationController {
         model.addAttribute("id", id);
         TableList table = tableService.findTable(reservation.getTid());
         model.addAttribute("tables", table);
+        List<Menu> menuList = new ArrayList<>();
+        for (Long menuId : reservation.getOrderMenuList()) {
+            Menu menu = menuService.findMenu(menuId);
+            menuList.add(menu);
+        }
+        model.addAttribute("menuList", menuList);
         // log.info("에약화면으로 이동합니다.");
         return "reservation/reservationInfo";
     }
@@ -94,6 +112,31 @@ public class ReservationController {
 
         return "redirect:/customer/{id}";
         // members , date , time , id , tableID , orderList
+    }
+
+    @GetMapping("reservation/{reservationId}/orderList")
+    @ResponseBody
+    public ResponseEntity<?> orderListModal(@PathVariable Long reservationId) {
+
+        try {
+
+            Reservation reservation = reservationService.getReservationById(reservationId);
+            System.out.println("reseravtion : " + reservation);
+            List<OrderMenu> orderMenuList = reservation.getOrderList();
+            for (OrderMenu menu : orderMenuList) {
+                System.out.println(menu);
+            }
+            System.out.println("출력");
+
+
+//            List<Long> orderedMenuId = reservation.getOrderList().stream()
+//                    .map(orderMenu -> orderMenu.getMenu().getMid())
+//                    .collect(Collectors.toList());
+
+            return new ResponseEntity(orderMenuList, HttpStatus.OK);
+        } catch (RuntimeException e) {
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
     }
 
 

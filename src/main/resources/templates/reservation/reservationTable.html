@@ -2,26 +2,26 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="/css/reservationTable.css">
+    <link href="/css/reservationTable.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
     <title>Table</title>
 </head>
 <body>
-    <div th:replace="~{fragments/Header :: Header}"></div>
-    <div class="wrap">
-        <div class="Select">
-            <h3>예약 페이지 2. 테이블 선택 </h3>
-            <form method="post" role="form" th:action="@{/customer/{id}/table(id=${id})}"
-                th:object="${reservation}">
-                <!--th:object -> 이 안에서 이객체를 계속사용하겠다-->
-                <div class="NumberOfPeople">
-                    <!--            <label>인원수 - hidden</label>-->
-                    <input th:field="*{members}" type="hidden"/>
-                </div>
-                <div class="Date">
-                    <!--            <label>날짜 -hidden</label>-->
-                    <input th:field="*{date}" type="hidden"/>
-                </div>
+<div th:replace="~{fragments/Header :: Header}"></div>
+<div class="wrap">
+    <div class="Select">
+        <h3>예약 페이지 2. 테이블 선택 </h3>
+        <form method="post" role="form" th:action="@{/customer/{id}/table(id=${id})}"
+              th:object="${reservation}">
+            <!--th:object -> 이 안에서 이객체를 계속사용하겠다-->
+            <div class="NumberOfPeople">
+                <!--            <label>인원수 - hidden</label>-->
+                <input th:field="*{members}" type="hidden"/>
+            </div>
+            <div class="Date">
+                <!--            <label>날짜 -hidden</label>-->
+                <input th:field="*{date}" type="hidden"/>
+            </div>
 
             <div class="Time">
                 <!--            <label>시간 -hidden</label>-->
@@ -31,15 +31,17 @@
             <div class="SelectTable">
                 <div th:each="table : ${tableList}">
                     <label>
-                        <input class="radio" th:id="'radio' + ${table.tid}" th:name="tid"
-                               th:value="${table.tid}" type="radio"/>
+                        <input class="radio" th:disabled="${#lists.contains(reservedTableIds,table.tid)}" th:id="'radio' + ${table.tid}"
+                               th:name="tid" th:value="${table.tid}"
+                               type="radio"
+                        />
                         <span th:text="|${table.number}번|"></span>
                     </label>
                 </div>
-
+                <br/>
+                <button class="submit" type="submit">확인</button>
             </div>
-            <br/>
-            <button class="submit" type="submit">확인</button>
+
         </form>
     </div>
 </div>
