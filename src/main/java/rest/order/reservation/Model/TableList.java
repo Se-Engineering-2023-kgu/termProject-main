@@ -1,9 +1,11 @@
 package rest.order.reservation.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "tableList")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class TableList {
 
     @Id

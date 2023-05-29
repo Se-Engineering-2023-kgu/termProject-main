@@ -2,13 +2,14 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/css/customerInfo.css">
+    <link href="/css/customerInfo.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>My Page</title>
 </head>
 <body>
 <input id="customerId" th:value="${id}" type="hidden"/>
 <div>
-    <span>이전 예약 개수 :</span>
+    <span th:text="|이전 예약 횟수 : ${pastResrvationsSize}|">이전 예약 개수 :</span>
     <table class="">
         <thead>
         <tr>

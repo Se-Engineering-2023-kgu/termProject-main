@@ -137,6 +137,7 @@ public class AdminController {
     public ResponseEntity<?> customerDelete(@PathVariable("uid") Long id) {
         try {
             userService.deleteUser(id);
+
             return new ResponseEntity(HttpStatus.OK);
         } catch (RuntimeException e) {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);

@@ -2,20 +2,21 @@ package rest.order.reservation.Controller;
 
 
 // import lombok.extern.slf4j.Slf4j;
+
+import groovy.util.logging.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-
-import groovy.util.logging.Slf4j;
+import org.springframework.web.bind.annotation.*;
 import rest.order.reservation.Model.DTO.Reservation.ReservationForm;
 import rest.order.reservation.Model.DTO.Reservation.form.ReservationDateForm;
 import rest.order.reservation.Model.DTO.Reservation.form.ReservationTableForm;
 import rest.order.reservation.Model.Menu;
+import rest.order.reservation.Model.OrderMenu;
+import rest.order.reservation.Model.Reservation;
 import rest.order.reservation.Model.TableList;
 import rest.order.reservation.Service.MenuService;
 import rest.order.reservation.Service.ReservationService;
@@ -94,6 +95,31 @@ public class ReservationController {
 
         return "redirect:/customer/{id}";
         // members , date , time , id , tableID , orderList
+    }
+
+    @GetMapping("reservation/{reservationId}/orderList")
+    @ResponseBody
+    public ResponseEntity<?> orderListModal(@PathVariable Long reservationId) {
+
+        try {
+
+            Reservation reservation = reservationService.getReservationById(reservationId);
+            System.out.println("reseravtion : " + reservation);
+            List<OrderMenu> orderMenuList = reservation.getOrderList();
+            for (OrderMenu menu : orderMenuList) {
+                System.out.println(menu);
+            }
+            System.out.println("출력");
+
+
+//            List<Long> orderedMenuId = reservation.getOrderList().stream()
+//                    .map(orderMenu -> orderMenu.getMenu().getMid())
+//                    .collect(Collectors.toList());
+
+            return new ResponseEntity(orderMenuList, HttpStatus.OK);
+        } catch (RuntimeException e) {
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
     }
 
 

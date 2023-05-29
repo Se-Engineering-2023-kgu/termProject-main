@@ -1,11 +1,12 @@
 package rest.order.reservation.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 import rest.order.reservation.DefineEnum.MenuType;
 
 @Entity
-@Table(name = "menu") // DB 에 menu 테이블이 만들어져요 
+@Table(name = "menu") // DB 에 menu 테이블이 만들어져요
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Menu {
 
     @Id

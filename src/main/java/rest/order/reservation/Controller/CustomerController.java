@@ -64,7 +64,7 @@ public class CustomerController {
         List<Reservation> futureReservations = reservationList.stream()
                 .filter(reservation -> !reservation.getDateSlot().isBefore(LocalDate.now()))
                 .collect(Collectors.toList());
-
+        model.addAttribute("pastResrvationsSize", pastReservations.size());
         model.addAttribute("pastReservations", pastReservations);
         model.addAttribute("futureReservations", futureReservations);
         model.addAttribute("id", id);

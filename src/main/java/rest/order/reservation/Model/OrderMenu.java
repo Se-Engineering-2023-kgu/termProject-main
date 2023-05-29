@@ -1,9 +1,12 @@
 package rest.order.reservation.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "OrderMenu")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class OrderMenu {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,6 +19,7 @@ public class OrderMenu {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "reservation_id")
+    @JsonBackReference
     private Reservation reservationID; // 예약 1 - 주문 메뉴 종류 n
     @Column(name = "order_price")
     private int orderPrice; // 한종류 주문시점 가격
@@ -41,7 +45,7 @@ public class OrderMenu {
     public static OrderMenu createOrderMenu(Menu menu, int count) {
         return new OrderMenu(menu, (int) (menu.getPrice() * count), count);
     }
-    
+
 
     public Long getOrderMenuID() {
         return orderMenuID;
