@@ -16,7 +16,7 @@
                 </div>
                 <ul class="navbar_menu">
                     <li><a href="#main_About">About</a></li>
-                    <li><a href="#main_Menu">Menu</a></li>
+                    <li><a href="#main_Menu">Best Menu</a></li>
                     <li><a href="#main_Reservation">Reservation</a></li>
                     <li><a href="#main_Location">Location</a></li>
                     <li><a  th:href="@{/customer/{id}/info(id=${id})}">MyPage</a></li>
@@ -44,24 +44,24 @@
                         </div>
                         <div class="team_icon" id="icon">
                             <img src="/img/team_icon.png" width="150px">
-                        </div>
-                        <div class="team_icon_caption">
-                            <h4>Introduce SWEB</h4>
-                            <p>SWEB 이란 Software-Engineering team B 라는 뜻의 퓨전 레스토랑입니다</p>
+                            <div class="team_icon_caption">
+                                <h4>Introduce SWEB</h4>
+                                <p>SWEB 이란 Software-Engineering team B 라는 뜻의 퓨전 레스토랑입니다</p>
+                            </div>
                         </div>
                         <div class="dish_icon" id="icon">
                             <img src="/img/dish_icon.png" width="150px">
-                        </div>
-                        <div class="dish_icon_caption">
-                            <h4>Best Service</h4>
-                            <p>SWEB은 항상 최고의 서비스로 고객을 모십니다</p>
+                            <div class="dish_icon_caption">
+                                <h4>Best Service</h4>
+                                <p>SWEB은 항상 최고의 서비스로 고객을 모십니다</p>
+                            </div>
                         </div>
                         <div class="food_icon" id="icon">
                             <img src="/img/food_icon.png" width="150px">
-                        </div>
-                        <div class="food_icon_caption">
-                            <h4>Fresh Food</h4>
-                            <p>SWEB은 신선한 식재료로 고객님들의 입안을 즐겁게 합니다</p>
+                            <div class="food_icon_caption">
+                                <h4>Fresh Food</h4>
+                                <p>SWEB은 신선한 식재료로 고객님들의 입안을 즐겁게 합니다</p>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -70,8 +70,37 @@
                 <section class="mainsite_section" id="main_Menu">
                     <div class="Menu_header">
                         <div class="Menu_text_center">
-                            <h2>Menu</h2>
+                            <h2>Best Menu</h2>
                             <hr>
+                            <div class="steak">
+                                <img src="/img/8.jpg" width="450px">
+                                <div class="steak_caption">
+                                    <h3>Steak</h3>
+                                    <p>~~~~</p>
+                                </div>
+                            </div>
+                            <div class="pasta">
+                                <img src="/img/7.jpg" width="450px">
+                                <div class="pasta_caption">
+                                    <h3>Pasta</h3>
+                                    <p>~~~~</p>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="salad">
+                                <img src="/img/6.jpg" width="450px">
+                                <div class="salad_caption">
+                                    <h3>Salad</h3>
+                                    <p>~~~~</p>
+                                </div>
+                            </div>
+                            <div class="tart">
+                                <img src="/img/4.jpg" width="450px">
+                                <div class="tart_caption">
+                                    <h3>Tart</h3>
+                                    <p>~~~~</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -83,6 +112,7 @@
                             <h2>Reservation</h2>
                             <hr>
                             <button type="button"><a class="" th:href="@{/customer/{id}/date(id=${id})}">사전 예약</a></button>
+                            <p style="padding-top: 50px;">SWEB만의 사전 예약 서비스를 통해 웨이팅 없이 레스토랑을 즐겨보세요!</p>
                         </div>
                     </div>
                 </section>
