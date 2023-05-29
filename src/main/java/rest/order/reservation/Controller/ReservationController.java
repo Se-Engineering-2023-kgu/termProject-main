@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import rest.order.reservation.Model.DTO.Reservation.ReservationForm;
+import rest.order.reservation.Model.DTO.Reservation.ReservationSearch;
 import rest.order.reservation.Model.DTO.Reservation.form.ReservationDateForm;
 import rest.order.reservation.Model.DTO.Reservation.form.ReservationTableForm;
 import rest.order.reservation.Model.Menu;
@@ -22,8 +23,10 @@ import rest.order.reservation.Service.MenuService;
 import rest.order.reservation.Service.ReservationService;
 import rest.order.reservation.Service.TableService;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 //import rest.order.Repository.BookRepo;
 
 @Slf4j
@@ -56,6 +59,13 @@ public class ReservationController {
             return "redirect:/customer/{id}/date";
         }
         List<TableList> tableList = tableService.findAllTable();
+
+        List<Reservation> reservationList = reservationService.findAllReservation(new ReservationSearch(LocalDate.parse(reservation.getDate()), reservation.getTime()));
+        List<Long> reservedTabelId = reservationList.stream()
+                .map(Reservation::getTables)
+                .map(TableList::getTid)
+                .collect(Collectors.toList());
+        model.addAttribute("reservedTableIds", reservedTabelId);
         model.addAttribute("tableList", tableList);
         model.addAttribute("id", id);
 
