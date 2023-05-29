@@ -82,7 +82,7 @@ public class ReservationService {
     public List<Reservation> findAllReservation(ReservationSearch reservationSearch) {
 
         List<Reservation> reservationList = reservationRepository.findAll(reservationSearch);
-        Collections.sort(reservationList, new TimeSort());
+        Collections.sort(reservationList, new DateTimeSort());
         return reservationList;
 
 //        return reservationRepository.findAll(reservationSearch);
@@ -130,7 +130,10 @@ public class ReservationService {
     // 고객 예약 목록 보여주기
     public List<Reservation> getReservationsByCustomerId(Long id) {
         Optional<AppUser> user = appUserRepository.findById(id); // id를 사용하여 AppUser 조회 (appUserRepository는 해당 repository 인터페이스 이름입니다)
-        return reservationRepository.findByUser(user.orElse(null), Sort.by(Sort.Direction.ASC, "dateSlot"));
+        List<Reservation> reservationList = reservationRepository.findByUser(user.orElse(null), Sort.by(Sort.Direction.ASC, "dateSlot"));
+        Collections.sort(reservationList, new DateTimeSort());
+        return reservationList;
+
     }
 
     public Reservation getReservationById(Long id) {
@@ -139,7 +142,7 @@ public class ReservationService {
     }
 
 
-    class TimeSort implements Comparator<Reservation> {
+    static class DateTimeSort implements Comparator<Reservation> {
         @Override
         public int compare(Reservation o1, Reservation o2) {
             int dateComparison = o1.getDateSlot().compareTo(o2.getDateSlot());
