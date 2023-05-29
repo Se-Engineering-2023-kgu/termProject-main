@@ -84,6 +84,7 @@ public class AdminController {
     public String reservationSearch(@ModelAttribute("researvationSearch") ReservationSearch reservationSearch, Model model) {
 //        List<Reservation> reservationList = reservationService.findAllReservation();
         List<Reservation> reservationList = reservationService.findAllReservation(reservationSearch);
+
         model.addAttribute("reservationList", reservationList);
         return "admin/reservationList";
     }

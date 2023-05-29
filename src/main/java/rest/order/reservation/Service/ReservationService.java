@@ -19,9 +19,7 @@ import rest.order.reservation.Repository.TableRepo;
 import rest.order.reservation.Repository.User.AppUserRepo;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Slf4j
 @Service
@@ -83,7 +81,11 @@ public class ReservationService {
 
     public List<Reservation> findAllReservation(ReservationSearch reservationSearch) {
 
-        return reservationRepository.findAll(reservationSearch);
+        List<Reservation> reservationList = reservationRepository.findAll(reservationSearch);
+        Collections.sort(reservationList, new TimeSort());
+        return reservationList;
+
+//        return reservationRepository.findAll(reservationSearch);
     }
 
     // 예약 삭제 : db 기준으로 reservationId 의 orderList들을 모두 삭제해야 -> reservationId가 삭제될 것 같다. : orderList에는 cascade가 없으므로
@@ -134,6 +136,23 @@ public class ReservationService {
     public Reservation getReservationById(Long id) {
         return reservationRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Reservation with id " + id + " not found"));
+    }
+
+
+    class TimeSort implements Comparator<Reservation> {
+        @Override
+        public int compare(Reservation o1, Reservation o2) {
+            int dateComparison = o1.getDateSlot().compareTo(o2.getDateSlot());
+            if (dateComparison != 0) {
+                return dateComparison;
+            }
+
+            // If dates are equal, compare by time
+            String subO1 = o1.getTimeSlot().getDetail().substring(0, 2);
+            String subO2 = o2.getTimeSlot().getDetail().substring(0, 2);
+            return Integer.parseInt(subO1) - Integer.parseInt(subO2);
+        }
+
     }
 
 }
