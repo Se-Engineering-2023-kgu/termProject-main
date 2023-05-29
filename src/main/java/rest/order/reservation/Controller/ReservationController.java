@@ -22,6 +22,7 @@ import rest.order.reservation.Service.MenuService;
 import rest.order.reservation.Service.ReservationService;
 import rest.order.reservation.Service.TableService;
 
+import java.util.ArrayList;
 import java.util.List;
 //import rest.order.Repository.BookRepo;
 
@@ -80,6 +81,12 @@ public class ReservationController {
         model.addAttribute("id", id);
         TableList table = tableService.findTable(reservation.getTid());
         model.addAttribute("tables", table);
+        List<Menu> menuList = new ArrayList<>();
+        for (Long menuId : reservation.getOrderMenuList()) {
+            Menu menu = menuService.findMenu(menuId);
+            menuList.add(menu);
+        }
+        model.addAttribute("menuList", menuList);
         // log.info("에약화면으로 이동합니다.");
         return "reservation/reservationInfo";
     }
