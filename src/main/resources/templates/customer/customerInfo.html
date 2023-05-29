@@ -4,70 +4,77 @@
     <meta charset="UTF-8">
     <link href="/css/customerInfo.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="/css/customerInfo.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+
     <title>My Page</title>
 </head>
 <body>
 <input id="customerId" th:value="${id}" type="hidden"/>
-<div>
-    <span th:text="|이전 예약 횟수 : ${pastResrvationsSize}|">이전 예약 개수 :</span>
-    <table class="">
-        <thead>
-        <tr>
-            <th>날짜</th>
-            <th>시간</th>
-            <th>예약 인원 수</th>
-            <th>테이블 번호</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="reservation : ${pastReservations}">
-            <td th:text="${reservation.dateSlot}"></td>
-            <td th:text="${reservation.timeSlot.detail}"></td>
-            <td th:text="${reservation.tables.number}"></td>
-            <td th:text="${reservation.members}"></td>
-            <br/>
-        </tr>
-        </tbody>
-    </table>
-</div>
-<br/>
-<br/>
-<div>
-    <span>예정된 예약</span>
-    <table class="">
-        <thead>
-        <tr>
-            <th>예약 삭제</th>
-            <th>예약 수정</th>
-            <th>날짜</th>
-            <th>시간</th>
-            <th>테이블 번호</th>
-            <th>예약 인원 수</th>
 
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="reservation : ${futureReservations}">
-            <td>
-                <button class="deleteBtn" th:data-reservation-id="${reservation.reservationID}" type="button">
-                    삭제
-                </button>
-            </td>
-            <td>
-                <a class="modifyBtn"
-                   role="button"
-                   th:href="@{/customer/{customerId}/reservation/{reservationId}/edit(customerId=${id},reservationId=${reservation.reservationID})}">
-                    수정
-                </a>
-            </td>
-            <td th:text="${reservation.dateSlot}"></td>
-            <td th:text="${reservation.timeSlot.detail}"></td>
-            <td th:text="|${reservation.tables.number}번|"></td>
-            <td th:text="|${reservation.members}명|"></td>
-            <br/>
-        </tr>
-        </tbody>
-    </table>
+<div class="wrap">
+    <div class="mypage">
+        <div class="user">
+            <img src="/img/user_icon.png" width="100px" style="margin-top: 30px;">
+        </div>
+        <div>
+            <table class="before_res">
+                <caption th:text="|이전 예약 : ${pastResrvationsSize}|" >이전 예약</caption>
+                <thead>
+                <tr>
+                    <th>날짜</th>
+                    <th>시간</th>
+                    <th>예약 인원 수</th>
+                    <th>테이블 번호</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="reservation : ${pastReservations}">
+                    <td th:text="${reservation.dateSlot}"></td>
+                    <td th:text="${reservation.timeSlot.detail}"></td>
+                    <td th:text="${reservation.tables.number}"></td>
+                    <td th:text="${reservation.members}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <table class="scheduled_res">
+                <caption>예정된 예약</caption>
+                <thead>
+                <tr>
+                    <th>예약 삭제</th>
+                    <th>예약 수정</th>
+                    <th>날짜</th>
+                    <th>시간</th>
+                    <th>테이블 번호</th>
+                    <th>예약 인원 수</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="reservation : ${futureReservations}">
+                    <td>
+                        <button class="deleteBtn" th:data-reservation-id="${reservation.reservationID}" type="button">
+                            삭제
+                        </button>
+                    </td>
+                    <td>
+                        <a class="modifyBtn"
+                           role="button"
+                           th:href="@{/customer/{customerId}/reservation/{reservationId}/edit(customerId=${id},reservationId=${reservation.reservationID})}">
+                            수정
+                        </a>
+                    </td>
+                    <td th:text="${reservation.dateSlot}"></td>
+                    <td th:text="${reservation.timeSlot.detail}"></td>
+                    <td th:text="|${reservation.tables.number}번|"></td>
+                    <td th:text="|${reservation.members}명|"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <br>
+    </div>
 </div>
 </body>
 </html>
