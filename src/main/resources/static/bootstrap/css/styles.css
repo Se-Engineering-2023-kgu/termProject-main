@@ -10898,12 +10898,24 @@ body {
   margin-left: -225px;
 }
 
+/*#maintext {*/
+/*  color: gray;*/
+/*  position: absolute;*/
+/*  top: 50%;*/
+/*  left: 50%;*/
+/*  transform: translate(-0%, -50%);*/
+/*}*/
+
 #maintext {
   color: gray;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-0%, -50%);
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 #display_flex_center {

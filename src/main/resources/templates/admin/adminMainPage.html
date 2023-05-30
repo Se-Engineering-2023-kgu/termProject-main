@@ -106,7 +106,21 @@
         <main>
 
             <div id="maintext">
-                좌측 메뉴를 선택해주세요.
+                <div>
+                    <h3 th:text="|${currentDate} 예약 개수 : ${reservationCount}|"></h3>
+                </div>
+                <div>
+                    <table>
+                        <tr>
+                            <th>시간</th>
+                            <th>예약수</th>
+                        </tr>
+                        <tr th:each="entry : ${reservationMap}">
+                            <td th:text="${entry.key}"></td>
+                            <td th:text="${entry.value}"></td>
+                        </tr>
+                    </table>
+                </div>
             </div>
 
             <!-- <div class="container-fluid px-4">

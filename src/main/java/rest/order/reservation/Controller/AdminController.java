@@ -20,7 +20,10 @@ import rest.order.reservation.Service.ReservationService;
 import rest.order.reservation.Service.TableService;
 import rest.order.reservation.Service.UserService;
 
+import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @Controller
@@ -52,8 +55,18 @@ public class AdminController {
     }
 
     @GetMapping("/main")
-    public String adminMain() {
+    public String adminMain(Model model) {
 
+        List<Reservation> reservationList = reservationService.findAllReservation(new ReservationSearch(LocalDate.now()));
+
+        Map<String, Integer> reservationMap = new HashMap<>();
+        for (Reservation reservation : reservationList) {
+            String key = reservation.getTimeSlot().getDetail();
+            reservationMap.put(key, reservationMap.getOrDefault(key, 0) + 1);
+        }
+        model.addAttribute("reservationMap", reservationMap);
+        model.addAttribute("currentDate", LocalDate.now().toString());
+        model.addAttribute("reservationCount", reservationList.size());
 
         return "admin/adminMainPage";
     }
@@ -83,6 +96,7 @@ public class AdminController {
     @GetMapping("/reservationList")
     public String reservationSearch(@ModelAttribute("researvationSearch") ReservationSearch reservationSearch, Model model) {
 //        List<Reservation> reservationList = reservationService.findAllReservation();
+        System.out.println("여기까지는 오나?");
         List<Reservation> reservationList = reservationService.findAllReservation(reservationSearch);
 
         model.addAttribute("reservationList", reservationList);
@@ -98,7 +112,6 @@ public class AdminController {
     }
     //    @GetMapping("/customer")
 //    public String manageUser(Model model) {
-//
 //        return "customerList";
 //    }
 
