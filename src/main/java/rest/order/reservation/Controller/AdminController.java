@@ -108,7 +108,7 @@ public class AdminController {
 
         List<AppUser> appUserList = userService.findAllUser(appUserSearch);
         model.addAttribute("appUserList", appUserList);
-        return "admin/customerList";
+        return "admin/manageCustomerPage";
     }
     //    @GetMapping("/customer")
 //    public String manageUser(Model model) {
