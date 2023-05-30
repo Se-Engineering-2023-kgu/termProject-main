@@ -1,16 +1,23 @@
-html{
+html {
     scroll-behavior: smooth;
 }
-body{
+
+body {
     margin: 0;
     font-family: 'Merriweather', serif;
 
 }
-a{
+
+hr {
+    width: 80%
+}
+
+a {
     text-decoration: none;
     color: black;
 }
- .main_site{
+
+.main_site {
     margin-top: 79px;
     width: 100vw;
     height: 85vh;
@@ -20,7 +27,7 @@ a{
 }
 
 
-.navbar{
+.navbar {
     position: absolute;
     z-index: 2;
     display: flex;
@@ -34,7 +41,7 @@ a{
     background-color: white;
 }
 
-.navbar_menu{
+.navbar_menu {
     /* margin-left: 180px; */
     display: flex;
     justify-content: center;
@@ -43,17 +50,17 @@ a{
     color: rgb(0, 0, 0);
 }
 
-.navbar_menu li{
+.navbar_menu li {
     padding: 8px 30px;
 }
 
 .navbar_menu li:hover {
-    background-color:#e0cda2;
+    background-color: #e0cda2;
     transition: 0.9s;
     border-radius: 4px;
 }
 
-.navbar_member{
+.navbar_member {
     display: flex;
     justify-content: flex-end;
     list-style: none;
@@ -61,18 +68,20 @@ a{
 }
 
 .navbar_member li:hover {
-    background-color:#e0cda2;
+    background-color: #e0cda2;
     transition: 0.9s;
     border-radius: 4px;
 }
 
-.navbar_member li{
+.navbar_member li {
     padding: 8px 12px;
 }
-.himember{
+
+.himember {
     font-family: 'Nanum Gothic', sans-serif;
 }
-.main_img_text{
+
+.main_img_text {
     position: absolute;
     top: 40%;
     left: 50%;
@@ -82,37 +91,76 @@ a{
 }
 
 .content {
-    list-style:none;
+    list-style: none;
 }
-.content li{
-    min-height: 1300px;
-}
-.content section{
-    padding-top: 90px;
+
+.content li {
+    min-height: 700px;
+    padding-top: 50px;
     text-align: center;
     background-color: white;
     color: black;
-    height: 400px;    
+    /* height: 400px;     */
 }
-.About_text_center{
+
+.text_center {
     font-size: 30px;
 }
+
+#About_content {
+    /* height: 600px; */
+    /* background-color: aqua; */
+    display: grid;
+    /* justify-content: space-around; */
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
 .About_header img {
     padding: 30px 0;
 }
 
-.About_header h4{
+.About_header h4 {
     font-size: 20px;
 }
-.About_header p{
+
+.About_header p {
     font-family: 'Nanum Gothic', sans-serif;
 }
 
-.Reservation_header{
+#menu_content {
+    /* background-color: aqua; */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+.Reservation_header {
     font-family: 'Nanum Gothic', sans-serif;
 }
-.Reservation_header button{
-    width: 20%;
+
+#reservation_content{
+    /* background-color: aqua; */
+    height: 500px;
+    position: relative;
+}
+#reservation_content div{
+    
+    position: absolute;
+    top: 20%;
+    left: 32%;
+    /* transform: translate(-0%, -50%); */
+
+}
+
+/*#maintext {*/
+/*  color: gray;*/
+/*  position: absolute;*/
+/*  top: 50%;*/
+/*  left: 50%;*/
+/*  transform: translate(-0%, -50%);*/
+/*}*/
+#reservation_content button {
+    width: 70%;
     height: 50px;
     border: 0;
     outline: none;
@@ -124,48 +172,54 @@ a{
     font-family: 'Nanum Gothic', sans-serif;
 }
 
-.team_icon{
+.team_icon {
     display: inline-block;
     float: left;
     padding: 0 5px;
     margin-top: 100px;
 }
-.dish_icon{
+
+.dish_icon {
     display: inline-block;
     padding: 0 5px;
     margin-top: 100px;
 }
-.food_icon{
+
+.food_icon {
     display: inline-block;
     float: right;
     padding: 0 5px;
     margin-top: 100px;
 }
 
-.steak{
+.steak {
     display: inline-block;
     float: left;
     padding-left: 150px;
     padding-top: 100px;
 }
-.pasta{
+
+.pasta {
     display: inline-block;
     float: right;
     padding-right: 150px;
     padding-top: 100px;
 }
-.salad{
+
+.salad {
     float: left;
     padding-left: 150px;
     padding-top: 100px;
 }
-.tart{
+
+.tart {
     display: inline-block;
     float: right;
     padding-right: 150px;
     padding-top: 100px;
 }
-footer{
+
+footer {
     height: 120px;
     background-color: #e0cda2;
 }
@@ -175,9 +229,11 @@ footer p {
     padding-top: 30px;
     font-size: 12px;
 }
-.footer_icon{
+
+.footer_icon {
     text-align: center;
 }
-.footer_icon img{
+
+.footer_icon img {
     padding: 5px 5px;
 }
