@@ -144,7 +144,22 @@ public class AdminController {
         } catch (RuntimeException e) {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
+    }
 
+    @DeleteMapping("customer/delete/{uid}")
+    public ResponseEntity<?> customerDelete(@PathVariable("uid") Long id) {
+        try {
+            // 유저 id 넣어서 -> reservation들 모두 찾고 -> 모두 삭제
+            List<Reservation> reservationList = reservationService.getReservationsByCustomerId(id);
+            for (Reservation reservation : reservationList) {
+                reservationService.deleteReservation(reservation.getReservationID());
+            }
+            // 유저 삭제
+            userService.deleteUser(id);
+            return new ResponseEntity(HttpStatus.OK);
+        } catch (RuntimeException e) {
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
     }
 
     // 메뉴는 에약에 참조키, 삭제불가능
@@ -160,17 +175,6 @@ public class AdminController {
 //         }
 
 //     }
-
-    @DeleteMapping("customer/delete/{uid}")
-    public ResponseEntity<?> customerDelete(@PathVariable("uid") Long id) {
-        try {
-            userService.deleteUser(id);
-
-            return new ResponseEntity(HttpStatus.OK);
-        } catch (RuntimeException e) {
-            return new ResponseEntity(HttpStatus.BAD_REQUEST);
-        }
-    }
 
 
 }
