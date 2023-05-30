@@ -134,6 +134,20 @@ public class AdminController {
 
     }
 
+    // 메뉴는 에약에 참조키, 삭제불가능
+//     @DeleteMapping("reservation/delete/{mid}")
+//     @ResponseBody
+//     public ResponseEntity<?> reservationDelete(@PathVariable("reservationId") Long id) {
+// //        log.info("delete 까지는 왔다");
+//         try {
+//             reservationService.deleteReservation(id);
+//             return new ResponseEntity(HttpStatus.OK);
+//         } catch (RuntimeException e) {
+//             return new ResponseEntity(HttpStatus.BAD_REQUEST);
+//         }
+
+//     }
+
     @DeleteMapping("customer/delete/{uid}")
     public ResponseEntity<?> customerDelete(@PathVariable("uid") Long id) {
         try {

@@ -170,24 +170,27 @@
                             <table id="datatablesSimple">
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Position</th>
-                                        <th>Office</th>
-                                        <th>Age</th>
-                                        <th>Start date</th>
-                                        <th>Salary</th>
+                                        <!-- <th>삭제</th> -->
+                                        <th>메뉴 타입</th>
+                                        <th>메뉴 이름</th>
+                                        <th>가격</th>
+                                        <th>메뉴 소개</th>
                                     </tr>
                                 </thead>
                                
                                 <tbody>
 
-                                    <tr>
-                                        <td>Ashton Cox</td>
-                                        <td>Junior Technical Author</td>
-                                        <td>San Francisco</td>
-                                        <td>66</td>
-                                        <td>2009/01/12</td>
-                                        <td>$86,000</td>
+                                    <tr th:each = "menu : ${menuList}">
+                                        <!-- <td>
+                                            <button class="deleteBtn"
+                                                    th:data-menu-id="${menu.mid}" type="button">
+                                                삭제
+                                            </button>
+                                        </td> -->
+                                        <td th:text="${menu.type}"></td>
+                                        <td th:text="${menu.name}"></td>
+                                        <td th:text="${menu.price}"></td>
+                                        <td th:text="${menu.intro}"></td>
                                     </tr>
 
                                 </tbody>
@@ -197,11 +200,13 @@
                 </div>
 
 <!-- for 문-->
-                <div class="" th:each="menu : ${menuList}">
+                <!-- <div class="" th:each="menu : ${menuList}">
                     <span th:text="|메뉴 이름 : ${menu.name}|"></span>
                     <span th:text="|메뉴 설명: ${menu.intro}|"></span>
+                    <span th:text="|메뉴 설명: ${menu.price}|"></span>
+                    <span th:text="|메뉴 설명: ${menu.type}|"></span>
                     <div></div>
-                </div>
+                </div> -->
                 <!-- <div class="container-fluid px-4">
                     
                     <h1>예약 현황</h1>
@@ -343,22 +348,22 @@
 <!-- <script>
     $(document).ready(function () {
         $(".deleteBtn").click(function () {
-            let reservationId = $(this).data("reservation-id");
-            if (window.confirm("예약을 삭제하시겠습니까?")) {
+            let mid = $(this).data("menu-id");
+            if (window.confirm("메뉴를 삭제하시겠습니까?")) {
                 $.ajax({
-                    url: "/admin/reservation/delete/" + reservationId,
+                    url: "/admin/menu/delete/" + mid,
                     method: "DELETE",
                 }).done(function () {
                     alert("삭제완료 했습니다.")
-                    window.location.href = '/admin/reservationList';
+                    window.location.href = '/admin/addMenuPage';
                 }).fail(function () {
                     alert("삭제 실패했습니다.")
                 });
             }
         });
     });
-</script>
+</script> -->
 
-<script>
+<!-- <script>
     document.getElementById('currentDate').value = new Date().toISOString().substring(0, 10);
 </script> -->
