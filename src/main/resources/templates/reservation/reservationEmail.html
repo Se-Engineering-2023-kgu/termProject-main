@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="/css/reservationInfo.css" rel="stylesheet">
+    <title>ReservationInfo</title>
+</head>
+<body>
+<div th:replace="~{fragments/Header :: Header}"/>
+<div class="wrap">
+    <div class="reserInfo">
+        <h3>4. 예약 명세서</h3>
+            <div>
+                <label>예약 인원수:</label>
+                <span th:text="${members}"></span>
+            </div>
+            <div>
+                <label>날짜:</label>
+                <span th:text="${date}"></span>
+            </div>
+            <div>
+                <label>시간:</label>
+                <span th:text="${detail}"></span>
+            </div>
+
+            <div>
+                <label>테이블 번호:</label>
+                <span th:text="|${tables}번|"></span>
+            </div>
+            <div th:each="orderMenu : ${orderMenuList}">
+                <!-- Access properties of each OrderMenu item -->
+                <div th:text="${orderMenu}"></div>
+                <!-- ... -->
+            </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -14,17 +14,17 @@ public class MailController {
         this.emailService = emailService;
     }
 
-    @GetMapping("/send-email")
-    public String sendEmail() {
-        String to = "choi4624@gmail.com";
-        String subject = "Test Email";
-        String body = "This is a test email.";
+    // @GetMapping("/send-email")
+    // public String sendEmail() {
+    //     String to = "choi4624@gmail.com";
+    //     String subject = "Test Email";
+    //     String body = "This is a test email.";
 
         
 
-        emailService.sendEmail(to, subject, body);
+    //     emailService.sendEmail(to, subject, body);
 
-        return "emailSentPage";
-    }
+    //     return "emailSentPage";
+    // }
 
 }
