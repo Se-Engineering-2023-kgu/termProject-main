@@ -38,6 +38,8 @@ public class EmailService {
 
         String userMail = appUserDTO.email().toString();
 
-        sendEmail(userMail, reservation.getDate() + reservation.getTime() + " 예약 주문 ", reservation.toString());
+
+
+        sendEmail(userMail, reservation.getDate() + " " + reservation.getTime().getDetail() + " 예약 주문 ", reservation.toString());
     }
 }
