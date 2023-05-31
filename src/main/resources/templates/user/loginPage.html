@@ -1,28 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>"/user/login" 로그인 페이지</title>
     <link rel="stylesheet" href="/css/loginPage.css">
 </head>
+
 <body>
-<div class="wrap">
-    <div class="login">
-        <h2>Log-in</h2>
-        <form method="post" th:action="@{/login/login}">
-            <label for="loginId">Id</label>
-            <br>
-            <input id="loginId" name="loginId" required type="text"/>
-            <br/>
-            <label for="loginPwd">Password</label>
-            <br>
-            <input id="loginPwd" name="loginPwd" required type="password"/>
-            <br/>
-            <input id="checkbox" type="checkbox" name="remember-me"> Remember Me
-            <br />
-            <button type="submit" >Submit</button>
-        </form>
+    <div class="wrap">
+        <div class="navbar_logo">
+            <a href="/"><img src="/img/LOGO(2).png" alt="LOGO_img" width="100"></a>
+        </div>
+        <div class="login">
+            <h2>로그인</h2>
+            <form method="post" th:action="@{/login/login}">
+                <label for="loginId">아이디</label>
+                <br>
+                <input id="loginId" name="loginId" required type="text" />
+                <br />
+                <label for="loginPwd">비밀번호</label>
+                <br>
+                <input id="loginPwd" name="loginPwd" required type="password" />
+                <br />
+                <div id="auto_login_container">
+                    <input id="checkbox" type="checkbox" name="remember-me">
+                    <label id="auto_login">자동 로그인</label>
+                </div>
+                <br />
+                <button type="submit">로그인</button>
+            </form>
+
+        </div>
     </div>
-</div>
 </body>
+
 </html>
