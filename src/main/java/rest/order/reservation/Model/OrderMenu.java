@@ -1,9 +1,12 @@
 package rest.order.reservation.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "OrderMenu")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class OrderMenu {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,6 +19,7 @@ public class OrderMenu {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "reservation_id")
+    @JsonBackReference
     private Reservation reservationID; // 예약 1 - 주문 메뉴 종류 n
     @Column(name = "order_price")
     private int orderPrice; // 한종류 주문시점 가격
@@ -30,20 +34,16 @@ public class OrderMenu {
         this.count = count;
     }
 
+    public OrderMenu(Menu menu, int orderPrice, int count) {
+        this.menu = menu;
+        this.orderPrice = orderPrice;
+        this.count = count;
+    }
+
     // orderMenu 생성 메소드
     // 이게 정적 팩토리 메소드 인가?
     public static OrderMenu createOrderMenu(Menu menu, int count) {
-        return new OrderMenu(menu, count);
-    }
-
-    // 조회 로직
-    // 1. 가격 조회
-    // Reservation 이 가지고 있는 주문상품에 대한 총 가격을 표현하기 위해서
-    // for(OrderMenu orderMenu : orderList)
-    //        totalPrice += orderMenu.getTotalPrice()  로 계산하면 될듯
-
-    public int getTotalPrice() {
-        return getCount() * getOrderPrice();
+        return new OrderMenu(menu, (int) (menu.getPrice() * count), count);
     }
 
 

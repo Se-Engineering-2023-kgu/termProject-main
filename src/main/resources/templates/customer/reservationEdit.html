@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/reservationEdit.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+    <title>Reservation_Edit</title>
+</head>
+<body>
+    <div class="wrap">
+        <div class="res_edit">
+            <!-- <h1>고객</h1>
+            <!--<input class="" th:value="${customerId}" -->
+            <!-- <span th:text="|고객 : ${customerId}|"></span> -->
+            <h3>예약정보</h3>
+            <p th:text="|예약 번호 : ${reservationId}|"></p>
+
+            <form method="post" role="form"
+                th:action="@{/customer/{customerId}/reservation/{reservationId}/edit(customerId=${customerId} ,reservationId=${reservationId})}"
+                th:object="${reservationForm}">
+                <!--        <input th:value="${customerId}" type="hidden"/>-->
+                <!--        <input th:value="${reservationId}" type="hidden"/>-->
+
+
+                <div class="NumberOfPeople">
+                    <label>인원수</label>
+                    <input class="" placeholder="인원수을 입력하세요"
+                        th:field="${reservationForm.members}"
+                        type="number">
+                </div>
+                <br>
+                <div class="Date">
+                    <label>날짜</label>
+                    <input class="" id="Date" placeholder="날짜를 입력하세요"
+                        th:field="${reservationForm.date}" type="date">
+                </div>
+                <br>
+                <div class="Time">
+                    <label>시간</label>
+                    <select th:field="${reservationForm.time}">
+                        <option value="">예약시간</option>
+                        <option th:each="timeSlot : ${T(rest.order.reservation.DefineEnum.TimeSlot).values()}"
+                                th:text="${timeSlot.detail}" th:value="${timeSlot}"></option>
+                    </select>
+                </div>
+
+
+                <div class="SelectTable">
+                    <h3>테이블 수정</h3>
+                    <div th:each="table : ${tableList}">
+                        <label>
+                            <input class="radio"
+                                th:checked="${table.tid == reservationForm.tid}"
+                                th:field="*{tid}"
+                                th:id="'radio' + ${table.tid}"
+                                th:value="${table.tid}"
+                                type="radio"/>
+                            <span th:text="|${table.number}번|"></span>
+                        </label>
+                    </div>
+                </div>
+
+
+                <!--        &lt;!&ndash;<form method="post" role="form" th:action="" th:object="${reservation}">&ndash;&gt;-->
+                <div class="SelectMenu">
+                    <h3>메뉴 수정</h3>
+                    <div th:each="menu : ${menuList}">
+                        <label>
+                            <input class="menu" th:checked="${reservationForm.orderMenuList.contains(menu.mid)}"
+                                th:field="*{orderMenuList}"
+                                th:id="'menu' + ${menu.mid}"
+                                th:text="${menu.name}"
+                                th:value="${menu.mid}"
+                                type="checkbox"/>
+                        </label>
+                    </div>
+                </div>
+                <br>
+                <button id="submit" type="submit">제출</button>
+            </form>
+        </div>
+    </div>
+</body>
+<script>
+    var now_utc = Date.now() // 지금 날짜를 밀리초로
+    // getTimezoneOffset()은 현재 시간과의 차이를 분 단위로 반환
+    var timeOff = new Date().getTimezoneOffset() * 60000; // 분단위를 밀리초로 변환
+    var today = new Date(now_utc - timeOff).toISOString().split("T")[0];
+    // 현재 날짜에 오프셋을 적용하고, 7일 후의 날짜를 계산하여 ISO 형식으로 변환하고, 날짜 부분만 가져옴
+    var maxDate = new Date(now_utc - timeOff + 7 * 24 * 60 * 60 * 1000).toISOString().split("T")[0];
+    document.getElementById("Date").setAttribute("min", today);
+    document.getElementById("Date").setAttribute("max", maxDate);
+</script>
+</html>

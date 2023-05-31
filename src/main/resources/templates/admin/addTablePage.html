@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <div class="">
+        <nav>
+            <div class="navbar">
+                <div class="navbar_logo">
+                    <a th:href="@{/admin}"><img alt="LOGO_img" src="../img/LOGO(1).png" width="100"/></a>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <br/>
+
+    <div>
+        <form method="post" th:action="@{/admin/table}" th:object="${table}">
+            <div>
+                <label for="number">Number:</label>
+                <input id="number" required th:field="*{number}" type="number">
+                <br>
+            </div>
+            <div>
+                <label for="seats">Seats:</label>
+                <input id="seats" required th:field="*{seats}" type="number">
+                <br>
+            </div>
+            <div>
+                <label>Exist:</label>
+                <input id="existTrue" required th:field="*{exist}" th:value="true" type="radio">
+
+                <label for="existTrue">Yes</label>
+                <input id="existFalse" required th:field="*{exist}" th:value="false" type="radio">
+                <label for="existFalse">No</label>
+                <br>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
