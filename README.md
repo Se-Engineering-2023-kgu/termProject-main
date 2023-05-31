@@ -7,14 +7,19 @@ baseline branch
 == scrum 기점 
 
 pre engine -> 개발 시작 단계 
+https://github.com/Se-Engineering-2023-kgu/termProject-main/tree/3d43a63135c79e784544cbc4d0b334022b83e62d
 
 1st scrum -> 기본 모델 구조 및 환경 
+https://github.com/Se-Engineering-2023-kgu/termProject-main/tree/a68618254fc759d14baee1297aded42437306db3
 
 2nd scrum -> 이름 명명 규칙 사용
+https://github.com/Se-Engineering-2023-kgu/termProject-main/tree/b57d638eb7fcda38f38ef1b60ed93bb3e1fb955c
 
 3nd scrum -> 모델 구조 개선 및 페이지 디자인 시작 
+https://github.com/Se-Engineering-2023-kgu/termProject-main/tree/d9fad64beb7428e7aeeae29e1b9d85237689b941
 
 4th scrum -> 1st publish & 기본 기능 완성 
+https://github.com/Se-Engineering-2023-kgu/termProject-main/tree/21ed7991fefa74572eaf6e37a8634795d23694fe
 
 5th scrum -> documentation 
 
