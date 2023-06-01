@@ -55,12 +55,13 @@ public class CustomerController {
 
     @GetMapping("/{id}/info")
     public String customerInfo(@PathVariable Long id, Model model) {
+        //reservationService를 사용하여 주어진 고객 ID에 해당하는 예약 목록을 가져옴.
         List<Reservation> reservationList = reservationService.getReservationsByCustomerId(id);
-
+        //reservationList를 스트림으로 변환한 다음, 현재 날짜 이전에 예약된 예약만 필터링하여 pastReservations 리스트에 저장
         List<Reservation> pastReservations = reservationList.stream()
                 .filter(reservation -> reservation.getDateSlot().isBefore(LocalDate.now()))
                 .collect(Collectors.toList());
-
+        //reservationList를 스트림으로 변환한 다음, 현재 날짜 이후에 예약된 예약만 필터링하여 futureReservations 리스트에 저장
         List<Reservation> futureReservations = reservationList.stream()
                 .filter(reservation -> !reservation.getDateSlot().isBefore(LocalDate.now()))
                 .collect(Collectors.toList());
