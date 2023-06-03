@@ -113,25 +113,57 @@
     timeSelect.addEventListener('change', updateTables);
     function updateTables() {
         if (dateInput.value && timeSelect.value) {
-            alert(dateInput.value +"일 "+ timeSelect.value );
-            // $.ajax({
-            //     url: '/getAvailableTables',  // 적절한 엔드포인트로 변경해야 합니다.
-            //     type: 'GET',
-            //     data: {
-            //         date: dateInput.value,
-            //         time: timeSelect.value
-            //     },
-            //     success: function(response) {
-            //         // 서버에서 받은 response를 이용해서 라디오 박스를 업데이트합니다.
-            //         updateRadioBoxes(response);
-            //     }
-            // });
+            // alert(dateInput.value +"일 "+ timeSelect.value );
+            $.ajax({
+                url: '/customer/getAvailableTables',
+                type: 'GET',
+                data: {
+                    date: dateInput.value,
+                    time: timeSelect.value
+                },
+                success: function(response) {
+                    // 서버에서 받은 response를 이용해서 라디오 박스를 업데이트합니다.
+                    updateRadioBoxes(response.allTables, response.selectTables);
+
+                }
+            });
         }
     }
 
-    function updateRadioBoxes(tables) {
-        // 예약 가능한 테이블 정보에 따라 라디오 박스를 업데이트하는 코드를 작성해야 합니다.
-        // 이 함수는 서버에서 반환받은 'tables' 객체를 인자로 받습니다.
+        function updateRadioBoxes(allTables, selectTables) {
+            const selectTableDiv = document.querySelector('.SelectTable');
+
+            // 기존에 있던 라디오 박스를 모두 제거합니다.
+            const oldTableDivs = selectTableDiv.querySelectorAll('div');
+            oldTableDivs.forEach((div) => {
+                selectTableDiv.removeChild(div);
+            });
+
+            // 새로운 라디오 박스를 생성합니다.
+            allTables.forEach((tableId) => {
+                const newDiv = document.createElement('div');
+                const newLabel = document.createElement('label');
+                const newInput = document.createElement('input');
+                const newSpan = document.createElement('span');
+
+                newInput.className = 'radio';
+                newInput.type = 'radio';
+                newInput.id = 'radio' + tableId;
+                newInput.value = tableId;
+                newInput.name = 'tid';
+
+
+                if (selectTables.includes(tableId)) {
+                    newInput.disabled = true;
+                }
+
+                newSpan.textContent = tableId + '번';
+
+                newLabel.appendChild(newInput);
+                newLabel.appendChild(newSpan);
+                newDiv.appendChild(newLabel);
+                selectTableDiv.appendChild(newDiv);
+            });
     }
 </script>
 
