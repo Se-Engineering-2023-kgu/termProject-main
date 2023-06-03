@@ -37,7 +37,7 @@
                 <br>
                 <div class="Time">
                     <label>시간</label>
-                    <select th:field="${reservationForm.time}">
+                    <select id ="Time" th:field="${reservationForm.time}">
                         <option value="">예약시간</option>
                         <option th:each="timeSlot : ${T(rest.order.reservation.DefineEnum.TimeSlot).values()}"
                                 th:text="${timeSlot.detail}" th:value="${timeSlot}"></option>
@@ -91,4 +91,15 @@
     document.getElementById("Date").setAttribute("min", today);
     document.getElementById("Date").setAttribute("max", maxDate);
 </script>
+<script>
+    // let dateInput = document.getElementById('Date');
+    // let timeSelect = document.getElementById('Time');
+    //
+    // timeSelect.disabled = true;
+    // dateInput.addEventListener('change', function() {
+    //     timeSelect.disabled = false;
+    //     timeSelect.value = "";
+    // });
+</script>
+
 </html>
