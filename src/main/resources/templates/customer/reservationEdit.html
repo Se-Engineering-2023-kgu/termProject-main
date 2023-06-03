@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/css/reservationEdit.css">
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Reservation_Edit</title>
 </head>
 <body>
@@ -94,12 +95,44 @@
 <script>
     // let dateInput = document.getElementById('Date');
     // let timeSelect = document.getElementById('Time');
-    //
-    // timeSelect.disabled = true;
+
+
     // dateInput.addEventListener('change', function() {
-    //     timeSelect.disabled = false;
-    //     timeSelect.value = "";
+    //     alert("날짜가 변경되었어요!")
     // });
+    //
+    // timeSelect.addEventListener('change', function() {
+    //     alert("시간이 변경되었어요!")
+    // });
+</script>
+<script>
+    let dateInput = document.getElementById('Date');
+    let timeSelect = document.getElementById('Time');
+
+    dateInput.addEventListener('change', updateTables);
+    timeSelect.addEventListener('change', updateTables);
+    function updateTables() {
+        if (dateInput.value && timeSelect.value) {
+            alert(dateInput.value +"일 "+ timeSelect.value );
+            // $.ajax({
+            //     url: '/getAvailableTables',  // 적절한 엔드포인트로 변경해야 합니다.
+            //     type: 'GET',
+            //     data: {
+            //         date: dateInput.value,
+            //         time: timeSelect.value
+            //     },
+            //     success: function(response) {
+            //         // 서버에서 받은 response를 이용해서 라디오 박스를 업데이트합니다.
+            //         updateRadioBoxes(response);
+            //     }
+            // });
+        }
+    }
+
+    function updateRadioBoxes(tables) {
+        // 예약 가능한 테이블 정보에 따라 라디오 박스를 업데이트하는 코드를 작성해야 합니다.
+        // 이 함수는 서버에서 반환받은 'tables' 객체를 인자로 받습니다.
+    }
 </script>
 
 </html>
