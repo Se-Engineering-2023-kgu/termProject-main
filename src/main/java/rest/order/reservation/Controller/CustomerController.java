@@ -17,7 +17,9 @@ import rest.order.reservation.Service.TableService;
 import rest.order.reservation.Service.UserService;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -84,6 +86,7 @@ public class CustomerController {
         }
     }
 
+    //customer 예약 수정
     @GetMapping("/{customerId}/reservation/{reservationId}/edit")
     public String reservationEditGet(@PathVariable("customerId") Long customerId, @PathVariable("reservationId") Long reservationId, Model model) {
 
@@ -105,6 +108,27 @@ public class CustomerController {
 //        model.addAttribute("reservation", reservation);
 //        model.addAttribute("orderedMenuId", orderedMenuId);
         return "customer/reservationEdit";
+    }
+
+    // Ajax : customer edit 부분에서 date 와 time으로 테이블 예약 방지
+    @GetMapping("/getAvailableTables")
+    public ResponseEntity<?> getAvailableTables(@RequestParam("date") String date, @RequestParam("time") String time) {
+        // date와 time을 이용해서 예약 가능한 테이블을 조회합니다.
+
+        System.out.println("date = " + date);
+        System.out.println("time = " + time);
+        List<Long> selectTables = tableService.getAvailableTables(date, time);
+        List<Long> allTables = tableService.findAllTable().stream().map(TableList -> TableList.getTid())
+                .collect(Collectors.toList());
+        System.out.println("tables.size() = " + selectTables.size());
+        for (Long table : selectTables) {
+            System.out.println("table_id= " + table);
+        }
+        Map<String, List<Long>> response = new HashMap<>();
+        response.put("selectTables", selectTables);
+        response.put("allTables", allTables);
+
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping("/{customerId}/reservation/{reservationId}/edit")

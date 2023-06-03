@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/css/reservationEdit.css">
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Reservation_Edit</title>
 </head>
 <body>
@@ -37,7 +38,7 @@
                 <br>
                 <div class="Time">
                     <label>시간</label>
-                    <select th:field="${reservationForm.time}">
+                    <select id ="Time" th:field="${reservationForm.time}">
                         <option value="">예약시간</option>
                         <option th:each="timeSlot : ${T(rest.order.reservation.DefineEnum.TimeSlot).values()}"
                                 th:text="${timeSlot.detail}" th:value="${timeSlot}"></option>
@@ -91,4 +92,79 @@
     document.getElementById("Date").setAttribute("min", today);
     document.getElementById("Date").setAttribute("max", maxDate);
 </script>
+<script>
+    // let dateInput = document.getElementById('Date');
+    // let timeSelect = document.getElementById('Time');
+
+
+    // dateInput.addEventListener('change', function() {
+    //     alert("날짜가 변경되었어요!")
+    // });
+    //
+    // timeSelect.addEventListener('change', function() {
+    //     alert("시간이 변경되었어요!")
+    // });
+</script>
+<script>
+    let dateInput = document.getElementById('Date');
+    let timeSelect = document.getElementById('Time');
+
+    dateInput.addEventListener('change', updateTables);
+    timeSelect.addEventListener('change', updateTables);
+    function updateTables() {
+        if (dateInput.value && timeSelect.value) {
+            // alert(dateInput.value +"일 "+ timeSelect.value );
+            $.ajax({
+                url: '/customer/getAvailableTables',
+                type: 'GET',
+                data: {
+                    date: dateInput.value,
+                    time: timeSelect.value
+                },
+                success: function(response) {
+                    // 서버에서 받은 response를 이용해서 라디오 박스를 업데이트합니다.
+                    updateRadioBoxes(response.allTables, response.selectTables);
+
+                }
+            });
+        }
+    }
+
+        function updateRadioBoxes(allTables, selectTables) {
+            const selectTableDiv = document.querySelector('.SelectTable');
+
+            // 기존에 있던 라디오 박스를 모두 제거합니다.
+            const oldTableDivs = selectTableDiv.querySelectorAll('div');
+            oldTableDivs.forEach((div) => {
+                selectTableDiv.removeChild(div);
+            });
+
+            // 새로운 라디오 박스를 생성합니다.
+            allTables.forEach((tableId) => {
+                const newDiv = document.createElement('div');
+                const newLabel = document.createElement('label');
+                const newInput = document.createElement('input');
+                const newSpan = document.createElement('span');
+
+                newInput.className = 'radio';
+                newInput.type = 'radio';
+                newInput.id = 'radio' + tableId;
+                newInput.value = tableId;
+                newInput.name = 'tid';
+
+
+                if (selectTables.includes(tableId)) {
+                    newInput.disabled = true;
+                }
+
+                newSpan.textContent = tableId + '번';
+
+                newLabel.appendChild(newInput);
+                newLabel.appendChild(newSpan);
+                newDiv.appendChild(newLabel);
+                selectTableDiv.appendChild(newDiv);
+            });
+    }
+</script>
+
 </html>

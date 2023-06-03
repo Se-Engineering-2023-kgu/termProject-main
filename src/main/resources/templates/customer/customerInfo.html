@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <link href="/css/customerInfo.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="/css/customerInfo.css">
+    <link href="/css/customerInfo.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
 
     <title>My Page</title>
@@ -15,11 +15,12 @@
 <div class="wrap">
     <div class="mypage">
         <div class="user">
-            <img src="/img/user_icon.png" width="100px" style="margin-top: 30px;">
+            <a href="/"><img src="/img/user_icon.png" style="margin-top: 30px;" width="100px"></a>
+
         </div>
         <div>
             <table class="before_res">
-                <caption th:text="|이전 예약 : ${pastResrvationsSize}|" >이전 예약</caption>
+                <caption th:text="|이전 예약 : ${pastResrvationsSize}|">이전 예약</caption>
                 <thead>
                 <tr>
                     <th>날짜</th>
