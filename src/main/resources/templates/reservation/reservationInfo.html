@@ -17,28 +17,33 @@
                 <input th:field="*{members}" type="hidden"/>
                 <span th:text="${reservation.members}"></span>
             </div>
+            <br>
             <div>
                 <label>날짜:</label>
                 <input th:field="*{date}" type="hidden"/>
                 <span th:text="${reservation.date}"></span>
             </div>
+            <br>
             <div>
                 <label>시간:</label>
                 <input th:field="*{time}" type="hidden"/>
                 <span th:text="${reservation.time.detail}"></span>
             </div>
-
+            <br>
             <div>
                 <label>테이블 번호:</label>
                 <input th:field="*{tid}" type="hidden"/>
                 <span th:text="|${tables.number}번|"></span>
             </div>
+            <br>
             <div>
                 <label>선택 메뉴:</label>
-                <input th:field="*{orderMenuList}" type="hidden"/>
-                <ul th:each="menu : ${menuList}">
-                    <li th:text="${menu.name}"></li>
-                </ul>
+                <div class="selectmenu">
+                    <input th:field="*{orderMenuList}" type="hidden"/>
+                    <ul th:each="menu : ${menuList}">
+                        <li th:text="${menu.name}"></li>
+                    </ul>
+                </div>
             </div>
             <button class="submit" id="submit" type="submit">예약</button>
         </form>
