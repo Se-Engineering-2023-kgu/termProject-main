@@ -19,6 +19,7 @@ import rest.order.reservation.Model.Menu;
 import rest.order.reservation.Model.OrderMenu;
 import rest.order.reservation.Model.Reservation;
 import rest.order.reservation.Model.TableList;
+import rest.order.reservation.Service.EmailService;
 import rest.order.reservation.Service.MenuService;
 import rest.order.reservation.Service.ReservationService;
 import rest.order.reservation.Service.TableService;
@@ -36,11 +37,15 @@ public class ReservationController {
     private final TableService tableService;
     private final MenuService menuService;
     private final ReservationService reservationService;
+    private final EmailService emailService;
 
-    public ReservationController(TableService tableService, MenuService menuService, ReservationService reservationService) {
+    MailController mailController;
+
+    public ReservationController(TableService tableService, MenuService menuService, ReservationService reservationService, EmailService emailService) {
         this.tableService = tableService;
         this.menuService = menuService;
         this.reservationService = reservationService;
+        this.emailService = emailService;
     }
 
     //0. 날짜 페이지 접근
@@ -109,6 +114,10 @@ public class ReservationController {
         reservationService.addReservation(id, reservation);
         model.addAttribute("id", id);
         model.addAttribute("reservationID", model);
+
+
+        // reservation과 동시에 메일 전송하기 
+        emailService.sendReservationEamil(id, reservation);
 
         return "redirect:/customer/{id}";
         // members , date , time , id , tableID , orderList
