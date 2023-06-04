@@ -11,10 +11,11 @@
     align-items: center;
     justify-content: center;
     background: rgb(93, 86, 78);
+    font-size: larger;
 }
 .wrap form {
     width: 150px;
-    font-size: 15px;
+    font-size: 18px;
 }
 
 .reserInfo{
@@ -29,10 +30,12 @@
 }
 .reserInfo h3{
     margin-bottom: 15px;
-    height: 150px;
+    height: 80px;
 }
 
-
+.selectmenu{
+    padding-left: 30px;
+}
 .submit{
     float: right;
     width: 50px;

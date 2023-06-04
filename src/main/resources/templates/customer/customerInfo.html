@@ -11,11 +11,12 @@
 </head>
 <body>
 <input id="customerId" th:value="${id}" type="hidden"/>
+<div th:replace="~{fragments/Header :: Header}"></div>
 
 <div class="wrap">
     <div class="mypage">
         <div class="user">
-            <a href="/"><img src="/img/user_icon.png" style="margin-top: 30px;" width="100px"></a>
+            <img src="/img/user_icon.png" style="margin-top: 30px;" width="100px">
 
         </div>
         <div>

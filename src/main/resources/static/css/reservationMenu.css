@@ -11,10 +11,11 @@
     align-items: center;
     justify-content: center;
     background: rgb(93, 86, 78);
+    font-size: larger;
 }
 .wrap form{
     width: 150px;
-    font-size: 15px;
+    font-size: 18px;
     padding-top: 30px;
 }
 
@@ -30,9 +31,10 @@
 }
 
 .SelectMenu{
+    width: 250px;
     margin: 10px 10px;
+    padding-bottom: 30px;
 }
-
 .Select h3{
     margin-bottom: 15px;
 }
