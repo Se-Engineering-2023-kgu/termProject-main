@@ -27,7 +27,7 @@ form{
     margin-bottom: 150px;
     padding-bottom: 50px;
     width: 35%;
-    height: 600px;
+    height: auto;
     background: white;
     border-radius: 20px;
     display: flex;
