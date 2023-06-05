@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
@@ -36,8 +37,12 @@ public class EmailService {
     }
 
     public void sendEmail(String to, String subject, ReservationForm name, Long id) throws MessagingException {
+        JavaMailSenderImpl sender = new JavaMailSenderImpl();
+        sender.setHost("smtp.gmail.com"); 
+        
         MimeMessage message = mailSender.createMimeMessage();
-        MimeMessageHelper helper = new MimeMessageHelper(message, true);
+        MimeMessageHelper helper = new MimeMessageHelper(message);
+        helper.setFrom("bhchoi@kyonggi.ac.kr");
         helper.setTo(to);
         helper.setSubject(subject);
 
@@ -74,8 +79,9 @@ public class EmailService {
         AppUser appUser = AppUserRepository.findById(id).get();
         AppUserDTO appUserDTO =  AppUserDTO.form(appUser);
 
+        
         String userMail = appUserDTO.email().toString();
-
+        System.out.println("UserMAIL is " + userMail);
 
         try {
             sendEmail(userMail, reservation.getDate() + " " + reservation.getTime().getDetail() + " 예약 주문 ", reservation, id);
