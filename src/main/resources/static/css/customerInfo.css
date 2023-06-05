@@ -11,6 +11,7 @@
     align-items: center;
     justify-content: center;
     background: rgb(93, 86, 78);
+    min-height: 750px;
 }
 
 .mypage{

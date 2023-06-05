@@ -132,16 +132,18 @@ a {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
+    font-family: 'Nanum Gothic', sans-serif;
 }
 
 .Reservation_header {
-    font-family: 'Nanum Gothic', sans-serif;
+    font-family: 'Merriweather', serif;
 }
 
 #reservation_content{
     /* background-color: aqua; */
     height: 500px;
     position: relative;
+    font-family: 'Nanum Gothic', sans-serif;
 }
 #reservation_content div{
     

@@ -11,12 +11,12 @@
     align-items: center;
     justify-content: center;
     background: rgb(93, 86, 78);
+    font-size: larger;
 }
 .wrap form{
     padding: 50px;
-    font-size: 15px;
+    font-size: 18px;
 }
-
 .reservation_date {
     width: 30%;
     height: 600px;

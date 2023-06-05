@@ -233,6 +233,16 @@
                         <i class="fas fa-table me-1"></i>
                         고객 관리
                     </div>
+                    <form class="" th:object="${appUserSearch}">
+                        <div class="card-body" id="display_flex_center">
+                            <div class="">
+                                <input placeholder="회원명" th:field="*{name}" type="text"/>
+                                <button type="submit">검색</button>
+                            </div>
+
+                        </div>
+                    </form>
+
                     <div class="card-body" id="display_flex_center">
                         <table id="datatablesSimple">
                             <thead>
