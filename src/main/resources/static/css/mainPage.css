@@ -142,14 +142,14 @@ a {
 #reservation_content{
     /* background-color: aqua; */
     height: 500px;
-    position: relative;
+    /* position: relative; */
     font-family: 'Nanum Gothic', sans-serif;
 }
 #reservation_content div{
     
-    position: absolute;
+    /* position: absolute;
     top: 20%;
-    left: 50%;
+    left: 50%; */
     /* transform: translate(-0%, -50%); */
 
 }
